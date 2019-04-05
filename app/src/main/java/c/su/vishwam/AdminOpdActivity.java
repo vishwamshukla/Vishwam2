@@ -82,6 +82,7 @@ public class AdminOpdActivity extends AppCompatActivity {
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
         saveCurrentDate = currentDate.format(calendar.getTime());
 
+
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
@@ -93,6 +94,8 @@ public class AdminOpdActivity extends AppCompatActivity {
         patientMap.put("name", PatientName);
         patientMap.put("problem", PatientProblem);
         patientMap.put("others", OtherDetails);
+        patientMap.put("date",saveCurrentDate);
+        patientMap.put("time",saveCurrentTime);
 
         PatientRef.child(patientRandomKey).updateChildren(patientMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

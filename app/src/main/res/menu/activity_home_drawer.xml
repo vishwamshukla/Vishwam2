@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_opd"
+            android:icon="@drawable/ic_local_hospital_black_24dp"
+            android:title="OPD" />
+        <item
+            android:id="@+id/nav_ipd"
+            android:icon="@drawable/ic_hotel_black_24dp"
+            android:title="IPD" />
+        <item
+            android:id="@+id/nav_emergency"
+            android:icon="@drawable/ic_add_alert_black_24dp"
+            android:title="Emergency" />
+        <item
+            android:id="@+id/nav_leave_note"
+            android:icon="@drawable/ic_note_add_black_24dp"
+            android:title="Leave a Note" />
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="Search Patient" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="Logout" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>
