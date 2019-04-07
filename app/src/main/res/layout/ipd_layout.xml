@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/patient_name"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginLeft="2dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/patient_phone_number"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textAlignment="viewEnd"
+            android:text="Phone"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginRight="2dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/patient_sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sex"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="25dp" />
+        <TextView
+            android:id="@+id/patient_problem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Issue"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_sex"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_other_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_problem"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_date_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Admission"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_other_details"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <Button
+            android:id="@+id/cross_consult"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttons"
+            android:backgroundTint="#fff"
+            android:text="Cross Consult"
+            android:layout_below="@id/patient_date_time"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAllCaps="false"/>
+        <Button
+            android:id="@+id/discharge"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/patient_date_time"
+            android:background="@drawable/buttons"
+            android:backgroundTint="#fff"
+            android:text="Discharge"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAllCaps="false"/>
+    </RelativeLayout>
+
+</RelativeLayout>

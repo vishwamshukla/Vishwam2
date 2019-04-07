@@ -1,21 +1,20 @@
 package c.su.vishwam.Model;
 
-public class Patients {
-    private String name, problem, others,time,date,id,sex,age;
+public class IpdPatients {
+    private String name, problem, others, age, sex,time,date,phone;
 
-    public Patients(){
-
+    public IpdPatients() {
     }
 
-    public Patients(String name, String problem, String others, String time, String date, String id, String sex, String age) {
+    public IpdPatients(String name, String problem, String others, String age, String sex, String time, String date,String phone) {
         this.name = name;
         this.problem = problem;
         this.others = others;
+        this.age = age;
+        this.sex = sex;
         this.time = time;
         this.date = date;
-        this.id = id;
-        this.sex = sex;
-        this.age = age;
+        this.phone = phone;
     }
 
     public String getName() {
@@ -42,6 +41,22 @@ public class Patients {
         this.others = others;
     }
 
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     public String getTime() {
         return time;
     }
@@ -57,26 +72,11 @@ public class Patients {
     public void setDate(String date) {
         this.date = date;
     }
-
-    public String getId() {
-        return id;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

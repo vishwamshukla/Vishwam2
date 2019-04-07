@@ -24,6 +24,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import c.su.vishwam.Model.Patients;
 import c.su.vishwam.Prevalent.Prevalent;
@@ -76,6 +77,7 @@ public class HomeActivity extends AppCompatActivity
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
         userNameTextView.setText(Prevalent.currentOnlineUser.getName());
+        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -96,10 +98,19 @@ public class HomeActivity extends AppCompatActivity
         FirebaseRecyclerAdapter<Patients, ProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Patients, ProductViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Patients model) {
+                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Patients model) {
                         holder.patientName.setText(model.getName());
                         holder.patientProblem.setText(model.getProblem());
                         holder.patientTime.setText("Time: "+model.getTime());
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(HomeActivity.this, PatientDetailsActivity.class);
+                                intent.putExtra("id",model.getId());
+                                startActivity(intent);
+                            }
+                        });
 
                     }
 
@@ -154,6 +165,8 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_opd) {
             // Handle the camera action
         } else if (id == R.id.nav_ipd) {
+            Intent intent = new Intent(HomeActivity.this,IpdActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_emergency) {
 
@@ -167,6 +180,10 @@ public class HomeActivity extends AppCompatActivity
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
+        }
+        else if (id == R.id.nav_settings){
+            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
