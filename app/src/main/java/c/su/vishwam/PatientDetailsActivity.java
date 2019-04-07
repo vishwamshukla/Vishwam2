@@ -125,7 +125,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
     }
 
     private void getPatientDetails(String id) {
-        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Patients");
+        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
 
         productsRef.child(Id).addValueEventListener(new ValueEventListener() {
             @Override
@@ -133,10 +133,10 @@ public class PatientDetailsActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()){
                     Patients patients = dataSnapshot.getValue(Patients.class);
 
-                    Name.setText(patients.getName());
+                    Name.setText("Name: "+patients.getName());
                     Problem.setText("Issue: "+patients.getProblem());
                     OtherDetails.setText("Details: "+patients.getOthers());
-                    Sex.setText(patients.getSex());
+                    Sex.setText("Sex: "+patients.getSex());
                     Age.setText("Age: "+patients.getAge());
                 }
             }

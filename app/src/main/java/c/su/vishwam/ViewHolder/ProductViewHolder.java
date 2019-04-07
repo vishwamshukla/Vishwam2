@@ -10,7 +10,7 @@ import c.su.vishwam.R;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView patientName, patientProblem,patientTime;
+    public TextView patientName, patientProblem,patientDateTime,patientAge,patientSex,patientPhone,patientOthers;
     public ItemClickListener listener;
 
 
@@ -20,7 +20,12 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
 
         patientName = (TextView) itemView.findViewById(R.id.patient_name);
         patientProblem = (TextView) itemView.findViewById(R.id.patient_problem);
-        patientTime = (TextView) itemView.findViewById(R.id.patient_time);
+        patientDateTime = (TextView) itemView.findViewById(R.id.patient_date_time);
+        patientAge = (TextView) itemView.findViewById(R.id.patient_age);
+        patientSex = (TextView) itemView.findViewById(R.id.patient_sex);
+        patientPhone = (TextView) itemView.findViewById(R.id.patient_phone_number);
+        patientOthers = (TextView) itemView.findViewById(R.id.patient_other_details);
+
     }
 
     public void setItemClickListener(ItemClickListener listener){

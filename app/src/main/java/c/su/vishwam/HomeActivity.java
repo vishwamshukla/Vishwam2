@@ -44,12 +44,12 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients");
+        PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
 
         Paper.init(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Home");
+        toolbar.setTitle("Appoinments");
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -99,10 +99,12 @@ public class HomeActivity extends AppCompatActivity
                 new FirebaseRecyclerAdapter<Patients, ProductViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Patients model) {
-                        holder.patientName.setText(model.getName());
-                        holder.patientProblem.setText(model.getProblem());
-                        holder.patientTime.setText("Time: "+model.getTime());
-
+                        holder.patientName.setText("Name: "+model.getName());
+                        holder.patientPhone.setText("Phone: "+model.getPhone());
+                        holder.patientSex.setText("Sex: "+model.getSex());
+                        holder.patientProblem.setText("Issue: "+model.getProblem());
+                        holder.patientOthers.setText("Details: "+model.getOthers());
+                        holder.patientDateTime.setText("Date: "+model.getDate());
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -173,7 +175,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_leave_note) {
 
         } else if (id == R.id.nav_search) {
-
+            Intent intent = new Intent(HomeActivity.this,SearchActivity.class);
+            startActivity(intent);
         }else if (id == R.id.nav_logout) {
             Paper.book().destroy();
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);

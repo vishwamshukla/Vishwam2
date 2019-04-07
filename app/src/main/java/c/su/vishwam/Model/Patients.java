@@ -1,13 +1,13 @@
 package c.su.vishwam.Model;
 
 public class Patients {
-    private String name, problem, others,time,date,id,sex,age;
+    private String name, problem, others,time,date,id,sex,age,phone;
 
     public Patients(){
 
     }
 
-    public Patients(String name, String problem, String others, String time, String date, String id, String sex, String age) {
+    public Patients(String name, String problem, String others, String time, String date, String id, String sex, String age,String phone) {
         this.name = name;
         this.problem = problem;
         this.others = others;
@@ -16,6 +16,7 @@ public class Patients {
         this.id = id;
         this.sex = sex;
         this.age = age;
+        this.phone = phone;
     }
 
     public String getName() {
@@ -78,5 +79,12 @@ public class Patients {
 
     public void setAge(String age) {
         this.age = age;
+    }
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
