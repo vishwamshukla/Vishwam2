@@ -17,7 +17,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_category);
 
         opd = (ImageView) findViewById(R.id.opd);
-        ipd = (ImageView) findViewById(R.id.ipd);
+        ipd = (ImageView) findViewById(R.id.ipd_btn);
         emergency = (ImageView) findViewById(R.id.emergency);
         leave = (ImageView) findViewById(R.id.leave);
         opd.setOnClickListener(new View.OnClickListener() {

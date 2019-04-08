@@ -47,7 +47,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         TransferToIpd = (Button) findViewById(R.id.transfer_ipd);
         TransferToDoctor = (Button) findViewById(R.id.transfer_to_doctor);
         CancelAppoinment = (Button) findViewById(R.id.cancel_appoinment);
-        CompleteAppoinment = (Button)  findViewById(R.id.complete_appoinment);
+//        CompleteAppoinment = (Button)  findViewById(R.id.complete);
 
 
         getPatientDetails(Id);
@@ -67,15 +67,21 @@ public class PatientDetailsActivity extends AppCompatActivity {
         CancelAppoinment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Id = getIntent().getStringExtra("id");
+                RemovePatient(Id);
             }
         });
-        CompleteAppoinment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        CompleteAppoinment.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+    }
 
-            }
-        });
+    private void RemovePatient(String id) {
+        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+        productsRef.child("id").removeValue();
     }
 
     private void addingToIpdList() {

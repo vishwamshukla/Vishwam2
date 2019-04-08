@@ -23,10 +23,10 @@ import java.util.HashMap;
 
 public class AdminOpdActivity extends AppCompatActivity {
 
-    private String PatientName, PatientProblem, OtherDetails, saveCurrentDate, saveCurrentTime;
+    private String PatientName, PatientProblem, OtherDetails, saveCurrentDate, saveCurrentTime,PatiientAge,PatientSex;
 
     private Button AddNewPatient;
-    private EditText name, problem, otherDetails;
+    private EditText name, problem, otherDetails,age,sex;
     private String patientRandomKey;
     private DatabaseReference PatientRef;
     private ProgressDialog loadingBar;
@@ -44,6 +44,9 @@ public class AdminOpdActivity extends AppCompatActivity {
         problem = (EditText) findViewById(R.id.problem);
 
         otherDetails = (EditText) findViewById(R.id.other_details);
+        age = (EditText) findViewById(R.id.age);
+        sex = (EditText) findViewById(R.id.sex);
+
         loadingBar = new ProgressDialog(this);
 
         AddNewPatient.setOnClickListener(new View.OnClickListener() {
@@ -56,9 +59,11 @@ public class AdminOpdActivity extends AppCompatActivity {
     }
 
     private void ValidatePatientData() {
-        PatientName = name.getText().toString();
-        PatientProblem = problem.getText().toString();
-        OtherDetails = otherDetails.getText().toString();
+        PatientName = String.valueOf(name.getText());
+        PatientProblem = String.valueOf(problem.getText());
+        OtherDetails = String.valueOf(otherDetails.getText());
+        PatiientAge = String.valueOf(age.getText());
+        PatientSex = String.valueOf(sex.getText());
 
         if (TextUtils.isEmpty(PatientName)){
             Toast.makeText(this, "Please Enter the name", Toast.LENGTH_SHORT).show();
@@ -94,6 +99,8 @@ public class AdminOpdActivity extends AppCompatActivity {
         patientMap.put("name", PatientName);
         patientMap.put("problem", PatientProblem);
         patientMap.put("others", OtherDetails);
+        patientMap.put("sex",PatientSex);
+        patientMap.put("age",PatiientAge);
         patientMap.put("date",saveCurrentDate);
         patientMap.put("time",saveCurrentTime);
 
@@ -105,6 +112,7 @@ public class AdminOpdActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(AdminOpdActivity.this, AdminCategoryActivity.class);
                             startActivity(intent);
+                            finish();
 
                             loadingBar.dismiss();
                             Toast.makeText(AdminOpdActivity.this, "Patient added in OPD", Toast.LENGTH_SHORT).show();
@@ -116,5 +124,11 @@ public class AdminOpdActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

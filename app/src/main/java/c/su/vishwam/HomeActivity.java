@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity
         Paper.init(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Appoinments");
+        toolbar.setTitle("Appointments");
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
