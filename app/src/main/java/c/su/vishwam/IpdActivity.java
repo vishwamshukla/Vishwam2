@@ -52,7 +52,8 @@ public class IpdActivity extends AppCompatActivity {
                         holder.sex.setText("Sex: "+model.getSex());
                         holder.problem.setText("Issue: "+model.getProblem());
                         holder.others.setText("Details: "+model.getOthers());
-                        holder.time.setText("Admission: "+model.getDate());
+                        holder.time.setText("Admission: "+model.getTime());
+                        holder.date.setText("Admission: "+model.getDate());
 
                     }
 
@@ -69,7 +70,7 @@ public class IpdActivity extends AppCompatActivity {
 
     public static class IpdViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView name,phone,problem,others,time,sex;
+        public TextView name,phone,problem,others,time,sex,date;
         public Button crossConsult, discharge;
 
         public IpdViewHolder(@NonNull View itemView) {
@@ -81,6 +82,7 @@ public class IpdActivity extends AppCompatActivity {
             problem = itemView.findViewById(R.id.patient_problem);
             others = itemView.findViewById(R.id.patient_other_details);
             time = itemView.findViewById(R.id.patient_date_time);
+            date = itemView.findViewById(R.id.patient_date);
             crossConsult = (Button) itemView.findViewById(R.id.cross_consult);
             discharge = (Button) itemView.findViewById(R.id.discharge);
         }

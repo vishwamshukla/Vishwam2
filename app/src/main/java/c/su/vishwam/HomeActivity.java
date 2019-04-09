@@ -165,7 +165,7 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_opd) {
-            // Handle the camera action
+            startActivity(new Intent(HomeActivity.this,OpdActivity.class));
         } else if (id == R.id.nav_ipd) {
             Intent intent = new Intent(HomeActivity.this,IpdActivity.class);
             startActivity(intent);
@@ -175,6 +175,7 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_leave_note) {
+            startActivity(new Intent(HomeActivity.this,LeaveNoteActivity.class));
 
         } else if (id == R.id.nav_search) {
             Intent intent = new Intent(HomeActivity.this,SearchActivity.class);
@@ -187,6 +188,14 @@ public class HomeActivity extends AppCompatActivity
             finish();
         }
         else if (id == R.id.nav_settings){
+            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_contact){
+            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_about_app){
             Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
             startActivity(intent);
         }

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:layout_margin="10dp"
-        android:background="@drawable/buttons">
+        android:background="@drawable/pages">
 
         <TextView
             android:id="@+id/patient_name"
@@ -70,6 +70,17 @@
             android:text="Time"
             android:textColor="#fff"
             android:layout_below="@id/patient_other_details"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_date_time"
             android:textStyle="bold"
             android:textSize="18dp"
             android:gravity="center"

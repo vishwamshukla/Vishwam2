@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -67,7 +67,7 @@
             android:id="@+id/patient_date_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Admission Time"
+            android:text="Time"
             android:textColor="#fff"
             android:layout_below="@id/patient_other_details"
             android:textStyle="bold"
@@ -78,34 +78,15 @@
             android:id="@+id/patient_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Admission Date"
+            android:text="Date"
             android:textColor="#fff"
             android:layout_below="@id/patient_date_time"
             android:textStyle="bold"
             android:textSize="18dp"
             android:gravity="center"
             android:layout_marginTop="10dp" />
-        <Button
-            android:id="@+id/cross_consult"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttons"
-            android:backgroundTint="#fff"
-            android:text="Cross Consult"
-            android:layout_below="@id/patient_date"
-            android:textColor="@color/colorPrimaryDark"
-            android:textAllCaps="false"/>
-        <Button
-            android:id="@+id/discharge"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/patient_date"
-            android:background="@drawable/buttons"
-            android:backgroundTint="#fff"
-            android:text="Discharge"
-            android:textColor="@color/colorPrimaryDark"
-            android:textAllCaps="false"/>
+
+
     </RelativeLayout>
 
 </RelativeLayout>

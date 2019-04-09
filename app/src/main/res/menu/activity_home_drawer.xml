@@ -37,9 +37,13 @@
                 android:icon="@drawable/ic_settings_black_24dp"
                 android:title="Account Settings" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_contact"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Contact us" />
+            <item
+                android:id="@+id/nav_about_app"
+                android:icon="@drawable/ic_android_black_24dp"
+                android:title="About Doctor+" />
         </menu>
     </item>
 

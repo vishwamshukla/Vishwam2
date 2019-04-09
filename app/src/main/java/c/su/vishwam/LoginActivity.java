@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private String parentDbName = "Users";
     private android.widget.CheckBox chkBoxRememberMe;
 
-    private TextView AdminLink, NotAdminLink;
+    private TextView AdminLink, NotAdminLink,ForgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
         loadingBar = new ProgressDialog(this);
         chkBoxRememberMe = (CheckBox) findViewById(R.id.remember_me_chkb);
         Paper.init(this);
+
+        ForgotPassword = (TextView) findViewById(R.id.forgot_password_link);
 
         AdminLink = (TextView) findViewById(R.id.admin_panel_link);
         NotAdminLink = (TextView) findViewById(R.id.not_admin_panel_link);
@@ -73,6 +75,13 @@ public class LoginActivity extends AppCompatActivity {
                 AdminLink.setVisibility(View.VISIBLE);
                 NotAdminLink.setVisibility(View.INVISIBLE);
                 parentDbName = "Users";
+            }
+        });
+
+        ForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
             }
         });
 
