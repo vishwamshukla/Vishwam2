@@ -171,6 +171,8 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_emergency) {
+            Intent intent = new Intent(HomeActivity.this,EmergencyActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_leave_note) {
 

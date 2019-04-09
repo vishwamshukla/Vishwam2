@@ -38,7 +38,7 @@ public class AdminIpdActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_opd);
+        setContentView(R.layout.activity_admin_ipd);
 
         PatientRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD List").child("Doctor View").child("7057655824").child("Patients");
 

@@ -3,6 +3,7 @@ package c.su.vishwam.ViewHolder;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import c.su.vishwam.Interface.ItemClickListener;
@@ -12,11 +13,13 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
 
     public TextView patientName, patientProblem,patientDateTime,patientAge,patientSex,patientPhone,patientOthers;
     public ItemClickListener listener;
+    public ImageView imageView;
 
 
 
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);
+
 
         patientName = (TextView) itemView.findViewById(R.id.patient_name);
         patientProblem = (TextView) itemView.findViewById(R.id.patient_problem);

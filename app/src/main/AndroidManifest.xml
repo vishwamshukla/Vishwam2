@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminOpdListActivity"></activity>
+        <activity android:name=".EmergencyActivity"></activity>
+        <activity android:name=".AdminOpdListActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".IpdActivity" />
         <activity android:name=".PatientDetailsActivity" />

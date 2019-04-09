@@ -1,12 +1,11 @@
 package c.su.vishwam.Model;
 
-public class IpdPatients {
-    private String name, problem, others, age, sex,time,date,phone,image;
+public class EmergencyPatients {
+    private String name, problem, others, age, sex,time,date,phone;
 
-    public IpdPatients() {
+    public EmergencyPatients() {
     }
-
-    public IpdPatients(String name, String problem, String others, String age, String sex, String time, String date,String phone,String image) {
+    public EmergencyPatients(String name, String problem, String others, String age, String sex, String time, String date,String phone) {
         this.name = name;
         this.problem = problem;
         this.others = others;
@@ -15,14 +14,6 @@ public class IpdPatients {
         this.time = time;
         this.date = date;
         this.phone = phone;
-        this.image = image;
-    }
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getName() {
