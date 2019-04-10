@@ -192,7 +192,7 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
         }
         else if (id == R.id.nav_contact){
-            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(HomeActivity.this, ContactUsActivity.class);
             startActivity(intent);
         }
         else if (id == R.id.nav_about_app){
