@@ -196,7 +196,7 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
         }
         else if (id == R.id.nav_about_app){
-            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(HomeActivity.this, SliderActivity.class);
             startActivity(intent);
         }
 
