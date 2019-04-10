@@ -85,6 +85,28 @@
             android:textSize="18dp"
             android:gravity="center"
             android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_ward_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ward"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_date"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_bed_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bed"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_ward_no"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
         <Button
             android:id="@+id/cross_consult"
             android:layout_width="150dp"
@@ -92,7 +114,7 @@
             android:background="@drawable/buttons"
             android:backgroundTint="#fff"
             android:text="Cross Consult"
-            android:layout_below="@id/patient_date"
+            android:layout_below="@id/patient_bed_no"
             android:textColor="@color/colorPrimaryDark"
             android:textAllCaps="false"/>
         <Button
@@ -100,7 +122,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@id/patient_date"
+            android:layout_below="@id/patient_bed_no"
             android:background="@drawable/buttons"
             android:backgroundTint="#fff"
             android:text="Discharge"

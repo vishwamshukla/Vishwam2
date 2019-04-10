@@ -29,6 +29,7 @@ public class EmergencyActivity extends AppCompatActivity {
 
     private RecyclerView ipdList;
     private DatabaseReference patientRef;
+    private TextView  closeTextBtn;
 
 
 
@@ -41,6 +42,19 @@ public class EmergencyActivity extends AppCompatActivity {
 
         ipdList = findViewById(R.id.emergency_list_recycler_view);
         ipdList.setLayoutManager(new LinearLayoutManager(this));
+
+        closeTextBtn = (TextView) findViewById(R.id.close_settings_btn);
+
+
+
+        closeTextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+            }
+        });
+
 
     }
     @Override

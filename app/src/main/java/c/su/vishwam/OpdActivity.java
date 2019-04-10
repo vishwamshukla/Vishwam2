@@ -22,6 +22,7 @@ import c.su.vishwam.Model.IpdPatients;
 public class OpdActivity extends AppCompatActivity {
     private RecyclerView ipdList;
     private DatabaseReference patientRef;
+    private TextView  closeTextBtn;
 
 
     @Override
@@ -31,8 +32,22 @@ public class OpdActivity extends AppCompatActivity {
 
         patientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
 
+
         ipdList = findViewById(R.id.opd_list_recycler_view1);
         ipdList.setLayoutManager(new LinearLayoutManager(this));
+
+        closeTextBtn = (TextView) findViewById(R.id.close_settings_btn);
+
+
+
+        closeTextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+            }
+        });
+
     }
 
         @Override
