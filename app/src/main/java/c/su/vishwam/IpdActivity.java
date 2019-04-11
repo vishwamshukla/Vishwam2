@@ -35,7 +35,7 @@ public class IpdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ipd);
 
-        patientRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD List").child("Doctor View").child(Prevalent.currentOnlineUser.getPhone()).child("Patients");
+        patientRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD").child(Prevalent.currentOnlineUser.getPhone());
 
         ipdList = findViewById(R.id.ipd_list_recycler_view);
         ipdList.setLayoutManager(new LinearLayoutManager(this));

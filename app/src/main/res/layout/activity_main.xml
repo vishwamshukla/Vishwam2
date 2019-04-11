@@ -20,6 +20,17 @@
         android:src="@drawable/ic_launcher"
         tools:ignore="ContentDescription" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We care beyond health"
+        android:textAlignment="center"
+        android:textSize="27sp"
+        android:layout_marginLeft="47dp"
+        android:layout_marginTop="300dp"
+        android:textColor="@color/colorwhite"
+        android:fontFamily="sans-serif-light"/>
+
     <Button
         android:id="@+id/main_login_btn"
         android:layout_width="match_parent"

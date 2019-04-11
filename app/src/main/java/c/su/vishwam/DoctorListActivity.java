@@ -38,7 +38,7 @@ public class DoctorListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_list);
 
-        DoctorRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        DoctorRef = FirebaseDatabase.getInstance().getReference().child("Username");
 
         list_view = (ListView) findViewById(R.id.list_view);
         arrayAdapter = new ArrayAdapter<String>(DoctorListActivity.this, android.R.layout.simple_list_item_1,list_of_groups);
