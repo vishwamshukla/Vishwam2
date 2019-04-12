@@ -61,7 +61,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         TransferToDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(PatientDetailsActivity.this,DoctorListActivity.class));
             }
         });
         CancelAppoinment.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +94,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
         saveCurrentTime = currentDate.format(calForDate.getTime());
 
-        final DatabaseReference IpdListRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD List");
+        final DatabaseReference IpdListRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD");
 
         final HashMap<String, Object> ipdList = new HashMap<>();
         ipdList.put("id",Id);
@@ -104,8 +104,8 @@ public class PatientDetailsActivity extends AppCompatActivity {
         ipdList.put("sex",Sex.getText().toString());
         ipdList.put("age",Age.getText().toString());
 
-        IpdListRef.child("Doctor View").child(Prevalent.currentOnlineUser.getPhone())
-                .child("Patients").child(Id)
+        IpdListRef.child(Prevalent.currentOnlineUser.getPhone())
+                .child(Id)
                 .updateChildren(ipdList)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -139,11 +139,11 @@ public class PatientDetailsActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()){
                     Patients patients = dataSnapshot.getValue(Patients.class);
 
-                    Name.setText("Name: "+patients.getName());
-                    Problem.setText("Issue: "+patients.getProblem());
-                    OtherDetails.setText("Details: "+patients.getOthers());
-                    Sex.setText("Sex: "+patients.getSex());
-                    Age.setText("Age: "+patients.getAge());
+                    Name.setText(patients.getName());
+                    Problem.setText(patients.getProblem());
+                    OtherDetails.setText(patients.getOthers());
+                    Sex.setText(patients.getSex());
+                    Age.setText(patients.getAge());
                 }
             }
 

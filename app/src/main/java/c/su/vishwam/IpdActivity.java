@@ -77,7 +77,9 @@ public class IpdActivity extends AppCompatActivity {
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startActivity(new Intent(IpdActivity.this,IpdDetailsActivity.class));
+                                Intent intent = new Intent(IpdActivity.this,IpdDetailsActivity.class);
+                                intent.putExtra("id",model.getId());
+                                startActivity(intent);
                             }
                         });
 
@@ -90,10 +92,9 @@ public class IpdActivity extends AppCompatActivity {
                         holder.discharge.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                patientRef.child("Patient IPD List").child("Doctor View")
+                                patientRef.child("Patient IPD")
                                         .child(Prevalent.currentOnlineUser.getPhone())
-                                        .child("Patients")
-                                        .child("id").removeValue()
+                                        .child(model.getId()).removeValue()
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {

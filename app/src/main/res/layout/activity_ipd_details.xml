@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IpdDetailsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/patient_name"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/patient_problem"
+        android:gravity="center"
+        android:layout_below="@id/patient_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/patient_other_details"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_below="@id/patient_problem"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/patient_sex"
+        android:gravity="center"
+        android:layout_below="@id/patient_other_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/patient_age"
+        android:gravity="center"
+        android:layout_below="@id/patient_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        />
+
+</RelativeLayout>
