@@ -2,6 +2,7 @@ package c.su.vishwam;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +32,8 @@ public class DoctorListActivity extends AppCompatActivity {
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> list_of_groups = new ArrayList<>();
     ArrayList name = new ArrayList<String>();
+    ArrayList keys = new ArrayList<String>();
+    ArrayList emails = new ArrayList<String>();
 
     private DatabaseReference DoctorRef;
 
@@ -38,7 +42,7 @@ public class DoctorListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_list);
 
-        DoctorRef = FirebaseDatabase.getInstance().getReference().child("Username");
+        DoctorRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
         list_view = (ListView) findViewById(R.id.list_view);
         arrayAdapter = new ArrayAdapter<String>(DoctorListActivity.this, android.R.layout.simple_list_item_1,list_of_groups);
