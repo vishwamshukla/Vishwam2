@@ -1,13 +1,14 @@
 package c.su.vishwam.Model;
 
 public class Patients {
-    private String name, problem, others,time,date,id,sex,age,phone,image;
+    private String name, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergies,courseinhospital;
 
     public Patients(){
 
     }
 
-    public Patients(String name, String problem, String others, String time, String date, String id, String sex, String age,String phone,String image) {
+    public Patients(String name, String problem, String others, String time, String date, String id, String sex, String age,String phone,String image,
+                    String pulse,String bp,String bloodgroup,String anemia,String medicalhistory,String allergies,String courseinhospital) {
         this.name = name;
         this.problem = problem;
         this.others = others;
@@ -18,7 +19,71 @@ public class Patients {
         this.age = age;
         this.phone = phone;
         this.image = image;
+        this.pulse = pulse;
+        this.bp = bp;
+        this.bloodgroup = bloodgroup;
+        this.anemia = anemia;
+        this.medicalhistory = medicalhistory;
+        this.allergies = allergies;
+        this.courseinhospital = courseinhospital;
     }
+
+    public String getAnemia() {
+        return anemia;
+    }
+
+    public void setAnemia(String anemia) {
+        this.anemia = anemia;
+    }
+
+    public String getMedicalhistory() {
+        return medicalhistory;
+    }
+
+    public void setMedicslhistory(String medicalhistory) {
+        this.medicalhistory = medicalhistory;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
+    }
+
+    public String getCourseinhospital() {
+        return courseinhospital;
+    }
+
+    public void setCourseinhospital(String courseinhospital) {
+        this.courseinhospital = courseinhospital;
+    }
+
+    public String getBloodgroup() {
+        return bloodgroup;
+    }
+
+    public void setBloodgroup(String bloodgroup) {
+        this.bloodgroup = bloodgroup;
+    }
+
+    public String getPulse() {
+        return pulse;
+    }
+
+    public void setPulse(String pulse) {
+        this.pulse = pulse;
+    }
+
+    public String getBp() {
+        return bp;
+    }
+
+    public void setBp(String bp) {
+        this.bp = bp;
+    }
+
     public String getImage() {
         return image;
     }

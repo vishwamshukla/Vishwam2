@@ -16,7 +16,7 @@ import c.su.vishwam.Prevalent.Prevalent;
 
 public class IpdDetailsActivity extends AppCompatActivity {
 
-    private TextView Name, Problem, OtherDetails, Sex, Age;
+    private TextView Name, Problem, OtherDetails, Sex, Age,Pulse,BloodPresuure,BloodGroup,anemia,MedicalHistory,Allergies,courseinHospital;
     private String Id = "";
 
     @Override
@@ -29,6 +29,13 @@ public class IpdDetailsActivity extends AppCompatActivity {
         OtherDetails = (TextView) findViewById(R.id.patient_other_details);
         Sex = (TextView) findViewById(R.id.patient_sex);
         Age = (TextView) findViewById(R.id.patient_age);
+        Pulse = (TextView) findViewById(R.id.patient_pulse);
+        BloodPresuure = (TextView) findViewById(R.id.patient_bp);
+        BloodGroup = (TextView) findViewById(R.id.patient_bloodgroup);
+        anemia = (TextView) findViewById(R.id.patient_anemia);
+        MedicalHistory = (TextView) findViewById(R.id.patient_medicalHistory);
+        Allergies = (TextView) findViewById(R.id.patient_allegies);
+        courseinHospital = (TextView) findViewById(R.id.patient_courseinHospital);
 
         Id = getIntent().getStringExtra("id");
 
@@ -48,6 +55,15 @@ public class IpdDetailsActivity extends AppCompatActivity {
                     OtherDetails.setText("Details: "+patients.getOthers());
                     Sex.setText("Sex: "+patients.getSex());
                     Age.setText("Age: "+patients.getAge());
+                    Pulse.setText("Pulse: "+patients.getPulse());
+                    BloodPresuure.setText("Blood Pressure: "+patients.getBp());
+                    BloodGroup.setText("Blood Group: "+patients.getBloodgroup());
+                    anemia.setText("Anaemia: "+patients.getAnemia());
+                    MedicalHistory.setText("Medical History: "+patients.getMedicalhistory());
+                    Allergies.setText("Allergies: "+patients.getAllergies());
+                    courseinHospital.setText("Course in hospital: "+patients.getCourseinhospital());
+
+
                 }
             }
 

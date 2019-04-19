@@ -1,12 +1,13 @@
 package c.su.vishwam.Model;
 
 public class IpdPatients {
-    private String name, problem, others, age, sex,time,date,phone,image,ward,bed,id;
+    private String name, problem, others, age, sex,time,date,phone,image,ward,bed,id,pulse,bp;
 
     public IpdPatients() {
     }
 
-    public IpdPatients(String name, String problem, String others, String age, String sex, String time, String date,String phone,String image,String ward,String bed,String id) {
+    public IpdPatients(String name, String problem, String others, String age, String sex, String time, String date,String phone,String image,String ward,String bed,String id,
+                       String pulse,String bp) {
         this.name = name;
         this.problem = problem;
         this.others = others;
@@ -19,8 +20,27 @@ public class IpdPatients {
         this.ward = ward;
         this.bed = bed;
         this.id = id;
+        this.pulse = pulse;
+        this.bp = bp;
 
     }
+
+    public String getPulse() {
+        return pulse;
+    }
+
+    public void setPulse(String pulse) {
+        this.pulse = pulse;
+    }
+
+    public String getBp() {
+        return bp;
+    }
+
+    public void setBp(String bp) {
+        this.bp = bp;
+    }
+
     public String getId() {
         return id;
     }
