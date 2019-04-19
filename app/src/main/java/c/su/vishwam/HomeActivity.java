@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+        PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());
 
         Paper.init(this);
 
@@ -104,7 +104,8 @@ public class HomeActivity extends AppCompatActivity
                         holder.patientSex.setText("Sex: "+model.getSex());
                         holder.patientProblem.setText("Issue: "+model.getProblem());
                         holder.patientOthers.setText("Details: "+model.getOthers());
-                        holder.patientDateTime.setText("Date: "+model.getDate());
+                        holder.patientDate.setText("Date: "+model.getDate());
+                        holder.patientTime.setText("Time: "+model.getTime());
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

@@ -63,7 +63,7 @@ import c.su.vishwam.ViewHolder.ProductViewHolder;
                      protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Patients model) {
                          holder.patientName.setText(model.getName());
                          holder.patientProblem.setText(model.getProblem());
-                         holder.patientDateTime.setText("Time: "+model.getTime());
+                         holder.patientTime.setText("Time: "+model.getTime());
 
                          holder.itemView.setOnClickListener(new View.OnClickListener() {
                              @Override

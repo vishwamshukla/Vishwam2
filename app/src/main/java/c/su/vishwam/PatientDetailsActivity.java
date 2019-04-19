@@ -28,7 +28,7 @@ import c.su.vishwam.Prevalent.Prevalent;
 
 public class PatientDetailsActivity extends AppCompatActivity {
 
-    private TextView Name, Problem, OtherDetails, Sex, Age;
+    private TextView Name, Problem, OtherDetails, Sex, Age,Time,Date;
     private String Id = "";
     private Button TransferToIpd, TransferToDoctor, CancelAppoinment, CompleteAppoinment;
 
@@ -46,7 +46,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         Id = getIntent().getStringExtra("id");
         TransferToIpd = (Button) findViewById(R.id.transfer_ipd);
         TransferToDoctor = (Button) findViewById(R.id.transfer_to_doctor);
-        CancelAppoinment = (Button) findViewById(R.id.cancel_appoinment);
+        //CancelAppoinment = (Button) findViewById(R.id.cancel_appoinment);
 //        CompleteAppoinment = (Button)  findViewById(R.id.complete);
 
 
@@ -64,13 +64,13 @@ public class PatientDetailsActivity extends AppCompatActivity {
                 startActivity(new Intent(PatientDetailsActivity.this,DoctorListActivity.class));
             }
         });
-        CancelAppoinment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Id = getIntent().getStringExtra("id");
-                RemovePatient(Id);
-            }
-        });
+//        CancelAppoinment.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Id = getIntent().getStringExtra("id");
+//                RemovePatient(Id);
+//            }
+//        });
 //        CompleteAppoinment.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -131,7 +131,8 @@ public class PatientDetailsActivity extends AppCompatActivity {
     }
 
     private void getPatientDetails(String id) {
-        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());
+
 
         productsRef.child(Id).addValueEventListener(new ValueEventListener() {
             @Override
@@ -144,6 +145,8 @@ public class PatientDetailsActivity extends AppCompatActivity {
                     OtherDetails.setText(patients.getOthers());
                     Sex.setText(patients.getSex());
                     Age.setText(patients.getAge());
+                    Date.setText(patients.getDate());
+                    Time.setText(patients.getTime());
                 }
             }
 
