@@ -40,7 +40,7 @@ public class AdminIpdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_ipd);
 
-        PatientRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD List").child("Doctor View").child("7057655824").child("Patients");
+        PatientRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD").child("7057655824");
 
 
         AddNewIpdPatient = findViewById(ipd_add_patient);

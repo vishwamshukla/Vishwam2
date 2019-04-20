@@ -48,7 +48,7 @@ public class AdminEmergencyActivity extends AppCompatActivity {
 
         PatientImagesRef = FirebaseStorage.getInstance().getReference().child("Emergency Images");
 
-        PatientRef = FirebaseDatabase.getInstance().getReference().child("Patients(Emergency)");
+        PatientRef = FirebaseDatabase.getInstance().getReference().child("Patients(Emergency)").child("7057655824");
 
         AddNewPatient = (Button) findViewById(R.id.emergency_add_patient);
         name = (EditText) findViewById(R.id.emergency_name);

@@ -89,6 +89,29 @@
             android:textSize="18dp"
             android:gravity="center"
             android:layout_marginTop="10dp" />
+        <Button
+            android:id="@+id/transfer_to_ipd"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttons"
+            android:backgroundTint="#fff"
+            android:text="Transfer to IPD"
+            android:layout_below="@id/patient_time"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="false"/>
+        <Button
+            android:id="@+id/handover"
+            android:layout_width="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/patient_time"
+            android:background="@drawable/buttons"
+            android:backgroundTint="#fff"
+            android:text="Handover"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAllCaps="false"/>
 
     </RelativeLayout>
 

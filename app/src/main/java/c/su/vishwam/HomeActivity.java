@@ -18,13 +18,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
 
 import c.su.vishwam.Model.Patients;
 import c.su.vishwam.Prevalent.Prevalent;
@@ -35,6 +43,9 @@ import io.paperdb.Paper;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private TextView Name, Problem, OtherDetails, Sex, Age,Time,Date;
+    private String Id = "";
+
     private DatabaseReference PatientsRef;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -43,6 +54,16 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Id = getIntent().getStringExtra("id");
+
+        Name = (TextView) findViewById(R.id.patient_name);
+        Problem = (TextView) findViewById(R.id.patient_problem);
+        OtherDetails = (TextView) findViewById(R.id.patient_other_details);
+        Sex = (TextView) findViewById(R.id.patient_sex);
+        Age = (TextView) findViewById(R.id.patient_age);
+        Time = (TextView) findViewById(R.id.patient_time);
+        Date = (TextView) findViewById(R.id.patient_date);
 
         PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());
 
@@ -114,6 +135,19 @@ public class HomeActivity extends AppCompatActivity
                                 startActivity(intent);
                             }
                         });
+                        holder.TransferIpd.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //addingToIpd();
+
+                            }
+                        });
+                        holder.HandoverToDoctor.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(HomeActivity.this,DoctorListActivity.class));
+                            }
+                        });
 
                     }
 
@@ -129,6 +163,49 @@ public class HomeActivity extends AppCompatActivity
         adapter.startListening();
     }
 
+//    private void addingToIpd() {
+//
+//        String saveCurrentTime, saveCurrentDate;
+//
+//        Calendar calForDate = Calendar.getInstance();
+//        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+//        saveCurrentDate = currentDate.format(calForDate.getTime());
+//
+//        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+//        saveCurrentTime = currentDate.format(calForDate.getTime());
+//
+//        final DatabaseReference IpdListRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD").child(Prevalent.currentOnlineUser.getPhone());
+//
+//        final HashMap<String, Object> ipdList = new HashMap<>();
+//        ipdList.put("id",Id);
+//        ipdList.put("name",Name.getText().toString());
+//        ipdList.put("problem",Problem.getText().toString());
+//        ipdList.put("others",OtherDetails.getText().toString());
+//        ipdList.put("sex",Sex.getText().toString());
+//        ipdList.put("age",Age.getText().toString());
+//
+//        IpdListRef.child(Prevalent.currentOnlineUser.getPhone())
+//                .child(Id)
+//                .updateChildren(ipdList)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()){
+//                            IpdListRef.child("Admin View").child(Prevalent.currentOnlineUser.getPhone())
+//                                    .child("Patients").child(Id)
+//                                    .updateChildren(ipdList)
+//                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                        @Override
+//                                        public void onComplete(@NonNull Task<Void> task) {
+//                                            if (task.isSuccessful()){
+//                                                Toast.makeText(HomeActivity.this, "Patient added!", Toast.LENGTH_SHORT).show();
+//                                            }                                        }
+//                                    });
+//                        }
+//                    }
+//                });
+//    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -142,7 +219,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+        getMenuInflater().inflate(R.menu.options_menu, menu);
         return true;
     }
 
@@ -152,9 +229,12 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
+        if (id == R.id.main_find_patients_option) {
+            startActivity(new Intent(HomeActivity.this,SearchActivity.class));
+        }
+        else if (id == R.id.main_find_ipd_patients_option){
+            startActivity(new Intent(HomeActivity.this,SearchIpdActivity.class));
+        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -75,6 +75,13 @@ public class EmergencyActivity extends AppCompatActivity {
                         holder.problem.setText("Issue: "+model.getProblem());
                         holder.others.setText("Details: "+model.getOthers());
                         holder.time.setText("Time: "+model.getTime());
+                        //Picasso.get().load(model.getImage()).into(holder.);
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //startActivity(new Intent(EmergencyActivity.this,ImageActivity.class));
+                            }
+                        });
 
 
                     }

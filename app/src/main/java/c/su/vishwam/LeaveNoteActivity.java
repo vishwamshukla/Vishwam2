@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -129,5 +131,23 @@ public class LeaveNoteActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    public static class LeaveViewHolder extends RecyclerView.ViewHolder{
+
+        public TextView name,phone,reason,from,to,sex;
+
+        public LeaveViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            name = itemView.findViewById(R.id.doctor_name);
+            sex = itemView.findViewById(R.id.doctor_sex);
+            phone = itemView.findViewById(R.id.doctor_phone_number);
+            reason = itemView.findViewById(R.id.doctor_reason_leave);
+            from = itemView.findViewById(R.id.doctor_leave_from);
+            to = itemView.findViewById(R.id.doctor_leave_to);
+
+
+        }
     }
 }

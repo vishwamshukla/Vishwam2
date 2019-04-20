@@ -36,7 +36,7 @@ public class AdminOpdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_opd);
 
-        PatientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+        PatientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child("7057655824");
 
         AddNewPatient = (Button) findViewById(R.id.add_patient);
         name = (EditText) findViewById(R.id.name);

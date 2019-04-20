@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import c.su.vishwam.Model.Patients;
+import c.su.vishwam.Prevalent.Prevalent;
 import c.su.vishwam.ViewHolder.ProductViewHolder;
 
  public class SearchActivity extends AppCompatActivity {
@@ -50,7 +51,7 @@ import c.su.vishwam.ViewHolder.ProductViewHolder;
      protected void onStart() {
          super.onStart();
 
-         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());
 
          FirebaseRecyclerOptions<Patients> options =
                  new FirebaseRecyclerOptions.Builder<Patients>()
@@ -61,9 +62,13 @@ import c.su.vishwam.ViewHolder.ProductViewHolder;
                  new FirebaseRecyclerAdapter<Patients, ProductViewHolder>(options) {
                      @Override
                      protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Patients model) {
-                         holder.patientName.setText(model.getName());
-                         holder.patientProblem.setText(model.getProblem());
-                         holder.patientTime.setText("Time: "+model.getTime());
+                         holder.patientName.setText("Name : " + model.getName());
+                         holder.patientProblem.setText("Issue : " + model.getProblem());
+                         holder.patientTime.setText("Time : "+model.getTime());
+                         holder.patientDate.setText("Date : "+model.getDate());
+                         holder.patientOthers.setText("Details : "+model.getOthers());
+                         holder.patientSex.setText("Sex : "+model.getSex());
+                         holder.patientPhone.setText("Phone : "+model.getPhone());
 
                          holder.itemView.setOnClickListener(new View.OnClickListener() {
                              @Override

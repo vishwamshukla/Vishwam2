@@ -1,14 +1,15 @@
 package c.su.vishwam.Model;
 
 public class Patients {
-    private String name, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergies,courseinhospital;
+    private String name, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergies,courseinhospital,bed,ward;
 
     public Patients(){
 
     }
 
     public Patients(String name, String problem, String others, String time, String date, String id, String sex, String age,String phone,String image,
-                    String pulse,String bp,String bloodgroup,String anemia,String medicalhistory,String allergies,String courseinhospital) {
+                    String pulse,String bp,String bloodgroup,String anemia,String medicalhistory,String allergies,String courseinhospital,
+                    String bed,String ward) {
         this.name = name;
         this.problem = problem;
         this.others = others;
@@ -26,6 +27,29 @@ public class Patients {
         this.medicalhistory = medicalhistory;
         this.allergies = allergies;
         this.courseinhospital = courseinhospital;
+        this.bed = bed;
+        this.ward = ward;
+
+    }
+
+    public void setMedicalhistory(String medicalhistory) {
+        this.medicalhistory = medicalhistory;
+    }
+
+    public String getBed() {
+        return bed;
+    }
+
+    public void setBed(String bed) {
+        this.bed = bed;
+    }
+
+    public String getWard() {
+        return ward;
+    }
+
+    public void setWard(String ward) {
+        this.ward = ward;
     }
 
     public String getAnemia() {
