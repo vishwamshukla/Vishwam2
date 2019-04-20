@@ -38,7 +38,7 @@ public class EmergencyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency);
 
-        patientRef = FirebaseDatabase.getInstance().getReference().child("Patients(Emergency)");
+        patientRef = FirebaseDatabase.getInstance().getReference().child("Patients(Emergency)").child(Prevalent.currentOnlineUser.getPhone());
 
         ipdList = findViewById(R.id.emergency_list_recycler_view);
         ipdList.setLayoutManager(new LinearLayoutManager(this));
