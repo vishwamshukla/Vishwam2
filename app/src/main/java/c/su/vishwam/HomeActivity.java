@@ -131,14 +131,14 @@ public class HomeActivity extends AppCompatActivity
                         holder.patientDate.setText("Date: "+model.getDate());
                         holder.patientTime.setText("Time: "+model.getTime());
                         holder.patientAge.setText("Age:"+model.getAge());
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(HomeActivity.this, PatientDetailsActivity.class);
-                                intent.putExtra("id",model.getId());
-                                startActivity(intent);
-                            }
-                        });
+//                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                Intent intent = new Intent(HomeActivity.this, PatientDetailsActivity.class);
+//                                intent.putExtra("id",model.getId());
+//                                startActivity(intent);
+//                            }
+//                        });
                         holder.TransferIpd.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

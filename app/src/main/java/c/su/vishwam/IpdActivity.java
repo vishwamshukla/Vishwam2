@@ -121,12 +121,13 @@ public class IpdActivity extends AppCompatActivity {
 
     public static class IpdViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView name,phone,problem,others,time,sex,date,ward,bed;
+        public TextView name,phone,problem,others,time,sex,date,ward,bed,age,fromDoc;
         public Button crossConsult, discharge;
 
         public IpdViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            age = itemView.findViewById(R.id.patient_age1);
             name = itemView.findViewById(R.id.patient_name);
             sex = itemView.findViewById(R.id.patient_sex);
             phone = itemView.findViewById(R.id.patient_phone_number);
@@ -138,6 +139,7 @@ public class IpdActivity extends AppCompatActivity {
             bed = itemView.findViewById(R.id.patient_bed_no);
             crossConsult = (Button) itemView.findViewById(R.id.cross_consult);
             discharge = (Button) itemView.findViewById(R.id.discharge);
+            fromDoc = itemView.findViewById(R.id.patient_doctor);
 
         }
     }

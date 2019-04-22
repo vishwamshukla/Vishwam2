@@ -32,22 +32,44 @@
             android:layout_marginRight="2dp"
             android:textStyle="bold"/>
         <TextView
+            android:id="@+id/patient_doctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="From"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_marginTop="32dp" />
+        <TextView
             android:id="@+id/patient_sex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sex"
+            android:layout_below="@id/patient_doctor"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textSize="18dp"
             android:gravity="center"
-            android:layout_marginTop="25dp" />
+            android:layout_marginTop="15dp" />
+        <TextView
+            android:id="@+id/patient_age1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_sex"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="15dp" />
         <TextView
             android:id="@+id/patient_problem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Issue"
             android:textColor="#fff"
-            android:layout_below="@id/patient_sex"
+            android:layout_below="@id/patient_age1"
             android:textStyle="bold"
             android:textSize="18dp"
             android:gravity="center"

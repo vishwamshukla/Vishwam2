@@ -93,6 +93,8 @@ public class OpdActivity extends AppCompatActivity {
                             holder.others.setText("Details: "+model.getOthers());
                             holder.time.setText("Time: "+model.getTime());
                             holder.date.setText("Date: "+model.getDate());
+                            holder.age.setText("Age: "+model.getAge());
+                            holder.fromDoc.setText("From: "+model.getFromdoc());
 
 
                         }
