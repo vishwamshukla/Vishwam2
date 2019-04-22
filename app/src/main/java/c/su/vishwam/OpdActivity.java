@@ -110,7 +110,7 @@ public class OpdActivity extends AppCompatActivity {
 
         public static class IpdViewHolder extends RecyclerView.ViewHolder{
 
-            public TextView name,phone,problem,others,time,sex,date;
+            public TextView name,phone,problem,others,time,sex,date,age;
 
             public IpdViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -122,6 +122,7 @@ public class OpdActivity extends AppCompatActivity {
                 others = itemView.findViewById(R.id.patient_other_details);
                 time = itemView.findViewById(R.id.patient_date_time);
                 date = itemView.findViewById(R.id.patient_date);
+                age = itemView.findViewById(R.id.patient_age);
             }
         }
     }

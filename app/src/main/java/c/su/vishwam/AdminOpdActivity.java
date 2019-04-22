@@ -23,10 +23,10 @@ import java.util.HashMap;
 
 public class AdminOpdActivity extends AppCompatActivity {
 
-    private String PatientName, PatientProblem, OtherDetails, saveCurrentDate, saveCurrentTime,PatiientAge,PatientSex;
+    private String PatientName, PatientProblem, OtherDetails, saveCurrentDate, saveCurrentTime,PatiientAge,PatientSex,PatientPhone;
 
     private Button AddNewPatient;
-    private EditText name, problem, otherDetails,age,sex;
+    private EditText name, problem, otherDetails,age,sex,phone;
     private String patientRandomKey;
     private DatabaseReference PatientRef;
     private ProgressDialog loadingBar;
@@ -46,6 +46,7 @@ public class AdminOpdActivity extends AppCompatActivity {
         otherDetails = (EditText) findViewById(R.id.other_details);
         age = (EditText) findViewById(R.id.age);
         sex = (EditText) findViewById(R.id.sex);
+        phone = (EditText) findViewById(R.id.phone);
 
         loadingBar = new ProgressDialog(this);
 
@@ -64,6 +65,7 @@ public class AdminOpdActivity extends AppCompatActivity {
         OtherDetails = String.valueOf(otherDetails.getText());
         PatiientAge = String.valueOf(age.getText());
         PatientSex = String.valueOf(sex.getText());
+        PatientPhone = String.valueOf(phone.getText());
 
         if (TextUtils.isEmpty(PatientName)){
             Toast.makeText(this, "Please Enter the name", Toast.LENGTH_SHORT).show();
@@ -103,6 +105,7 @@ public class AdminOpdActivity extends AppCompatActivity {
         patientMap.put("age",PatiientAge);
         patientMap.put("date",saveCurrentDate);
         patientMap.put("time",saveCurrentTime);
+        patientMap.put("phone",PatientPhone);
 
         PatientRef.child(patientRandomKey).updateChildren(patientMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

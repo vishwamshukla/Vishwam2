@@ -44,10 +44,11 @@ public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView Name, Problem, OtherDetails, Sex, Age,Time,Date;
-    private String Id = "";
+    private String Id = "", saveCurrentDate, saveCurrentTime;
 
-    private DatabaseReference PatientsRef;
+    private DatabaseReference PatientsRef,PatientRef1;
     private RecyclerView recyclerView;
+    private String patientRandomKey;
     RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -66,6 +67,8 @@ public class HomeActivity extends AppCompatActivity
         Date = (TextView) findViewById(R.id.patient_date);
 
         PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());
+        PatientRef1 = FirebaseDatabase.getInstance().getReference().child("Admins").child("8669059504").child("transferRequest");
+
 
         Paper.init(this);
 
@@ -73,14 +76,14 @@ public class HomeActivity extends AppCompatActivity
         toolbar.setTitle("Appointments");
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
 
 
@@ -127,6 +130,7 @@ public class HomeActivity extends AppCompatActivity
                         holder.patientOthers.setText("Details: "+model.getOthers());
                         holder.patientDate.setText("Date: "+model.getDate());
                         holder.patientTime.setText("Time: "+model.getTime());
+                        holder.patientAge.setText("Age:"+model.getAge());
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -138,7 +142,42 @@ public class HomeActivity extends AppCompatActivity
                         holder.TransferIpd.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                //addingToIpd();
+                                Toast.makeText(HomeActivity.this, model.getName()+" patient details shared with the admin department", Toast.LENGTH_SHORT).show();
+
+                                Calendar calendar = Calendar.getInstance();
+                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
+                                saveCurrentDate = currentDate.format(calendar.getTime());
+
+
+                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+                                saveCurrentTime = currentTime.format(calendar.getTime());
+
+                                patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
+
+                                HashMap<String, Object> patientMap = new HashMap<>();
+                                patientMap.put("id", patientRandomKey);
+                                patientMap.put("name",model.getName());
+                                patientMap.put("problem", model.getProblem());
+                                patientMap.put("others", model.getOthers());
+                                patientMap.put("sex",model.getSex());
+                                patientMap.put("age",model.getAge());
+                                patientMap.put("date",saveCurrentDate);
+                                patientMap.put("time",saveCurrentTime);
+                                patientMap.put("phone",model.getPhone());
+
+                                PatientRef1.child(patientRandomKey).updateChildren(patientMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+
+                                            Intent intent = new Intent(HomeActivity.this, IpdActivity.class);
+                                            //startActivity(intent);
+                                        }
+                                        else {
+                                            Toast.makeText(HomeActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
 
                             }
                         });
@@ -163,48 +202,65 @@ public class HomeActivity extends AppCompatActivity
         adapter.startListening();
     }
 
-//    private void addingToIpd() {
+//    private void sharingDetails(String id) {
 //
-//        String saveCurrentTime, saveCurrentDate;
+//        Calendar calendar = Calendar.getInstance();
+//        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
+//        saveCurrentDate = currentDate.format(calendar.getTime());
 //
-//        Calendar calForDate = Calendar.getInstance();
-//        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-//        saveCurrentDate = currentDate.format(calForDate.getTime());
 //
 //        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
-//        saveCurrentTime = currentDate.format(calForDate.getTime());
+//        saveCurrentTime = currentTime.format(calendar.getTime());
 //
-//        final DatabaseReference IpdListRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD").child(Prevalent.currentOnlineUser.getPhone());
+//        patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
 //
-//        final HashMap<String, Object> ipdList = new HashMap<>();
-//        ipdList.put("id",Id);
-//        ipdList.put("name",Name.getText().toString());
-//        ipdList.put("problem",Problem.getText().toString());
-//        ipdList.put("others",OtherDetails.getText().toString());
-//        ipdList.put("sex",Sex.getText().toString());
-//        ipdList.put("age",Age.getText().toString());
-//
-//        IpdListRef.child(Prevalent.currentOnlineUser.getPhone())
-//                .child(Id)
-//                .updateChildren(ipdList)
-//                .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        if (task.isSuccessful()){
-//                            IpdListRef.child("Admin View").child(Prevalent.currentOnlineUser.getPhone())
-//                                    .child("Patients").child(Id)
-//                                    .updateChildren(ipdList)
-//                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<Void> task) {
-//                                            if (task.isSuccessful()){
-//                                                Toast.makeText(HomeActivity.this, "Patient added!", Toast.LENGTH_SHORT).show();
-//                                            }                                        }
-//                                    });
-//                        }
-//                    }
-//                });
+//        HashMap<String, Object> patientMap = new HashMap<>();
+//        patientMap.put("id", patientRandomKey);
+//        patientMap.put("name",);
 //    }
+
+    private void addingToIpd() {
+
+        String saveCurrentTime, saveCurrentDate;
+
+        Calendar calForDate = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        saveCurrentDate = currentDate.format(calForDate.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+        saveCurrentTime = currentDate.format(calForDate.getTime());
+
+        final DatabaseReference IpdListRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD").child(Prevalent.currentOnlineUser.getPhone());
+
+        final HashMap<String, Object> ipdList = new HashMap<>();
+        ipdList.put("id",Id);
+        ipdList.put("name",Name.getText().toString());
+        ipdList.put("problem",Problem.getText().toString());
+        ipdList.put("others",OtherDetails.getText().toString());
+        ipdList.put("sex",Sex.getText().toString());
+        ipdList.put("age",Age.getText().toString());
+
+        IpdListRef.child(Prevalent.currentOnlineUser.getPhone())
+                .child(Id)
+                .updateChildren(ipdList)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            IpdListRef.child("Admin View").child(Prevalent.currentOnlineUser.getPhone())
+                                    .child("Patients").child(Id)
+                                    .updateChildren(ipdList)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()){
+                                                Toast.makeText(HomeActivity.this, "Patient added!", Toast.LENGTH_SHORT).show();
+                                            }                                        }
+                                    });
+                        }
+                    }
+                });
+    }
 
     @Override
     public void onBackPressed() {

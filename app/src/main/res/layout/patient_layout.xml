@@ -40,18 +40,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sex"
+            android:layout_below="@id/patient_phone_number"
             android:textColor="#fff"
             android:textStyle="bold"
             android:textSize="18dp"
             android:gravity="center"
-            android:layout_marginTop="25dp" />
+            android:layout_marginTop="20dp" />
+        <TextView
+            android:id="@+id/patient_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Age:"
+            android:layout_below="@id/patient_sex"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="15dp" />
         <TextView
             android:id="@+id/patient_problem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Issue"
             android:textColor="#fff"
-            android:layout_below="@id/patient_sex"
+            android:layout_below="@id/patient_age"
             android:textStyle="bold"
             android:textSize="18dp"
             android:gravity="center"

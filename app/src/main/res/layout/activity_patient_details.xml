@@ -88,18 +88,5 @@
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="18sp" />
-    <Button
-        android:id="@+id/transfer_to_doctor"
-        android:layout_below="@id/transfer_ipd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/buttons"
-        android:layout_marginVertical="10dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
-        android:text="Handover to a Doctor"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18sp" />
 
 </RelativeLayout>
