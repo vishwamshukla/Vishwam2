@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/pages">
+
+        <TextView
+            android:id="@+id/pat_name"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginLeft="2dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/pat_phone_number"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textAlignment="viewEnd"
+            android:text="Phone"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginRight="2dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/pat_sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sex"
+            android:layout_below="@id/pat_phone_number"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="20dp" />
+        <TextView
+            android:id="@+id/pat_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Age:"
+            android:layout_below="@id/pat_sex"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="15dp" />
+        <TextView
+            android:id="@+id/pat_problem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Issue"
+            android:textColor="#fff"
+            android:layout_below="@id/pat_age"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/pat_other_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:textColor="#fff"
+            android:layout_below="@id/pat_problem"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/pat_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textColor="#fff"
+            android:layout_below="@id/pat_other_details"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/pat_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textColor="#fff"
+            android:layout_below="@id/pat_date"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

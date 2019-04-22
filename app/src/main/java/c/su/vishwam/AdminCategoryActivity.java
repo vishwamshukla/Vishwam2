@@ -9,7 +9,7 @@ import android.widget.ImageView;
 public class AdminCategoryActivity extends AppCompatActivity {
 
     private ImageView opd, ipd;
-    private ImageView emergency, leave;
+    private ImageView emergency, leave,ipdTransfer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         ipd = (ImageView) findViewById(R.id.ipd_btn);
         emergency = (ImageView) findViewById(R.id.emergency);
         leave = (ImageView) findViewById(R.id.leave);
+        ipdTransfer = (ImageView) findViewById(R.id.ipd_request);
         opd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +51,12 @@ public class AdminCategoryActivity extends AppCompatActivity {
                 Intent intent = new Intent(AdminCategoryActivity.this, AdminLeaveActivity.class);
                 intent.putExtra("category","ipd");
                 startActivity(intent);
+            }
+        });
+        ipdTransfer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminCategoryActivity.this,AdminIpdTransferActivity.class));
             }
         });
     }

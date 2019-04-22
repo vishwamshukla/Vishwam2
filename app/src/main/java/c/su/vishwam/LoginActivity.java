@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
              Toast.makeText(this, "Enter Password!", Toast.LENGTH_SHORT).show();
          }
          else {
-             loadingBar.setTitle("Logging You In!");
+             loadingBar.setTitle("Logging in....");
              loadingBar.setMessage("Please wait, checking credentials...");
              loadingBar.setCanceledOnTouchOutside(false);
              loadingBar.show();

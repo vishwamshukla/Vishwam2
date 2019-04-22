@@ -341,4 +341,24 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public static class IpdTransferViewHolder extends RecyclerView.ViewHolder{
+
+        public TextView name,phone,others,problem,age,sex,time,date;
+
+        public IpdTransferViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            name = itemView.findViewById(R.id.pat_name);
+            sex = itemView.findViewById(R.id.pat_sex);
+            phone = itemView.findViewById(R.id.pat_phone_number);
+            age = itemView.findViewById(R.id.pat_age);
+            time = itemView.findViewById(R.id.pat_time);
+            date = itemView.findViewById(R.id.pat_date);
+            problem = itemView.findViewById(R.id.pat_problem);
+            others = itemView.findViewById(R.id.pat_other_details);
+
+
+        }
+    }
 }
