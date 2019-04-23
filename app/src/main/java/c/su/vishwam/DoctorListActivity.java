@@ -42,7 +42,7 @@ public class DoctorListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_list);
 
-        DoctorRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        DoctorRef = FirebaseDatabase.getInstance().getReference().child("Username");
 
         list_view = (ListView) findViewById(R.id.list_view);
         arrayAdapter = new ArrayAdapter<String>(DoctorListActivity.this, android.R.layout.simple_list_item_1,list_of_groups);
@@ -52,7 +52,9 @@ public class DoctorListActivity extends AppCompatActivity {
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
                 String cureentGroupName = adapterView.getItemAtPosition(position).toString();
+
                 Toast.makeText(DoctorListActivity.this, "Patient details shared with selected doctor "+cureentGroupName, Toast.LENGTH_SHORT).show();
             }
         });

@@ -32,7 +32,7 @@ public class IpdActivity extends AppCompatActivity {
 
     private RecyclerView ipdList;
     private DatabaseReference patientRef,PatientRef1;
-    private TextView  closeTextBtn;
+    private TextView  closeTextBtn,searchBtn;
     public Button crossConsult, discharge;
     private String patientRandomKey,saveCurrentDate, saveCurrentTime;
     private ProgressDialog loadingBar;
@@ -49,9 +49,15 @@ public class IpdActivity extends AppCompatActivity {
         loadingBar = new ProgressDialog(this);
         ipdList.setLayoutManager(new LinearLayoutManager(this));
         closeTextBtn = (TextView) findViewById(R.id.close_settings_btn);
+        searchBtn = (TextView) findViewById(R.id.search_btn);
 
 
-
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(IpdActivity.this,SearchIpdActivity.class));
+            }
+        });
         closeTextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)

@@ -56,7 +56,7 @@ public class OpdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opd);
 
-        patientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());
+        patientRef = FirebaseDatabase.getInstance().getReference().child("Patients(Cross-Consult)").child(Prevalent.currentOnlineUser.getPhone());
 
 
         ipdList = findViewById(R.id.opd_list_recycler_view1);

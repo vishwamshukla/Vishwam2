@@ -111,8 +111,8 @@ public class AdminIpdActivity extends AppCompatActivity {
         patientMap.put("others", OtherDetails);
         patientMap.put("sex",PatientSex);
         patientMap.put("age",PatientAge);
-        patientMap.put("ward_no",PatientWard);
-        patientMap.put("bed_no",PatientBed);
+        patientMap.put("ward",PatientWard);
+        patientMap.put("bed",PatientBed);
         patientMap.put("date",saveCurrentDate);
         patientMap.put("time",saveCurrentTime);
 

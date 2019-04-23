@@ -75,6 +75,7 @@ public class EmergencyActivity extends AppCompatActivity {
                         holder.problem.setText("Issue: "+model.getProblem());
                         holder.others.setText("Details: "+model.getOthers());
                         holder.time.setText("Time: "+model.getTime());
+                        holder.date.setText("Date: "+model.getDate());
                         //Picasso.get().load(model.getImage()).into(holder.);
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -89,7 +90,7 @@ public class EmergencyActivity extends AppCompatActivity {
                     @NonNull
                     @Override
                     public IpdActivity.IpdViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.emrgency_layout,parent,false);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.emrgency_layout1,parent,false);
                         return new IpdActivity.IpdViewHolder(view);
                     }
                 };
