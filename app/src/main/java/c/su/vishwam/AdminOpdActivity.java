@@ -13,8 +13,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
@@ -30,6 +33,7 @@ public class AdminOpdActivity extends AppCompatActivity {
     private String patientRandomKey;
     private DatabaseReference PatientRef;
     private ProgressDialog loadingBar;
+    private long countPosts = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +99,23 @@ public class AdminOpdActivity extends AppCompatActivity {
 
         patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
 
+        PatientRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    countPosts = dataSnapshot.getChildrenCount();
+                }
+                else {
+                    countPosts = 0;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         HashMap<String, Object> patientMap = new HashMap<>();
         patientMap.put("id", patientRandomKey);
@@ -106,6 +127,7 @@ public class AdminOpdActivity extends AppCompatActivity {
         patientMap.put("date",saveCurrentDate);
         patientMap.put("time",saveCurrentTime);
         patientMap.put("phone",PatientPhone);
+        patientMap.put("counter",countPosts);
 
         PatientRef.child(patientRandomKey).updateChildren(patientMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

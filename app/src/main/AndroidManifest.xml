@@ -13,7 +13,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminIpdTransferActivity"></activity>
+        <activity android:name=".AdminDischargeRequestActivity"></activity>
+        <activity android:name=".AdminIpdTransferActivity" />
         <activity android:name=".ImageActivity" />
         <activity android:name=".SearchIpdActivity" />
         <activity android:name=".CrossConsultSearchActivity" />

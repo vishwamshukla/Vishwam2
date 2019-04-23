@@ -9,13 +9,15 @@ import android.widget.ImageView;
 public class AdminCategoryActivity extends AppCompatActivity {
 
     private ImageView opd, ipd;
-    private ImageView emergency, leave,ipdTransfer;
+    private ImageView emergency, leave,ipdTransfer,dischargeRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_category);
 
+
+        dischargeRequest = (ImageView) findViewById(R.id.discharge_request);
         opd = (ImageView) findViewById(R.id.opd);
         ipd = (ImageView) findViewById(R.id.ipd_btn);
         emergency = (ImageView) findViewById(R.id.emergency);
@@ -57,6 +59,12 @@ public class AdminCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminCategoryActivity.this,AdminIpdTransferActivity.class));
+            }
+        });
+        dischargeRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminCategoryActivity.this,AdminDischargeRequestActivity.class));
             }
         });
     }

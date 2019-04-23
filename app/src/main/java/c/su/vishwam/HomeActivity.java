@@ -1,5 +1,6 @@
 package c.su.vishwam;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -50,6 +51,7 @@ public class HomeActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     private String patientRandomKey;
     RecyclerView.LayoutManager layoutManager;
+    private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
 
         Id = getIntent().getStringExtra("id");
+
+        loadingBar = new ProgressDialog(this);
 
         Name = (TextView) findViewById(R.id.patient_name);
         Problem = (TextView) findViewById(R.id.patient_problem);
@@ -142,7 +146,10 @@ public class HomeActivity extends AppCompatActivity
                         holder.TransferIpd.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Toast.makeText(HomeActivity.this, model.getName()+" patient details shared with the admin department", Toast.LENGTH_SHORT).show();
+                                loadingBar.setTitle("Please wait...");
+                                loadingBar.setMessage("Sharing details with the admin department");
+                                loadingBar.setCanceledOnTouchOutside(false);
+                                loadingBar.show();
 
                                 Calendar calendar = Calendar.getInstance();
                                 SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
@@ -169,6 +176,8 @@ public class HomeActivity extends AppCompatActivity
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()){
+                                            loadingBar.dismiss();
+                                            Toast.makeText(HomeActivity.this, model.getName()+" patient details shared with the admin department", Toast.LENGTH_SHORT).show();
 
                                             Intent intent = new Intent(HomeActivity.this, IpdActivity.class);
                                             //startActivity(intent);
@@ -344,7 +353,7 @@ public class HomeActivity extends AppCompatActivity
 
     public static class IpdTransferViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView name,phone,others,problem,age,sex,time,date;
+        public TextView name,phone,others,problem,age,sex,time,date,bed,ward;
 
         public IpdTransferViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -357,6 +366,8 @@ public class HomeActivity extends AppCompatActivity
             date = itemView.findViewById(R.id.pat_date);
             problem = itemView.findViewById(R.id.pat_problem);
             others = itemView.findViewById(R.id.pat_other_details);
+            bed = itemView.findViewById(R.id.patient1_bed_no);
+            ward = itemView.findViewById(R.id.patient1_ward_no);
 
 
         }

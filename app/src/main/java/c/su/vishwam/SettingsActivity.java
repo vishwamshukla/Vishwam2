@@ -104,7 +104,7 @@ public class SettingsActivity extends AppCompatActivity {
         userMap. put("phoneOrder", userPhoneEditText.getText().toString());
         ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
 
-        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+        startActivity(new Intent(SettingsActivity.this, SettingsActivity.class));
         Toast.makeText(SettingsActivity.this, "Profile info updated successfully.", Toast.LENGTH_SHORT).show();
         finish();
     }

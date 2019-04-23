@@ -1,5 +1,6 @@
 package c.su.vishwam;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -20,15 +21,21 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+
 import c.su.vishwam.Model.IpdPatients;
 import c.su.vishwam.Prevalent.Prevalent;
 
 public class IpdActivity extends AppCompatActivity {
 
     private RecyclerView ipdList;
-    private DatabaseReference patientRef;
+    private DatabaseReference patientRef,PatientRef1;
     private TextView  closeTextBtn;
     public Button crossConsult, discharge;
+    private String patientRandomKey,saveCurrentDate, saveCurrentTime;
+    private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +43,10 @@ public class IpdActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ipd);
 
         patientRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD").child(Prevalent.currentOnlineUser.getPhone());
+        PatientRef1 = FirebaseDatabase.getInstance().getReference().child("Admins").child("8669059504").child("dischargeRequest");
 
         ipdList = findViewById(R.id.ipd_list_recycler_view);
+        loadingBar = new ProgressDialog(this);
         ipdList.setLayoutManager(new LinearLayoutManager(this));
         closeTextBtn = (TextView) findViewById(R.id.close_settings_btn);
 
@@ -89,22 +98,55 @@ public class IpdActivity extends AppCompatActivity {
                                 startActivity(new Intent(IpdActivity.this,DoctorListActivity.class));
                             }
                         });
-                        holder.discharge.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                patientRef.child("Patient IPD")
-                                        .child(Prevalent.currentOnlineUser.getPhone())
-                                        .child(model.getId()).removeValue()
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()){
-                                                    Toast.makeText(IpdActivity.this, "Discharged Successfully!", Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
-                            }
-                        });
+                       holder.discharge.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View v) {
+                               loadingBar.setTitle("Please wait...");
+                               loadingBar.setMessage("Sharing details with the admin department");
+                               loadingBar.setCanceledOnTouchOutside(false);
+                               loadingBar.show();
+
+                               Calendar calendar = Calendar.getInstance();
+                               SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
+                               saveCurrentDate = currentDate.format(calendar.getTime());
+
+
+                               SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+                               saveCurrentTime = currentTime.format(calendar.getTime());
+
+                               patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
+
+
+                               HashMap<String, Object> patientMap = new HashMap<>();
+                               patientMap.put("id", patientRandomKey);
+                               patientMap.put("name",model.getName());
+                               patientMap.put("problem", model.getProblem());
+                               patientMap.put("others", model.getOthers());
+                               patientMap.put("sex",model.getSex());
+                               patientMap.put("age",model.getAge());
+                               patientMap.put("date",saveCurrentDate);
+                               patientMap.put("time",saveCurrentTime);
+                               patientMap.put("phone",model.getPhone());
+                               patientMap.put("ward",model.getWard());
+                               patientMap.put("bed",model.getBed());
+
+                               PatientRef1.child(patientRandomKey).updateChildren(patientMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                   @Override
+                                   public void onComplete(@NonNull Task<Void> task) {
+                                       if (task.isSuccessful()){
+                                            loadingBar.dismiss();
+                                           Toast.makeText(IpdActivity.this, "Discharge request of "+model.getName()+" sent to the admin department", Toast.LENGTH_SHORT).show();
+                                           Intent intent = new Intent(IpdActivity.this, IpdActivity.class);
+                                           //startActivity(intent);
+                                       }
+                                       else {
+                                           Toast.makeText(IpdActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
+                                       }
+                                   }
+                               });
+
+                           }
+                       });
 
                     }
 

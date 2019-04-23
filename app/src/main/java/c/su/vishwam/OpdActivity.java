@@ -19,8 +19,10 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import c.su.vishwam.Model.IpdPatients;
+import c.su.vishwam.Prevalent.Prevalent;
 
 public class OpdActivity extends AppCompatActivity {
     private RecyclerView ipdList;
@@ -54,7 +56,7 @@ public class OpdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opd);
 
-        patientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+        patientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());
 
 
         ipdList = findViewById(R.id.opd_list_recycler_view1);
@@ -78,9 +80,11 @@ public class OpdActivity extends AppCompatActivity {
         protected void onStart() {
             super.onStart();
 
+            Query SortPostsInDescendingOrder = patientRef.orderByChild("counter");
+
             FirebaseRecyclerOptions<IpdPatients> options =
                     new FirebaseRecyclerOptions.Builder<IpdPatients>()
-                            .setQuery(patientRef,IpdPatients.class)
+                            .setQuery(SortPostsInDescendingOrder,IpdPatients.class)
                             .build();
             FirebaseRecyclerAdapter<IpdPatients, IpdActivity.IpdViewHolder> adapter =
                     new FirebaseRecyclerAdapter<IpdPatients, IpdActivity.IpdViewHolder>(options) {
