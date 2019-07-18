@@ -2,6 +2,7 @@ package c.su.vishwam;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,7 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button joinNowButton, loginBotton;
+    private Button joinNowButton, loginBotton,termsButton;
     private ProgressDialog loadingBar;
 
     @Override
@@ -40,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
         joinNowButton = (Button) findViewById(R.id.main_join_now_btn);
         loginBotton = (Button) findViewById(R.id.main_login_btn);
+        termsButton = (Button) findViewById(R.id.terms1);
+        termsButton.setPaintFlags(termsButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        termsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,TermsAndConditionActivity.class));
+            }
+        });
 
         loadingBar = new ProgressDialog(this);
         Paper.init(this);

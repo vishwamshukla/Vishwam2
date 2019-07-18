@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity
     private TextView Name, Problem, OtherDetails, Sex, Age,Time,Date;
     private String Id = "", saveCurrentDate, saveCurrentTime;
 
-    private DatabaseReference PatientsRef,PatientRef1;
+    private DatabaseReference PatientsRef,PatientRef1,PatientRef2;
     private RecyclerView recyclerView;
     private String patientRandomKey;
     RecyclerView.LayoutManager layoutManager;
@@ -72,6 +72,7 @@ public class HomeActivity extends AppCompatActivity
 
         PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());
         PatientRef1 = FirebaseDatabase.getInstance().getReference().child("Admins").child("8669059504").child("transferRequest");
+        PatientRef2 = FirebaseDatabase.getInstance().getReference().child("Admins").child("8669059504").child("handoverRequest");
 
 
         Paper.init(this);
@@ -193,6 +194,47 @@ public class HomeActivity extends AppCompatActivity
                         holder.HandoverToDoctor.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                loadingBar.setTitle("Please wait...");
+                                loadingBar.setMessage("Checking available doctors");
+                                loadingBar.setCanceledOnTouchOutside(false);
+                                loadingBar.show();
+
+                                Calendar calendar = Calendar.getInstance();
+                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
+                                saveCurrentDate = currentDate.format(calendar.getTime());
+
+
+                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+                                saveCurrentTime = currentTime.format(calendar.getTime());
+
+                                patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
+                                HashMap<String, Object> patientMap1 = new HashMap<>();
+                                patientMap1.put("id", patientRandomKey);
+                                patientMap1.put("name",model.getName());
+                                patientMap1.put("problem", model.getProblem());
+                                patientMap1.put("others", model.getOthers());
+                                patientMap1.put("sex",model.getSex());
+                                patientMap1.put("age",model.getAge());
+                                patientMap1.put("date",saveCurrentDate);
+                                patientMap1.put("time",saveCurrentTime);
+                                patientMap1.put("phone",model.getPhone());
+
+                                PatientRef2.child(patientRandomKey).updateChildren(patientMap1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            loadingBar.dismiss();
+                                            Toast.makeText(HomeActivity.this, "Select doctor", Toast.LENGTH_SHORT).show();
+
+                                            Intent intent = new Intent(HomeActivity.this, IpdActivity.class);
+                                            //startActivity(intent);
+                                        }
+                                        else {
+                                            Toast.makeText(HomeActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
                                 startActivity(new Intent(HomeActivity.this,DoctorListActivity.class));
                             }
                         });
@@ -353,7 +395,7 @@ public class HomeActivity extends AppCompatActivity
 
     public static class IpdTransferViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView name,phone,others,problem,age,sex,time,date,bed,ward;
+        public TextView name,phone,others,problem,age,sex,time,date,bed,ward,to;
 
         public IpdTransferViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -368,6 +410,7 @@ public class HomeActivity extends AppCompatActivity
             others = itemView.findViewById(R.id.pat_other_details);
             bed = itemView.findViewById(R.id.patient1_bed_no);
             ward = itemView.findViewById(R.id.patient1_ward_no);
+            to = itemView.findViewById(R.id.patient_doctor_to);
 
 
         }

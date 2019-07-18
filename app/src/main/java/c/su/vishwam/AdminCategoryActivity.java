@@ -1,6 +1,7 @@
 package c.su.vishwam;
 
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 public class AdminCategoryActivity extends AppCompatActivity {
 
     private ImageView opd, ipd;
-    private ImageView emergency, leave,ipdTransfer,dischargeRequest;
+    private ImageView emergency, leave,ipdTransfer,dischargeRequest,handoverRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         emergency = (ImageView) findViewById(R.id.emergency);
         leave = (ImageView) findViewById(R.id.leave);
         ipdTransfer = (ImageView) findViewById(R.id.ipd_request);
+        handoverRequest = (ImageView) findViewById(R.id.handover_request);
         opd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,5 +69,11 @@ public class AdminCategoryActivity extends AppCompatActivity {
                 startActivity(new Intent(AdminCategoryActivity.this,AdminDischargeRequestActivity.class));
             }
         });
+//        handoverRequest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(AdminCategoryActivity.this,AdminHandoverRequestActivity.class));
+//            }
+//        });
     }
 }

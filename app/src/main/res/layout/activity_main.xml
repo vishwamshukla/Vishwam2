@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -47,6 +47,7 @@
         android:textSize="18sp"
         android:text="Already have an Account? Login"
         android:textColor="#ffffff"
+        android:fontFamily="sans-serif-light"
         />
 
     <Button
@@ -54,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/main_login_btn"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/input_design"
@@ -63,7 +64,33 @@
         android:textSize="18sp"
         android:text="Join Now"
         android:textColor="#ffffff"
+        android:fontFamily="sans-serif-light"
         />
+    <TextView
+        android:id="@+id/terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="If you continue, you are accepting"
+        android:textAlignment="center"
+        android:textSize="13sp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="570dp"
+        android:textColor="@color/colorwhite"
+        android:fontFamily="sans-serif-light"/>
+    <Button
+        android:id="@+id/terms1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp"
+        android:layout_below="@id/terms"
+        android:text="Doctor+ Terms and Conditions and Privacy Policy"
+        android:background="@null"
+        android:textSize="12sp"
+        android:textColor="#ffff"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-light"/>
+
+
 
 
 </RelativeLayout>
