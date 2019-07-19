@@ -13,10 +13,11 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RegistrationFormActivity"></activity>
         <activity
             android:name=".TermsAndConditionActivity"
             android:label="@string/title_activity_terms_and_condition"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AdminHandoverRequestActivity" />
         <activity android:name=".AdminDischargeRequestActivity" />
         <activity android:name=".AdminIpdTransferActivity" />

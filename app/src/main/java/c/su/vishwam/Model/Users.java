@@ -1,14 +1,14 @@
 package c.su.vishwam.Model;
 
 public class Users {
-    private String name, phone, password, image, address,leaveTo,leaveFrom,leaveReason,id,sex;
+    private String name, phone, password, image, address,leaveTo,leaveFrom,leaveReason,id,sex,email,qualification,fellowship,awards,area;
 
 
     public Users(){
     }
 
     public Users(String name, String phone, String password, String image, String address,String leaveTo,String leaveFrom,String id,
-                 String leaveReason,String sex) {
+                 String leaveReason,String sex, String email, String qualification, String fellowship, String awards, String area) {
         this.name = name;
         this.phone = phone;
         this.password = password;
@@ -19,6 +19,11 @@ public class Users {
         this.id = id;
         this.leaveReason = leaveReason;
         this.sex = sex;
+        this.email = email;
+        this.qualification = qualification;
+        this.fellowship = fellowship;
+        this.awards = awards;
+        this.area = area;
     }
 
     public String getSex() {
@@ -99,5 +104,45 @@ public class Users {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public String getFellowship() {
+        return fellowship;
+    }
+
+    public void setFellowship(String fellowship) {
+        this.fellowship = fellowship;
+    }
+
+    public String getAwards() {
+        return awards;
+    }
+
+    public void setAwards(String awards) {
+        this.awards = awards;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 }

@@ -79,7 +79,7 @@
         android:fontFamily="sans-serif-light"/>
     <Button
         android:id="@+id/terms1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-5dp"
         android:layout_below="@id/terms"
@@ -88,6 +88,7 @@
         android:textSize="12sp"
         android:textColor="#ffff"
         android:textAllCaps="false"
+        android:layout_marginLeft="50dp"
         android:fontFamily="sans-serif-light"/>
 
 
