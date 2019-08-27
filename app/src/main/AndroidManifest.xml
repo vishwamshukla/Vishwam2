@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="c.su.vishwam">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/opd"
@@ -13,7 +10,18 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegistrationFormActivity"></activity>
+        <activity android:name=".AdminLoginActivity"></activity>
+        <activity android:name=".EmergencyLoginActivity" />
+        <activity android:name=".PharmacyLoginActivity" />
+        <activity android:name=".NurseLoginActivity" />
+        <activity android:name=".ReceptionLoginActivity" />
+        <activity android:name=".TypeofLoginActivity" />
+        <activity android:name=".ReceptionActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegistrationFormActivity" />
         <activity
             android:name=".TermsAndConditionActivity"
             android:label="@string/title_activity_terms_and_condition"
@@ -69,5 +77,8 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>
