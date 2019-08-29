@@ -10,7 +10,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminLoginActivity"></activity>
+        <activity android:name=".Reception_add_opdActivity"></activity>
+        <activity android:name=".AdminLoginActivity" />
         <activity android:name=".EmergencyLoginActivity" />
         <activity android:name=".PharmacyLoginActivity" />
         <activity android:name=".NurseLoginActivity" />
@@ -77,8 +78,8 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

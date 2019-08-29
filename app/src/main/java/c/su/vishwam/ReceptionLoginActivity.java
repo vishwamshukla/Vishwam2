@@ -27,7 +27,7 @@ import io.paperdb.Paper;
 public class ReceptionLoginActivity extends AppCompatActivity {
 
     private EditText InputPhoneNumber, InputPassword;
-    private Button LoginButton;
+    private Button LoginButton,LoginwithPhone;
     private ProgressDialog loadingBar;
     private String parentDbName = "Reception";
     //private android.widget.CheckBox chkBoxRememberMe;
@@ -42,6 +42,7 @@ public class ReceptionLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reception_login);
 
         LoginButton = (Button) findViewById(R.id.login_btn_reception);
+        LoginwithPhone = (Button) findViewById(R.id.login_with_phone_reception);
         InputPhoneNumber = (EditText) findViewById(R.id.login_phone_number_input_reception);
         InputPassword = (EditText) findViewById(R.id.login_password_input_reception);
         loadingBar = new ProgressDialog(this);
@@ -56,6 +57,8 @@ public class ReceptionLoginActivity extends AppCompatActivity {
                 LoginUser();
             }
         });
+
+
     }
     private void LoginUser() {
         String phone = InputPhoneNumber.getText().toString();

@@ -218,20 +218,19 @@
                 android:text="Forgot your password?"
                 android:textSize="14sp" />
 
-<!--            <Button-->
-<!--                android:id="@+id/btFacebook"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/tvForgot"-->
-<!--                android:layout_alignLeft="@+id/cv"-->
-<!--                android:layout_alignRight="@+id/cv"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:background="@drawable/bt_uiborder"-->
-<!--                android:drawableLeft="@drawable/logofacebook"-->
-<!--                android:paddingLeft="20dp"-->
-<!--                android:paddingRight="20dp"-->
-<!--                android:text="Login with facebook"-->
-<!--                android:textColor="@color/colorPurple" />-->
+            <Button
+                android:id="@+id/login_with_phone_reception"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvForgot"
+                android:layout_alignLeft="@+id/cv"
+                android:layout_alignRight="@+id/cv"
+                android:layout_margin="10dp"
+                android:background="@drawable/bt_uiborder"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Login with phone"
+                android:textColor="@color/colorPurple" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
