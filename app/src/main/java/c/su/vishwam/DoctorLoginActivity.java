@@ -21,13 +21,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import c.su.vishwam.Model.Users;
 import c.su.vishwam.Prevalent.Prevalent;
+import io.paperdb.Paper;
 
-public class NurseLoginActivity extends AppCompatActivity {
+public class DoctorLoginActivity extends AppCompatActivity {
 
     private EditText InputPhoneNumber, InputPassword;
     private Button LoginButton,LoginwithPhone;
     private ProgressDialog loadingBar;
-    private String parentDbName = "Nurses";
+    private String parentDbName = "Users";
     //private android.widget.CheckBox chkBoxRememberMe;
     private ImageView circle1;
     TextView tvLogin;
@@ -37,12 +38,12 @@ public class NurseLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nurse_login);
+        setContentView(R.layout.activity_doctor_login);
 
-        LoginButton = (Button) findViewById(R.id.login_btn_nurse);
-        LoginwithPhone = (Button) findViewById(R.id.login_with_phone_nurse);
-        InputPhoneNumber = (EditText) findViewById(R.id.login_phone_number_input_nurse);
-        InputPassword = (EditText) findViewById(R.id.login_password_input_nurse);
+        LoginButton = (Button) findViewById(R.id.login_btn_doctor);
+        LoginwithPhone = (Button) findViewById(R.id.login_with_phone_doctor);
+        InputPhoneNumber = (EditText) findViewById(R.id.login_phone_number_input_doctor);
+        InputPassword = (EditText) findViewById(R.id.login_password_input_doctor);
         loadingBar = new ProgressDialog(this);
         //chkBoxRememberMe = (CheckBox) findViewById(R.id.remember_me_chkb_reception);
         //Paper.init(this);
@@ -103,22 +104,22 @@ public class NurseLoginActivity extends AppCompatActivity {
 //                                Intent intent = new Intent(LoginActivity.this,AdminCategoryActivity.class);
 //                                startActivity(intent);
 //                            }
-                            if (parentDbName.equals("Nurses")){
-                                Toast.makeText(NurseLoginActivity.this, "Logged in!", Toast.LENGTH_SHORT).show();
+                            if (parentDbName.equals("Users")){
+                                Toast.makeText(DoctorLoginActivity.this, "Logged in!", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
-                                Intent intent = new Intent(NurseLoginActivity.this,NurseHomeActivity.class);
+                                Intent intent = new Intent(DoctorLoginActivity.this,HomeActivity.class);
                                 Prevalent.currentOnlineUser = usersData;
                                 startActivity(intent);
                             }                        }
                         else {
                             loadingBar.dismiss();
-                            Toast.makeText(NurseLoginActivity.this, "Invalid Password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DoctorLoginActivity.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 else {
-                    Toast.makeText(NurseLoginActivity.this, "Account with this "+phone+" number do not exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DoctorLoginActivity.this, "Account with this "+phone+" number do not exists", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
             }

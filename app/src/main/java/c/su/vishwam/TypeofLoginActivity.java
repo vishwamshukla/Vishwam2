@@ -25,7 +25,7 @@ public class TypeofLoginActivity extends AppCompatActivity {
         doctorType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TypeofLoginActivity.this, LoginActivity.class);
+                Intent intent = new Intent(TypeofLoginActivity.this, DoctorLoginActivity.class);
                 startActivity(intent);
             }
         });
