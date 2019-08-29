@@ -10,7 +10,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PharmacyHomeActivity"></activity>
+        <activity android:name=".EmergencyHomeActivity"></activity>
+        <activity android:name=".PharmacyHomeActivity" />
         <activity android:name=".NurseHomeActivity" />
         <activity android:name=".DoctorLoginActivity" />
         <activity android:name=".Reception_add_opdActivity" />
@@ -81,8 +82,8 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
