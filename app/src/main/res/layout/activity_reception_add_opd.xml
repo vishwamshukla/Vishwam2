@@ -75,7 +75,7 @@
                         android:paddingBottom="35dp">
 
                         <TextView
-                            android:id="@+id/p_txt_name"
+                            android:id="@+id/p_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="15dp"
@@ -85,166 +85,332 @@
                             android:textStyle="bold" />
 
                         <EditText
-                            android:id="@+id/p_edit_name"
+                            android:id="@+id/p_name1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/p_txt_name"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:drawablePadding="30dp"
-                            android:inputType="textEmailAddress"
-                            android:padding="10dp" />
-
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/tvUsername"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_below="@+id/etEmai"-->
-<!--                            android:layout_margin="15dp"-->
-<!--                            android:text="Username"-->
-<!--                            android:textColor="@color/colorPurple"-->
-<!--                            android:textSize="14sp"-->
-<!--                            android:textStyle="bold" />-->
-
-                        <EditText
-                            android:id="@+id/etUsername"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tvUsername"
+                            android:layout_below="@+id/p_name"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:drawablePadding="30dp"
                             android:inputType="text"
                             android:padding="10dp" />
 
+
                         <TextView
-                            android:id="@+id/tvPassword"
+                            android:id="@+id/p_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/etUsername"
+                            android:layout_below="@+id/p_name1"
                             android:layout_margin="15dp"
-                            android:text="Password"
+                            android:text="Email"
                             android:textColor="@color/colorPurple"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <EditText
-                            android:id="@+id/etPassword"
+                            android:id="@+id/p_email1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tvPassword"
+                            android:layout_below="@+id/p_email"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:drawablePadding="30dp"
-                            android:inputType="textPassword"
+                            android:inputType="textEmailAddress"
                             android:padding="10dp" />
 
                         <TextView
-                            android:id="@+id/tvRePassword"
+                            android:id="@+id/p_phoneNumber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/etPassword"
+                            android:layout_below="@+id/p_email1"
                             android:layout_margin="15dp"
-                            android:text="Retype Password"
+                            android:text="Phone Number"
                             android:textColor="@color/colorPurple"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <EditText
-                            android:id="@+id/etRePassword"
+                            android:id="@+id/p_phoneNumber1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tvRePassword"
+                            android:layout_below="@+id/p_phoneNumber"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:drawablePadding="30dp"
-                            android:inputType="textPassword"
+                            android:inputType="number"
                             android:padding="10dp" />
+
                         <TextView
-                            android:id="@+id/tvRePassword1"
+                            android:id="@+id/p_birthDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/etRePassword"
+                            android:layout_below="@+id/p_phoneNumber1"
                             android:layout_margin="15dp"
-                            android:text="Retype Password"
+                            android:text="DOB"
                             android:textColor="@color/colorPurple"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <EditText
-                            android:id="@+id/etRePassword1"
+                            android:id="@+id/p_birthDate1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tvRePassword1"
+                            android:layout_below="@+id/p_birthDate"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:drawablePadding="30dp"
-                            android:inputType="textPassword"
+                            android:inputType="text"
                             android:padding="10dp" />
                         <TextView
-                            android:id="@+id/tvRePassword2"
+                            android:id="@+id/p_gender"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/etRePassword1"
+                            android:layout_below="@+id/p_birthDate1"
                             android:layout_margin="15dp"
-                            android:text="Retype Password"
+                            android:text="Gender"
                             android:textColor="@color/colorPurple"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <EditText
-                            android:id="@+id/etRePassword2"
+                            android:id="@+id/p_gender1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tvRePassword2"
+                            android:layout_below="@+id/p_gender"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:drawablePadding="30dp"
-                            android:inputType="textPassword"
+                            android:inputType="text"
                             android:padding="10dp" />
                         <TextView
-                            android:id="@+id/tvRePassword3"
+                            android:id="@+id/p_relation_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/etRePassword2"
+                            android:layout_below="@+id/p_gender1"
                             android:layout_margin="15dp"
-                            android:text="Retype Password"
+                            android:text="Relation Status"
                             android:textColor="@color/colorPurple"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <EditText
-                            android:id="@+id/etRePassword3"
+                            android:id="@+id/p_relation_status1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tvRePassword3"
+                            android:layout_below="@+id/p_relation_status"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:drawablePadding="30dp"
-                            android:inputType="textPassword"
+                            android:inputType="text"
                             android:padding="10dp" />
                         <TextView
-                            android:id="@+id/tvRePassword4"
+                            android:id="@+id/p_bloodGroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/etRePassword3"
+                            android:layout_below="@+id/p_relation_status1"
                             android:layout_margin="15dp"
-                            android:text="Retype Password"
+                            android:text="Blood Group"
                             android:textColor="@color/colorPurple"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <EditText
-                            android:id="@+id/etRePassword4"
+                            android:id="@+id/p_bloodGroup1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tvRePassword4"
+                            android:layout_below="@+id/p_bloodGroup"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:drawablePadding="30dp"
-                            android:inputType="textPassword"
+                            android:inputType="text"
                             android:padding="10dp" />
+                        <TextView
+                            android:id="@+id/p_allergy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_bloodGroup1"
+                            android:layout_margin="15dp"
+                            android:text="Allergy(Medicine and Other)"
+                            android:textColor="@color/colorPurple"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/p_allergy1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_allergy"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:drawablePadding="30dp"
+                            android:inputType="text"
+                            android:padding="10dp" />
+                        <TextView
+                            android:id="@+id/p_bmi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_allergy1"
+                            android:layout_margin="15dp"
+                            android:text="BMI"
+                            android:textColor="@color/colorPurple"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/p_bmi1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_bmi"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:drawablePadding="30dp"
+                            android:inputType="number"
+                            android:padding="10dp" />
+                        <TextView
+                            android:id="@+id/p_bp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_bmi1"
+                            android:layout_margin="15dp"
+                            android:text="Blood Pressure(mmHg)"
+                            android:textColor="@color/colorPurple"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/p_bp1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_bp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:drawablePadding="30dp"
+                            android:inputType="number"
+                            android:padding="10dp" />
+                        <TextView
+                            android:id="@+id/p_pulse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_bp1"
+                            android:layout_margin="15dp"
+                            android:text="Pulse(BPM)"
+                            android:textColor="@color/colorPurple"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/p_pulse1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_pulse"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:drawablePadding="30dp"
+                            android:inputType="number"
+                            android:padding="10dp" />
+                        <TextView
+                            android:id="@+id/p_complaints"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_pulse1"
+                            android:layout_margin="15dp"
+                            android:text="Complaints"
+                            android:textColor="@color/colorPurple"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/p_complaints1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_complaints"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:drawablePadding="30dp"
+                            android:inputType="text"
+                            android:padding="10dp" />
+                        <TextView
+                            android:id="@+id/p_medicalHistory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_complaints1"
+                            android:layout_margin="15dp"
+                            android:text="Post Medical History"
+                            android:textColor="@color/colorPurple"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/p_medicalHistory1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_medicalHistory"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:drawablePadding="30dp"
+                            android:inputType="text"
+                            android:padding="10dp" />
+                        <TextView
+                            android:id="@+id/p_visit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_medicalHistory1"
+                            android:layout_margin="15dp"
+                            android:text="Visit(Old | New)"
+                            android:textColor="@color/colorPurple"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/p_visit1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_visit"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:drawablePadding="30dp"
+                            android:inputType="text"
+                            android:padding="10dp" />
+                        <TextView
+                            android:id="@+id/p_referredBy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_visit1"
+                            android:layout_margin="15dp"
+                            android:text="Referred By"
+                            android:textColor="@color/colorPurple"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/p_referredBy1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_referredBy"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:drawablePadding="30dp"
+                            android:inputType="text"
+                            android:padding="10dp" />
+                        <TextView
+                            android:id="@+id/p_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/p_referredBy1"
+                            android:layout_margin="15dp"
+                            android:text="Image"
+                            android:textColor="@color/colorPurple"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/p_image1"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:src="@drawable/profile"
+                            android:layout_below="@id/p_image"
+                            android:layout_marginTop="20dp"
+                            android:layout_centerHorizontal="true"
+                            />
 
                     </RelativeLayout>
 
@@ -253,6 +419,7 @@
             </android.support.v7.widget.CardView>
 
             <RelativeLayout
+                android:id="@+id/rlayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/cv"
@@ -265,12 +432,12 @@
                 android:elevation="10dp">
 
                 <Button
-                    android:id="@+id/btLogin"
+                    android:id="@+id/p_button_continue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:background="@drawable/bt_uisquare"
-                    android:text="Login"
+                    android:text="Continue"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite" />
             </RelativeLayout>
