@@ -2,6 +2,7 @@ package c.su.vishwam;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -18,10 +20,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+
+import c.su.vishwam.Prevalent.Prevalent;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Reception_add_opdActivity extends AppCompatActivity {
 
@@ -35,12 +44,23 @@ public class Reception_add_opdActivity extends AppCompatActivity {
     private ProgressDialog loadingBar;
     private long countPosts = 0;
 
+    private CircleImageView profileImageView;
+    private Uri imageUri;
+    private String myUrl = "";
+    private StorageTask uploadTask;
+    private StorageReference storageProfilePrictureRef;
+    private String checker = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reception_add_opd);
 
         PatientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+
+        storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("patient image");
+
+        profileImageView = (CircleImageView) findViewById(R.id.p_image1);
 
         Continue = (Button) findViewById(R.id.p_button_continue);
         name = (EditText) findViewById(R.id.p_name1);
@@ -67,12 +87,66 @@ public class Reception_add_opdActivity extends AppCompatActivity {
 
         Continue.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                ValidatePatientData();
+            public void onClick(View view)
+            {
+                if (checker.equals("clicked"))
+                {
+                    pattientInfoSavedImage();
+                }
+                else
+                {
+                    ValidatePatientData();
+                }
+            }
+        });
+
+        profileImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                checker = "clicked";
+
+                CropImage.activity(imageUri)
+                        .setAspectRatio(1, 1)
+                        .start(Reception_add_opdActivity.this);
             }
         });
 
     }
+
+    private void pattientInfoSavedImage() {
+        if (TextUtils.isEmpty(name.getText().toString()))
+        {
+            Toast.makeText(this, "Name is mandatory.", Toast.LENGTH_SHORT).show();
+        }
+        else if(checker.equals("clicked"))
+        {
+            uploadImage();
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE  &&  resultCode==RESULT_OK  &&  data!=null)
+        {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            imageUri = result.getUri();
+
+            profileImageView.setImageURI(imageUri);
+        }
+        else
+        {
+            Toast.makeText(this, "Error, Try Again.", Toast.LENGTH_SHORT).show();
+
+            startActivity(new Intent(Reception_add_opdActivity.this, SettingsActivity.class));
+            finish();
+        }
+    }
+
 
     private void ValidatePatientData() {
         PatientName = String.valueOf(name.getText());
@@ -178,6 +252,94 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private void uploadImage()
+    {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
+        patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Update Profile");
+        progressDialog.setMessage("Please wait, while we are updating your account information");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
+        if (imageUri != null)
+        {
+            final StorageReference fileRef = storageProfilePrictureRef
+                    .child(PatientPhone = String.valueOf(phoneNumber.getText())); //+ ".jpg");
+
+            uploadTask = fileRef.putFile(imageUri);
+
+            uploadTask.continueWithTask(new Continuation() {
+                @Override
+                public Object then(@NonNull Task task) throws Exception
+                {
+                    if (!task.isSuccessful())
+                    {
+                        throw task.getException();
+                    }
+
+                    return fileRef.getDownloadUrl();
+                }
+            })
+                    .addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task)
+                        {
+                            if (task.isSuccessful())
+                            {
+                                Uri downloadUrl = task.getResult();
+                                myUrl = downloadUrl.toString();
+
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+
+                                HashMap<String, Object> patientMap = new HashMap<>();
+                                patientMap.put("id", patientRandomKey);
+                                patientMap.put("name", PatientName);
+                                patientMap.put("email", PatientEmail);
+                                patientMap.put("phone", PatientPhone);
+                                patientMap.put("dob",PatientDob);
+                                patientMap.put("gender",PatientGender);
+                                patientMap.put("date",saveCurrentDate);
+                                patientMap.put("time",saveCurrentTime);
+                                patientMap.put("relation",PatientRelation);
+                                patientMap.put("bloodgroup",PatientBloodGroup);
+                                patientMap.put("allergy",PatientAllergy);
+                                patientMap.put("weight",PatientWt);
+                                patientMap.put("bp",PatientBp);
+                                patientMap.put("pulse",PatientPulse);
+                                patientMap.put("complaints",PatientComplaints);
+                                patientMap.put("medicalhistory",PatientMedicalHistory);
+                                patientMap.put("visit",PatientVisit);
+                                patientMap.put("referredby",PatientReferredBy);
+                                patientMap. put("image", myUrl);
+                                ref.child(patientRandomKey).updateChildren(patientMap);
+
+                                progressDialog.dismiss();
+
+                                startActivity(new Intent(Reception_add_opdActivity.this, ReceptionActivity.class));
+                                Toast.makeText(Reception_add_opdActivity.this, "Profile added successfully.", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                            else
+                            {
+                                progressDialog.dismiss();
+                                Toast.makeText(Reception_add_opdActivity.this, "Error.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+        else
+        {
+            Toast.makeText(this, "image is not selected.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
