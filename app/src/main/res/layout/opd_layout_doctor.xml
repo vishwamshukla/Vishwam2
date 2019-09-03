@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/patient_name"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginLeft="2dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/patient_time"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textAlignment="viewEnd"
+            android:text="Time"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginRight="2dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/patient_date"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textAlignment="viewEnd"
+            android:layout_below="@id/patient_time"
+            android:text="Date"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginRight="2dp"
+            android:textStyle="bold"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/patient_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/profile"
+            android:layout_below="@id/patient_time"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/patient_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sex"
+            android:layout_below="@id/patient_image"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="20dp" />
+        <TextView
+            android:id="@+id/patient_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Age:"
+            android:layout_below="@id/patient_gender"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="15dp" />
+        <TextView
+            android:id="@+id/patient_complaints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Complaints"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_age"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_medical_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medical History"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_complaints"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/patient_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_medical_history"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_allergy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Allergy"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_phone_number"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/patient_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_allergy"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_bp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BP"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_weight"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_pulse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pulse"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_bp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_visit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Visit"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_pulse"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/patient_referred_by"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Referred by"
+            android:textColor="#fff"
+            android:layout_below="@id/patient_visit"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+        <Button
+            android:id="@+id/transfer_to_ipd"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttons"
+            android:backgroundTint="#fff"
+            android:text="Transfer to IPD"
+            android:layout_below="@id/patient_referred_by"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="false"/>
+        <Button
+            android:id="@+id/handover"
+            android:layout_width="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/patient_referred_by"
+            android:background="@drawable/buttons"
+            android:backgroundTint="#fff"
+            android:text="Handover"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAllCaps="false"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

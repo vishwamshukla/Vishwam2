@@ -10,7 +10,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminHomeActivity"></activity>
+        <activity android:name=".OpdPatientActivity"></activity>
+        <activity android:name=".ReceptionSelectDoctorActivity" />
+        <activity android:name=".AdminHomeActivity" />
         <activity android:name=".EmergencyHomeActivity" />
         <activity android:name=".PharmacyHomeActivity" />
         <activity android:name=".NurseHomeActivity" />

@@ -1,13 +1,13 @@
 package c.su.vishwam.Model;
 
 public class IpdPatients {
-    private String name, problem, others, age, sex,time,date,phone,image,ward,bed,id,pulse,bp,fromdoc,to;
+    private String name, problem, others, age, sex,time,date,phone,image,ward,bed,id,pulse,bp,fromdoc,to, gender, allergy, weight, complaints, medicalHistory, visit, referredBy;
 
     public IpdPatients() {
     }
 
     public IpdPatients(String name, String problem, String others, String age, String sex, String time, String date,String phone,String image,String ward,String bed,String id,
-                       String pulse,String bp,String fromdoc,String to) {
+                       String pulse,String bp,String fromdoc,String to, String gender, String allergy, String weight, String complaints, String medicalHistory, String visit, String referredBy) {
         this.name = name;
         this.problem = problem;
         this.others = others;
@@ -24,6 +24,13 @@ public class IpdPatients {
         this.bp = bp;
         this.fromdoc = fromdoc;
         this.to = to;
+        this.gender = gender;
+        this.allergy = allergy;
+        this.weight = weight;
+        this.complaints = complaints;
+        this.medicalHistory = medicalHistory;
+        this.visit = visit;
+        this.referredBy = referredBy;
 
     }
 
@@ -152,5 +159,61 @@ public class IpdPatients {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAllergy() {
+        return allergy;
+    }
+
+    public void setAllergy(String allergy) {
+        this.allergy = allergy;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(String complaints) {
+        this.complaints = complaints;
+    }
+
+    public String getMedicalHistory() {
+        return medicalHistory;
+    }
+
+    public void setMedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
+    public String getVisit() {
+        return visit;
+    }
+
+    public void setVisit(String visit) {
+        this.visit = visit;
+    }
+
+    public String getReferredBy() {
+        return referredBy;
+    }
+
+    public void setReferredBy(String referredBy) {
+        this.referredBy = referredBy;
     }
 }
