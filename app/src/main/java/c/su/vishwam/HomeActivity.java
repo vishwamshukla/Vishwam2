@@ -70,7 +70,7 @@ public class HomeActivity extends AppCompatActivity
         Time = (TextView) findViewById(R.id.patient_time);
         Date = (TextView) findViewById(R.id.patient_date);
 
-        PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());
+        PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");//.child(Prevalent.currentOnlineUser.getPhone());
         PatientRef1 = FirebaseDatabase.getInstance().getReference().child("Admins").child("8669059504").child("transferRequest");
         PatientRef2 = FirebaseDatabase.getInstance().getReference().child("Admins").child("8669059504").child("handoverRequest");
 

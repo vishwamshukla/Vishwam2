@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         animationDrawable.setExitFadeDuration(4000);
         animationDrawable.start();
 
-        joinNowButton = (Button) findViewById(R.id.main_join_now_btn);
+        //joinNowButton = (Button) findViewById(R.id.main_join_now_btn);
         loginBotton = (Button) findViewById(R.id.main_login_btn);
         termsButton = (Button) findViewById(R.id.terms1);
         termsButton.setPaintFlags(termsButton.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -61,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        joinNowButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,RegistrationFormActivity.class);
-                startActivity(intent);
-            }
-        });
+//        joinNowButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this,RegistrationFormActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         String UserPhoneKey = Paper.book().read(Prevalent.UserPhoneKey);
         String UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);

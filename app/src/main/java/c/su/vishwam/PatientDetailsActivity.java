@@ -44,7 +44,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         Age = (TextView) findViewById(R.id.patient_age);
 
         Id = getIntent().getStringExtra("id");
-        TransferToIpd = (Button) findViewById(R.id.transfer_ipd);
+       // TransferToIpd = (Button) findViewById(R.id.transfer_ipd);
       //  TransferToDoctor = (Button) findViewById(R.id.transfer_to_doctor);
         //CancelAppoinment = (Button) findViewById(R.id.cancel_appoinment);
 //        CompleteAppoinment = (Button)  findViewById(R.id.complete);
@@ -52,12 +52,12 @@ public class PatientDetailsActivity extends AppCompatActivity {
 
         getPatientDetails(Id);
 
-        TransferToIpd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addingToIpdList();
-            }
-        });
+//        TransferToIpd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                addingToIpdList();
+//            }
+//        });
 //        TransferToDoctor.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -84,51 +84,51 @@ public class PatientDetailsActivity extends AppCompatActivity {
 //        productsRef.child("id").removeValue();
 //    }
 
-    private void addingToIpdList() {
-        String saveCurrentTime, saveCurrentDate;
-
-        Calendar calForDate = Calendar.getInstance();
-        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-        saveCurrentDate = currentDate.format(calForDate.getTime());
-
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
-        saveCurrentTime = currentDate.format(calForDate.getTime());
-
-        final DatabaseReference IpdListRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD");
-
-        final HashMap<String, Object> ipdList = new HashMap<>();
-        ipdList.put("id",Id);
-        ipdList.put("name",Name.getText().toString());
-        ipdList.put("problem",Problem.getText().toString());
-        ipdList.put("others",OtherDetails.getText().toString());
-        ipdList.put("sex",Sex.getText().toString());
-        ipdList.put("age",Age.getText().toString());
-
-        IpdListRef.child(Prevalent.currentOnlineUser.getPhone())
-                .child(Id)
-                .updateChildren(ipdList)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            IpdListRef.child("Admin View").child(Prevalent.currentOnlineUser.getPhone())
-                                    .child("Patients").child(Id)
-                                    .updateChildren(ipdList)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()){
-                                                Toast.makeText(PatientDetailsActivity.this, "Patient added!", Toast.LENGTH_SHORT).show();
-
-                                                Intent intent = new Intent(PatientDetailsActivity.this,HomeActivity.class);
-                                                startActivity(intent);
-
-                                            }                                        }
-                                    });
-                        }
-                    }
-                });
-    }
+//    private void addingToIpdList() {
+//        String saveCurrentTime, saveCurrentDate;
+//
+//        Calendar calForDate = Calendar.getInstance();
+//        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+//        saveCurrentDate = currentDate.format(calForDate.getTime());
+//
+//        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+//        saveCurrentTime = currentDate.format(calForDate.getTime());
+//
+//        final DatabaseReference IpdListRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD");
+//
+//        final HashMap<String, Object> ipdList = new HashMap<>();
+//        ipdList.put("id",Id);
+//        ipdList.put("name",Name.getText().toString());
+//        ipdList.put("problem",Problem.getText().toString());
+//        ipdList.put("others",OtherDetails.getText().toString());
+//        ipdList.put("sex",Sex.getText().toString());
+//        ipdList.put("age",Age.getText().toString());
+//
+//        IpdListRef.child(Prevalent.currentOnlineUser.getPhone())
+//                .child(Id)
+//                .updateChildren(ipdList)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()){
+//                            IpdListRef.child("Admin View").child(Prevalent.currentOnlineUser.getPhone())
+//                                    .child("Patients").child(Id)
+//                                    .updateChildren(ipdList)
+//                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                        @Override
+//                                        public void onComplete(@NonNull Task<Void> task) {
+//                                            if (task.isSuccessful()){
+//                                                Toast.makeText(PatientDetailsActivity.this, "Patient added!", Toast.LENGTH_SHORT).show();
+//
+//                                                Intent intent = new Intent(PatientDetailsActivity.this,HomeActivity.class);
+//                                                startActivity(intent);
+//
+//                                            }                                        }
+//                                    });
+//                        }
+//                    }
+//                });
+//    }
 
     private void getPatientDetails(String id) {
         DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());

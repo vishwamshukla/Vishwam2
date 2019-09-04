@@ -107,13 +107,7 @@
         android:layout_marginTop="45dp">
 
 
-        <ImageView
-            android:id="@+id/handover_request"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:src="@drawable/finger"
-            android:layout_marginEnd="30dp"
-            />
+
         <!--<ImageView-->
             <!--android:id="@+id/discharge_request"-->
             <!--android:layout_width="wrap_content"-->

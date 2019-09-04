@@ -24,7 +24,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         emergency = (ImageView) findViewById(R.id.emergency);
         leave = (ImageView) findViewById(R.id.leave);
         ipdTransfer = (ImageView) findViewById(R.id.ipd_request);
-        handoverRequest = (ImageView) findViewById(R.id.handover_request);
+        //handoverRequest = (ImageView) findViewById(R.id.handover_request);
         opd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

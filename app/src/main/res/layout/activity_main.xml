@@ -12,19 +12,22 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="122dp"
-        android:layout_marginVertical="150dp"
+        android:layout_marginVertical="220dp"
         android:contentDescription=""
         android:outlineSpotShadowColor="#0000"
         android:src="@drawable/ic_launcher"
         tools:ignore="ContentDescription" />
 
     <TextView
+        android:id="@+id/we_care"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="We care beyond health"
         android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textSize="27sp"
         android:layout_marginLeft="47dp"
         android:layout_marginTop="300dp"
@@ -37,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -45,50 +48,53 @@
         android:padding="10dp"
         android:textAllCaps="false"
         android:textSize="18sp"
-        android:text="Already have an Account? Login"
+        android:layout_alignParentEnd="true"
+        android:text="Continue"
         android:textColor="#ffffff"
         android:fontFamily="sans-serif-light"
         />
 
-    <Button
-        android:id="@+id/main_join_now_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/main_login_btn"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/input_design"
-        android:padding="10dp"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:text="Join Now"
-        android:textColor="#ffffff"
-        android:fontFamily="sans-serif-light"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/main_join_now_btn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_above="@id/main_login_btn"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:layout_marginLeft="15dp"-->
+<!--        android:layout_marginRight="15dp"-->
+<!--        android:background="@drawable/input_design"-->
+<!--        android:padding="10dp"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textSize="18sp"-->
+<!--        android:text="Join Now"-->
+<!--        android:textColor="#ffffff"-->
+<!--        android:fontFamily="sans-serif-light"-->
+<!--        />-->
     <TextView
         android:id="@+id/terms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/terms1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-65dp"
+        android:fontFamily="sans-serif-light"
         android:text="If you continue, you are accepting"
         android:textAlignment="center"
-        android:textSize="13sp"
-        android:layout_marginLeft="85dp"
-        android:layout_marginTop="570dp"
         android:textColor="@color/colorwhite"
-        android:fontFamily="sans-serif-light"/>
+        android:textSize="13sp" />
+
     <Button
         android:id="@+id/terms1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-5dp"
-        android:layout_below="@id/terms"
         android:text="Doctor+ Terms and Conditions and Privacy Policy"
         android:background="@null"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="55dp"
         android:textSize="12sp"
         android:textColor="#ffff"
         android:textAllCaps="false"
-        android:layout_marginLeft="50dp"
+        android:layout_above="@id/main_login_btn"
         android:fontFamily="sans-serif-light"/>
 
 
