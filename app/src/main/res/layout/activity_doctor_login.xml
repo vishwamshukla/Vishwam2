@@ -103,13 +103,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
-                        android:text="Phone number"
+                        android:text="Email"
                         android:textColor="@color/colorPurple"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/login_phone_number_input_doctor"
+                        android:id="@+id/login_email_input_doctor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tvUsername"
@@ -124,7 +124,7 @@
                         android:id="@+id/tvPassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/login_phone_number_input_doctor"
+                        android:layout_below="@+id/login_email_input_doctor"
                         android:layout_margin="15dp"
                         android:text="Password"
                         android:textColor="@color/colorPurple"
@@ -158,12 +158,12 @@
                 android:layout_marginRight="-20dp"
                 android:elevation="10dp">
 
-                <!--                <ImageButton-->
-                <!--                    android:id="@+id/btRegister"-->
-                <!--                    android:layout_width="60dp"-->
-                <!--                    android:layout_height="60dp"-->
-                <!--                    android:background="@drawable/circle"-->
-                <!--                    android:src="@drawable/ic_add" />-->
+                <ImageButton
+                    android:id="@+id/btRegister"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/circle"
+                    android:src="@drawable/ic_add" />
             </RelativeLayout>
 
             <RelativeLayout

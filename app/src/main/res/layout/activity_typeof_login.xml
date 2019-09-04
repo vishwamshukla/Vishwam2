@@ -106,7 +106,7 @@
 
                     <ImageView
                         android:id="@+id/receptionist_type"
-                        android:src="@drawable/bitcoin"
+                        android:src="@drawable/reception1"
                         android:layout_width="80dp"
                         android:layout_height="80dp">
                     </ImageView>
@@ -141,7 +141,7 @@
 
                     <ImageView
                         android:id="@+id/nurse_type"
-                        android:src="@drawable/bug"
+                        android:src="@drawable/nurse"
                         android:layout_width="80dp"
                         android:layout_height="80dp">
                     </ImageView>
@@ -176,7 +176,7 @@
 
                     <ImageView
                         android:id="@+id/pharmacist_type"
-                        android:src="@drawable/chat"
+                        android:src="@drawable/pharmacist"
                         android:layout_width="80dp"
                         android:layout_height="80dp">
                     </ImageView>
@@ -211,7 +211,7 @@
 
                     <ImageView
                         android:id="@+id/emergency_type"
-                        android:src="@drawable/contact"
+                        android:src="@drawable/emergency2"
                         android:layout_width="80dp"
                         android:layout_height="80dp">
                     </ImageView>
