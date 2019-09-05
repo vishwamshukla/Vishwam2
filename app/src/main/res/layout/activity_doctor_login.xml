@@ -215,7 +215,7 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/login_with_phone_doctor"
+                android:id="@+id/login_with_google"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvForgot"
@@ -223,9 +223,10 @@
                 android:layout_alignRight="@+id/cv"
                 android:layout_margin="10dp"
                 android:background="@drawable/bt_uiborder"
+                android:drawableLeft="@drawable/google3"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="Login with phone"
+                android:text="Login with Google"
                 android:textColor="@color/colorPurple" />
         </RelativeLayout>
     </ScrollView>
