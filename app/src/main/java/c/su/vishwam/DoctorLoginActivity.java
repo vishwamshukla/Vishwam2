@@ -36,6 +36,7 @@ import io.paperdb.Paper;
 public class DoctorLoginActivity extends AppCompatActivity {
 
     private EditText InputEmail, InputPassword;
+    private TextView forgotPassword;
     private Button LoginButton, LoginwithPhone;
     private ProgressDialog loadingBar;
     private String parentDbName = "Users";
@@ -55,6 +56,8 @@ public class DoctorLoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         btRegister = findViewById(R.id.btRegister);
+
+        forgotPassword = (TextView) findViewById(R.id.tvForgot);
 
         LoginButton = (Button) findViewById(R.id.login_btn_doctor);
         LoginwithPhone = (Button) findViewById(R.id.login_with_phone_doctor);
@@ -88,6 +91,12 @@ public class DoctorLoginActivity extends AppCompatActivity {
             }
         });
 
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DoctorLoginActivity.this, DoctorForgotPasswordActivity.class));
+            }
+        });
 
     }
 

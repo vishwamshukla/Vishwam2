@@ -38,6 +38,7 @@ public class DoctorRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_register);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -105,7 +106,7 @@ public class DoctorRegisterActivity extends AppCompatActivity {
     }
 
     private void SendUserToSetupActivity() {
-        Intent intent = new Intent(DoctorRegisterActivity.this, SettingsActivity.class);
+        Intent intent = new Intent(DoctorRegisterActivity.this, DoctorProfileActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
