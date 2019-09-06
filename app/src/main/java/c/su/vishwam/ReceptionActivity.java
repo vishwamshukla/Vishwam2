@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class ReceptionActivity extends AppCompatActivity {
 
-    ImageView AddOpd;
+    ImageView AddOpd, Profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +18,18 @@ public class ReceptionActivity extends AppCompatActivity {
 
         AddOpd = (ImageView) findViewById(R.id.reception_add_opd);
 
+        Profile = (ImageView) findViewById(R.id.reception_profile);
+
         AddOpd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ReceptionActivity.this, Reception_add_opdActivity.class));
+            }
+        });
+        Profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReceptionActivity.this, ReceptionProfileActivity.class));
             }
         });
     }
