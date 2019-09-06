@@ -18,12 +18,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
@@ -60,8 +62,10 @@ public class DoctorLoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "DoctorLoginActivity";
 
-    private static final int RC_SIGN_IN = 1;
-    private GoogleApiClient mGoogleSignInClient;
+    private static final int RC_SIGN_IN = 123;
+    private GoogleSignInClient mGoogleSignInClient;
+
+    private ProgressBar progressBar;
 
     // private TextView ForgotPassword;
 
@@ -73,6 +77,7 @@ public class DoctorLoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         btRegister = findViewById(R.id.btRegister);
+        progressBar = findViewById(R.id.progress_bar);
 
         forgotPassword = (TextView) findViewById(R.id.tvForgot);
 
@@ -116,33 +121,41 @@ public class DoctorLoginActivity extends AppCompatActivity {
         });
 
         // Configure Google Sign In
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        mGoogleSignInClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
-                    @Override
-                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                        Toast.makeText(DoctorLoginActivity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+
+//        mGoogleSignInClient = new GoogleApiClient.Builder(this)
+//                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
+//                    @Override
+//                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+//                        Toast.makeText(DoctorLoginActivity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+//                .build();
 
         LoginwithGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+                SignInGoogle();
             }
         });
 
     }
-    private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleSignInClient);
+
+    void SignInGoogle(){
+        progressBar.setVisibility(View.VISIBLE);
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+//    private void signIn() {
+//        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleSignInClient);
+//        startActivityForResult(signInIntent, RC_SIGN_IN);
+//    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -154,7 +167,7 @@ public class DoctorLoginActivity extends AppCompatActivity {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
+                if (account != null) firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
@@ -163,21 +176,23 @@ public class DoctorLoginActivity extends AppCompatActivity {
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+        Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            progressBar.setVisibility(View.INVISIBLE);
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-//                            FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
                             startActivity(new Intent(DoctorLoginActivity.this, DoctorProfileActivity.class));
                         } else {
+                            progressBar.setVisibility(View.INVISIBLE);
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(DoctorLoginActivity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
@@ -212,10 +227,12 @@ public class DoctorLoginActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Enter Password!", Toast.LENGTH_SHORT).show();
         } else {
-            loadingBar.setTitle("Login in progress");
-            loadingBar.setMessage("Please wait...");
-            loadingBar.show();
-            loadingBar.setCanceledOnTouchOutside(true);
+//            loadingBar.setTitle("Login in progress");
+//            loadingBar.setMessage("Please wait...");
+//            loadingBar.show();
+//            loadingBar.setCanceledOnTouchOutside(true);
+            progressBar.setVisibility(View.VISIBLE);
+
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -223,11 +240,13 @@ public class DoctorLoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 SendUserToHomeActivity();
                                 Toast.makeText(DoctorLoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
+                                //loadingBar.dismiss();
+                                progressBar.setVisibility(View.INVISIBLE);
                             } else {
                                 String message = task.getException().toString();
                                 Toast.makeText(DoctorLoginActivity.this, "Error-" + message, Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
+                                //loadingBar.dismiss();
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                     });
