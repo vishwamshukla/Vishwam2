@@ -1,6 +1,5 @@
 package c.su.vishwam;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class DoctorRegisterActivity extends AppCompatActivity {
+public class ReceptionRegiserActivity extends AppCompatActivity {
 
     private RelativeLayout rlayout;
     private Animation animation;
@@ -39,7 +38,7 @@ public class DoctorRegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_register);
+        setContentView(R.layout.activity_reception_regiser);
         progressBar = findViewById(R.id.progress_bar);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -95,14 +94,14 @@ public class DoctorRegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                SendUserToSetupActivity();
-                                Toast.makeText(DoctorRegisterActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(ReceptionRegiserActivity.this, ReceptionLoginActivity.class));
+                                Toast.makeText(ReceptionRegiserActivity.this, "Success", Toast.LENGTH_SHORT).show();
                                 //loadingBar.dismiss();
                                 progressBar.setVisibility(View.INVISIBLE);
                             }
                             else{
                                 String message = task.getException().getMessage();
-                                Toast.makeText(DoctorRegisterActivity.this, "Error-> "+message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ReceptionRegiserActivity.this, "Error-> "+message, Toast.LENGTH_SHORT).show();
                                 //loadingBar.dismiss();
                                 progressBar.setVisibility(View.INVISIBLE);
                             }
@@ -111,12 +110,12 @@ public class DoctorRegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void SendUserToSetupActivity() {
-        Intent intent = new Intent(DoctorRegisterActivity.this, DoctorProfileActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
-    }
+//    private void SendUserToSetupActivity() {
+//        Intent intent = new Intent(ReceptionRegiserActivity.this, ReceptionLoginActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(intent);
+//        finish();
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

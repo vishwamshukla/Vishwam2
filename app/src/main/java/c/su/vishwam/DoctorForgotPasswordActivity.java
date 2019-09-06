@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +20,7 @@ public class DoctorForgotPasswordActivity extends AppCompatActivity {
     private EditText email;
     private Button Continue;
     private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,7 @@ public class DoctorForgotPasswordActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         email = (EditText) findViewById(R.id.forgot_email);
         Continue = (Button) findViewById(R.id.forgot_button);
+        progressBar = findViewById(R.id.progress_bar);
 
         Continue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,14 +39,17 @@ public class DoctorForgotPasswordActivity extends AppCompatActivity {
                     Toast.makeText(DoctorForgotPasswordActivity.this, "Email required", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    progressBar.setVisibility(View.VISIBLE);
                     mAuth.sendPasswordResetEmail(userEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
+                                progressBar.setVisibility(View.INVISIBLE);
                                 Toast.makeText(DoctorForgotPasswordActivity.this, "Please check your email", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(DoctorForgotPasswordActivity.this, DoctorLoginActivity.class));
                             }
                             else {
+                                progressBar.setVisibility(View.VISIBLE);
                                 String message = task.getException().getMessage();
                                 Toast.makeText(DoctorForgotPasswordActivity.this, "Error occured"+ message , Toast.LENGTH_SHORT).show();
                             }

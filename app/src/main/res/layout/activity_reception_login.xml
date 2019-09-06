@@ -107,13 +107,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
-                        android:text="Phone number"
+                        android:text="Email"
                         android:textColor="@color/colorPurple"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/login_phone_number_input_reception"
+                        android:id="@+id/login_email_input_doctor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tvUsername"
@@ -128,7 +128,7 @@
                         android:id="@+id/tvPassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/login_phone_number_input_reception"
+                        android:layout_below="@+id/login_email_input_doctor"
                         android:layout_margin="15dp"
                         android:text="Password"
                         android:textColor="@color/colorPurple"
@@ -136,7 +136,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/login_password_input_reception"
+                        android:id="@+id/login_password_input_doctor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tvPassword"
@@ -162,12 +162,12 @@
                 android:layout_marginRight="-20dp"
                 android:elevation="10dp">
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/btRegister"-->
-<!--                    android:layout_width="60dp"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:background="@drawable/circle"-->
-<!--                    android:src="@drawable/ic_add" />-->
+                <ImageButton
+                    android:id="@+id/btRegister"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/circle"
+                    android:src="@drawable/ic_add" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -184,7 +184,7 @@
                 android:elevation="10dp">
 
                 <Button
-                    android:id="@+id/login_btn_reception"
+                    android:id="@+id/login_btn_doctor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -195,17 +195,17 @@
 
             </RelativeLayout>
 
-<!--            <CheckBox-->
-<!--                android:id="@+id/remember_me_chkb_reception"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                style="@style/Material.Drawable.CheckBox"-->
-<!--                android:text="Remember me"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:textSize="16sp"-->
-<!--                android:layout_below="@id/rela1"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:layout_marginLeft="17dp"/>-->
+            <!--            <CheckBox-->
+            <!--                android:id="@+id/remember_me_chkb_reception"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                style="@style/Material.Drawable.CheckBox"-->
+            <!--                android:text="Remember me"-->
+            <!--                android:gravity="center_vertical"-->
+            <!--                android:textSize="16sp"-->
+            <!--                android:layout_below="@id/rela1"-->
+            <!--                android:layout_marginTop="30dp"-->
+            <!--                android:layout_marginLeft="17dp"/>-->
 
 
             <TextView
@@ -219,7 +219,7 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/login_with_phone_reception"
+                android:id="@+id/login_with_google"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvForgot"
@@ -227,10 +227,23 @@
                 android:layout_alignRight="@+id/cv"
                 android:layout_margin="10dp"
                 android:background="@drawable/bt_uiborder"
+                android:drawableLeft="@drawable/google3"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="Login with phone"
+                android:text="Login with Google"
                 android:textColor="@color/colorPurple" />
+
         </RelativeLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/progress_bar"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
 </RelativeLayout>
