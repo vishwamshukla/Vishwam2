@@ -10,7 +10,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReceptionProfileActivity"></activity>
+        <activity android:name=".NurseProfileActivity"></activity>
+        <activity android:name=".NurseRegisterActivity" />
+        <activity android:name=".ReceptionProfileActivity" />
         <activity android:name=".ReceptionRegiserActivity" />
         <activity android:name=".DoctorForgotPasswordActivity" />
         <activity android:name=".DoctorProfileActivity" />
