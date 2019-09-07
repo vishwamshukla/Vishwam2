@@ -93,7 +93,7 @@ public class NurseRegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                startActivity(new Intent(NurseRegisterActivity.this, ReceptionLoginActivity.class));
+                                startActivity(new Intent(NurseRegisterActivity.this, NurseLoginActivity.class));
                                 Toast.makeText(NurseRegisterActivity.this, "Success", Toast.LENGTH_SHORT).show();
                                 //loadingBar.dismiss();
                                 progressBar.setVisibility(View.INVISIBLE);

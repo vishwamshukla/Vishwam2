@@ -94,7 +94,7 @@ public class PharmacyRegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                startActivity(new Intent(PharmacyRegisterActivity.this, ReceptionLoginActivity.class));
+                                startActivity(new Intent(PharmacyRegisterActivity.this, PharmacyLoginActivity.class));
                                 Toast.makeText(PharmacyRegisterActivity.this, "Success", Toast.LENGTH_SHORT).show();
                                 //loadingBar.dismiss();
                                 progressBar.setVisibility(View.INVISIBLE);

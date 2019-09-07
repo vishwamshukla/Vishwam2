@@ -98,7 +98,7 @@ public class NurseLoginActivity extends AppCompatActivity {
 //                    ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(ReceptionLoginActivity.this,pairs);
 //                    startActivity(a,activityOptions.toBundle());
 //                }
-                startActivity(new Intent(NurseLoginActivity.this, ReceptionRegiserActivity.class));
+                startActivity(new Intent(NurseLoginActivity.this, NurseRegisterActivity.class));
             }
         });
 

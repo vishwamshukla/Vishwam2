@@ -31,7 +31,7 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class NurseProfileActivity extends AppCompatActivity {
+public class PharmacyProfileActivity extends AppCompatActivity {
 
     private CircleImageView profileImageView;
     private EditText fullNameEditText, userPhoneEditText, addressEditText;
@@ -51,12 +51,12 @@ public class NurseProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nurse_profile);
+        setContentView(R.layout.activity_pharmacy_profile);
 
-        storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Nurse Profiles");
+        storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Pharmacy Profiles");
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
-        UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Nurse").child(currentUserID);
+        UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Pharmacy").child(currentUserID);
 
         progressBar = findViewById(R.id.progress_bar);
 
@@ -99,14 +99,14 @@ public class NurseProfileActivity extends AppCompatActivity {
 
                 CropImage.activity(imageUri)
                         .setAspectRatio(1, 1)
-                        .start(NurseProfileActivity.this);
+                        .start(PharmacyProfileActivity.this);
             }
         });
     }
 
     private void updateOnlyUserInfo()
     {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child("Nurse");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child("Pharmacy");
 
         HashMap<String, Object> userMap = new HashMap<>();
         userMap. put("name", fullNameEditText.getText().toString());
@@ -115,7 +115,7 @@ public class NurseProfileActivity extends AppCompatActivity {
         ref.child(currentUserID).updateChildren(userMap);
 
         //startActivity(new Intent(ReceptionProfileActivity.this, ReceptionProfileActivity.class));
-        Toast.makeText(NurseProfileActivity.this, "Profile saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(PharmacyProfileActivity.this, "Profile saved", Toast.LENGTH_SHORT).show();
         //finish();
     }
 
@@ -195,7 +195,7 @@ public class NurseProfileActivity extends AppCompatActivity {
                                 Uri downloadUrl = task.getResult();
                                 myUrl = downloadUrl.toString();
 
-                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child("Nurse");
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child("Pharmacy");
 
                                 HashMap<String, Object> userMap = new HashMap<>();
                                 userMap. put("name", fullNameEditText.getText().toString());
@@ -207,15 +207,15 @@ public class NurseProfileActivity extends AppCompatActivity {
                                 //progressDialog.dismiss();
                                 progressBar.setVisibility(View.INVISIBLE);
 
-                                startActivity(new Intent(NurseProfileActivity.this, NurseHomeActivity.class));
-                                Toast.makeText(NurseProfileActivity.this, "Profile saved", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(PharmacyProfileActivity.this, ReceptionActivity.class));
+                                Toast.makeText(PharmacyProfileActivity.this, "Profile saved", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                             else
                             {
                                 //progressDialog.dismiss();
                                 progressBar.setVisibility(View.INVISIBLE);
-                                Toast.makeText(NurseProfileActivity.this, "Error.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PharmacyProfileActivity.this, "Error.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -227,7 +227,7 @@ public class NurseProfileActivity extends AppCompatActivity {
     }
 
     private void userInfoDisplay(final CircleImageView profileImageView, final EditText fullNameEditText, final EditText userPhoneEditText, final EditText addressEditText) {
-        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Nurse").child(currentUserID);
+        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Pharmacy").child(currentUserID);
 
         UsersRef.addValueEventListener(new ValueEventListener() {
             @Override
