@@ -61,7 +61,7 @@ public class PharmacyLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pharmacy_login);
+        setContentView(R.layout.activity_reception_login);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -179,13 +179,13 @@ public class PharmacyLoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
-                            startActivity(new Intent(PharmacyLoginActivity.this, NurseHomeActivity.class));
+                            startActivity(new Intent(PharmacyLoginActivity.this, PharmacyHomeActivity.class));
                         } else {
                             progressBar.setVisibility(View.INVISIBLE);
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(PharmacyLoginActivity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
-                            //startActivity(new Intent(PharmacyLoginActivity.this, ReceptionLoginActivity.class));
+                            //startActivity(new Intent(PharmacyLoginActivity.this, PharmacyLoginActivity.class));
 //                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
 //                            updateUI(null);
                         }
@@ -243,7 +243,7 @@ public class PharmacyLoginActivity extends AppCompatActivity {
     }
 
     private void SendUserToHomeActivity() {
-        Intent intent = new Intent(PharmacyLoginActivity.this, NurseHomeActivity.class);
+        Intent intent = new Intent(PharmacyLoginActivity.this, PharmacyHomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
@@ -302,4 +302,3 @@ public class PharmacyLoginActivity extends AppCompatActivity {
 //        });
 //    }
 //}
-
