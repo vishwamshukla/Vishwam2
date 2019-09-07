@@ -110,7 +110,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/login_phone_number_input_pharma"
+                        android:id="@+id/login_phone_number_input_nurse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tvUsername"
@@ -125,7 +125,7 @@
                         android:id="@+id/tvPassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/login_phone_number_input_pharma"
+                        android:layout_below="@+id/login_phone_number_input_nurse"
                         android:layout_margin="15dp"
                         android:text="Password"
                         android:textColor="@color/colorPurple"
@@ -133,7 +133,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/login_password_input_pharma"
+                        android:id="@+id/login_password_input_nurse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tvPassword"
@@ -181,7 +181,7 @@
                 android:elevation="10dp">
 
                 <Button
-                    android:id="@+id/login_btn_pharma"
+                    android:id="@+id/login_btn_nurse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -216,7 +216,7 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/login_with_phone_pharma"
+                android:id="@+id/login_with_phone_nurse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvForgot"
@@ -230,6 +230,5 @@
                 android:textColor="@color/colorPurple" />
         </RelativeLayout>
     </ScrollView>
-
 
 </RelativeLayout>
