@@ -190,13 +190,13 @@ public class DoctorLoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
-                            startActivity(new Intent(DoctorLoginActivity.this, DoctorProfileActivity.class));
+                            startActivity(new Intent(DoctorLoginActivity.this, HomeActivity.class));
                         } else {
                             progressBar.setVisibility(View.INVISIBLE);
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(DoctorLoginActivity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(DoctorLoginActivity.this, DoctorLoginActivity.class));
+                            //startActivity(new Intent(DoctorLoginActivity.this, DoctorLoginActivity.class));
 //                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
 //                            updateUI(null);
                         }

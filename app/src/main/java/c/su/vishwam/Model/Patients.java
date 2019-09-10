@@ -1,7 +1,7 @@
 package c.su.vishwam.Model;
 
 public class Patients {
-    private String name, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergies,courseinhospital,bed,ward;
+    private String name, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergies,courseinhospital,bed,ward, complaints, gender;
 
     public Patients(){
 
@@ -9,7 +9,7 @@ public class Patients {
 
     public Patients(String name, String problem, String others, String time, String date, String id, String sex, String age,String phone,String image,
                     String pulse,String bp,String bloodgroup,String anemia,String medicalhistory,String allergies,String courseinhospital,
-                    String bed,String ward) {
+                    String bed,String ward, String complaints, String gender) {
         this.name = name;
         this.problem = problem;
         this.others = others;
@@ -29,6 +29,8 @@ public class Patients {
         this.courseinhospital = courseinhospital;
         this.bed = bed;
         this.ward = ward;
+        this.complaints = complaints;
+        this.gender = gender;
 
     }
 
@@ -183,5 +185,21 @@ public class Patients {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(String complaints) {
+        this.complaints = complaints;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

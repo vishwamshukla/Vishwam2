@@ -65,12 +65,12 @@ public class HomeActivity extends AppCompatActivity
         Name = (TextView) findViewById(R.id.patient_name);
         Problem = (TextView) findViewById(R.id.patient_problem);
         OtherDetails = (TextView) findViewById(R.id.patient_other_details);
-        Sex = (TextView) findViewById(R.id.patient_sex);
-        Age = (TextView) findViewById(R.id.patient_age);
+//        Sex = (TextView) findViewById(R.id.patient_sex);
+//        Age = (TextView) findViewById(R.id.patient_age);
         Time = (TextView) findViewById(R.id.patient_time);
         Date = (TextView) findViewById(R.id.patient_date);
 
-        PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");//.child(Prevalent.currentOnlineUser.getPhone());
+        PatientsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
         PatientRef1 = FirebaseDatabase.getInstance().getReference().child("Admins").child("8669059504").child("transferRequest");
         PatientRef2 = FirebaseDatabase.getInstance().getReference().child("Admins").child("8669059504").child("handoverRequest");
 
@@ -105,8 +105,8 @@ public class HomeActivity extends AppCompatActivity
         TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
-        userNameTextView.setText(Prevalent.currentOnlineUser.getName());
-        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+//        userNameTextView.setText(Prevalent.currentOnlineUser.getName());
+//        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -128,14 +128,14 @@ public class HomeActivity extends AppCompatActivity
                 new FirebaseRecyclerAdapter<Patients, ProductViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Patients model) {
-                        holder.patientName.setText("Name: "+model.getName());
-                        holder.patientPhone.setText("Phone: "+model.getPhone());
-                        holder.patientSex.setText("Sex: "+model.getSex());
-                        holder.patientProblem.setText("Issue: "+model.getProblem());
-                        holder.patientOthers.setText("Details: "+model.getOthers());
-                        holder.patientDate.setText("Date: "+model.getDate());
-                        holder.patientTime.setText("Time: "+model.getTime());
-                        holder.patientAge.setText("Age:"+model.getAge());
+                        holder.patientName.setText(model.getName()+" ["+model.getAge()+", "+model.getGender()+"]");
+                        holder.patientPhone.setText(model.getId());
+                        //holder.patientSex.setText(model.getSex());
+                       // holder.patientProblem.setText("Complaints: "+model.getProblem());
+                        holder.patientOthers.setText(model.getComplaints());
+                        //holder.patientDate.setText("Date: "+model.getDate());
+                        //holder.patientTime.setText("Time: "+model.getTime());
+                        //holder.patientAge.setText("Age:"+model.getAge());
 //                        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //                            @Override
 //                            public void onClick(View v) {
@@ -144,100 +144,100 @@ public class HomeActivity extends AppCompatActivity
 //                                startActivity(intent);
 //                            }
 //                        });
-                        holder.TransferIpd.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                loadingBar.setTitle("Please wait...");
-                                loadingBar.setMessage("Sharing details with the admin department");
-                                loadingBar.setCanceledOnTouchOutside(false);
-                                loadingBar.show();
-
-                                Calendar calendar = Calendar.getInstance();
-                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
-                                saveCurrentDate = currentDate.format(calendar.getTime());
-
-
-                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
-                                saveCurrentTime = currentTime.format(calendar.getTime());
-
-                                patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
-
-                                HashMap<String, Object> patientMap = new HashMap<>();
-                                patientMap.put("id", patientRandomKey);
-                                patientMap.put("name",model.getName());
-                                patientMap.put("problem", model.getProblem());
-                                patientMap.put("others", model.getOthers());
-                                patientMap.put("sex",model.getSex());
-                                patientMap.put("age",model.getAge());
-                                patientMap.put("date",saveCurrentDate);
-                                patientMap.put("time",saveCurrentTime);
-                                patientMap.put("phone",model.getPhone());
-
-                                PatientRef1.child(patientRandomKey).updateChildren(patientMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()){
-                                            loadingBar.dismiss();
-                                            Toast.makeText(HomeActivity.this, model.getName()+" patient details shared with the admin department", Toast.LENGTH_SHORT).show();
-
-                                            Intent intent = new Intent(HomeActivity.this, IpdActivity.class);
-                                            //startActivity(intent);
-                                        }
-                                        else {
-                                            Toast.makeText(HomeActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-
-                            }
-                        });
-                        holder.HandoverToDoctor.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                loadingBar.setTitle("Please wait...");
-                                loadingBar.setMessage("Checking available doctors");
-                                loadingBar.setCanceledOnTouchOutside(false);
-                                loadingBar.show();
-
-                                Calendar calendar = Calendar.getInstance();
-                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
-                                saveCurrentDate = currentDate.format(calendar.getTime());
-
-
-                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
-                                saveCurrentTime = currentTime.format(calendar.getTime());
-
-                                patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
-                                HashMap<String, Object> patientMap1 = new HashMap<>();
-                                patientMap1.put("id", patientRandomKey);
-                                patientMap1.put("name",model.getName());
-                                patientMap1.put("problem", model.getProblem());
-                                patientMap1.put("others", model.getOthers());
-                                patientMap1.put("sex",model.getSex());
-                                patientMap1.put("age",model.getAge());
-                                patientMap1.put("date",saveCurrentDate);
-                                patientMap1.put("time",saveCurrentTime);
-                                patientMap1.put("phone",model.getPhone());
-
-                                PatientRef2.child(patientRandomKey).updateChildren(patientMap1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()){
-                                            loadingBar.dismiss();
-                                            Toast.makeText(HomeActivity.this, "Select doctor", Toast.LENGTH_SHORT).show();
-
-                                            Intent intent = new Intent(HomeActivity.this, IpdActivity.class);
-                                            //startActivity(intent);
-                                        }
-                                        else {
-                                            Toast.makeText(HomeActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-
-                                startActivity(new Intent(HomeActivity.this,DoctorListActivity.class));
-                            }
-                        });
+//                        holder.TransferIpd.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                loadingBar.setTitle("Please wait...");
+//                                loadingBar.setMessage("Sharing details with the admin department");
+//                                loadingBar.setCanceledOnTouchOutside(false);
+//                                loadingBar.show();
+//
+//                                Calendar calendar = Calendar.getInstance();
+//                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
+//                                saveCurrentDate = currentDate.format(calendar.getTime());
+//
+//
+//                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+//                                saveCurrentTime = currentTime.format(calendar.getTime());
+//
+//                                patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
+//
+//                                HashMap<String, Object> patientMap = new HashMap<>();
+//                                patientMap.put("id", patientRandomKey);
+//                                patientMap.put("name",model.getName());
+//                                patientMap.put("problem", model.getProblem());
+//                                patientMap.put("others", model.getOthers());
+//                                patientMap.put("sex",model.getSex());
+//                                patientMap.put("age",model.getAge());
+//                                patientMap.put("date",saveCurrentDate);
+//                                patientMap.put("time",saveCurrentTime);
+//                                patientMap.put("phone",model.getPhone());
+//
+//                                PatientRef1.child(patientRandomKey).updateChildren(patientMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<Void> task) {
+//                                        if (task.isSuccessful()){
+//                                            loadingBar.dismiss();
+//                                            Toast.makeText(HomeActivity.this, model.getName()+" patient details shared with the admin department", Toast.LENGTH_SHORT).show();
+//
+//                                            Intent intent = new Intent(HomeActivity.this, IpdActivity.class);
+//                                            //startActivity(intent);
+//                                        }
+//                                        else {
+//                                            Toast.makeText(HomeActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }
+//                                });
+//
+//                            }
+//                        });
+//                        holder.HandoverToDoctor.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                loadingBar.setTitle("Please wait...");
+//                                loadingBar.setMessage("Checking available doctors");
+//                                loadingBar.setCanceledOnTouchOutside(false);
+//                                loadingBar.show();
+//
+//                                Calendar calendar = Calendar.getInstance();
+//                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
+//                                saveCurrentDate = currentDate.format(calendar.getTime());
+//
+//
+//                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+//                                saveCurrentTime = currentTime.format(calendar.getTime());
+//
+//                                patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
+//                                HashMap<String, Object> patientMap1 = new HashMap<>();
+//                                patientMap1.put("id", patientRandomKey);
+//                                patientMap1.put("name",model.getName());
+//                                patientMap1.put("problem", model.getProblem());
+//                                patientMap1.put("others", model.getOthers());
+//                                patientMap1.put("sex",model.getSex());
+//                                patientMap1.put("age",model.getAge());
+//                                patientMap1.put("date",saveCurrentDate);
+//                                patientMap1.put("time",saveCurrentTime);
+//                                patientMap1.put("phone",model.getPhone());
+//
+//                                PatientRef2.child(patientRandomKey).updateChildren(patientMap1).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<Void> task) {
+//                                        if (task.isSuccessful()){
+//                                            loadingBar.dismiss();
+//                                            Toast.makeText(HomeActivity.this, "Select doctor", Toast.LENGTH_SHORT).show();
+//
+//                                            Intent intent = new Intent(HomeActivity.this, IpdActivity.class);
+//                                            //startActivity(intent);
+//                                        }
+//                                        else {
+//                                            Toast.makeText(HomeActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }
+//                                });
+//
+//                                startActivity(new Intent(HomeActivity.this,DoctorListActivity.class));
+//                            }
+//                        });
 
                     }
 
@@ -281,7 +281,7 @@ public class HomeActivity extends AppCompatActivity
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
         saveCurrentTime = currentDate.format(calForDate.getTime());
 
-        final DatabaseReference IpdListRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD").child(Prevalent.currentOnlineUser.getPhone());
+        final DatabaseReference IpdListRef = FirebaseDatabase.getInstance().getReference().child("Patient IPD");
 
         final HashMap<String, Object> ipdList = new HashMap<>();
         ipdList.put("id",Id);
@@ -411,7 +411,6 @@ public class HomeActivity extends AppCompatActivity
             bed = itemView.findViewById(R.id.patient1_bed_no);
             ward = itemView.findViewById(R.id.patient1_ward_no);
             to = itemView.findViewById(R.id.patient_doctor_to);
-
 
         }
     }

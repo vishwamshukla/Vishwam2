@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -50,6 +51,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
     private StorageTask uploadTask;
     private StorageReference storageProfilePrictureRef;
     private String checker = "";
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reception_add_opd);
 
         PatientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+        progressBar = findViewById(R.id.progress_bar);
 
         storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("patient image");
 
@@ -180,19 +183,20 @@ public class Reception_add_opdActivity extends AppCompatActivity {
 
     private void StorePatientInformation() {
 
-        loadingBar.setTitle("Adding....");
-        loadingBar.setMessage("Please wait......");
-        loadingBar.setCanceledOnTouchOutside(false);
-        loadingBar.show();
+//        loadingBar.setTitle("Adding....");
+//        loadingBar.setMessage("Please wait......");
+//        loadingBar.setCanceledOnTouchOutside(false);
+//        loadingBar.show();
+        progressBar.setVisibility(View.VISIBLE);
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd MMM");
         saveCurrentDate = currentDate.format(calendar.getTime());
 
 
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
-        patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
+        patientRandomKey = saveCurrentTime + "-"+saveCurrentDate;
 
         PatientRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -217,7 +221,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
         patientMap.put("name", PatientName);
         patientMap.put("email", PatientEmail);
         patientMap.put("phone", PatientPhone);
-        patientMap.put("dob",PatientDob);
+        patientMap.put("age",PatientDob);
         patientMap.put("gender",PatientGender);
         patientMap.put("date",saveCurrentDate);
         patientMap.put("time",saveCurrentTime);
@@ -242,11 +246,13 @@ public class Reception_add_opdActivity extends AppCompatActivity {
 //                            startActivity(intent);
                             finish();
 
-                            loadingBar.dismiss();
+                            //loadingBar.dismiss();
+                            progressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(Reception_add_opdActivity.this, "Patient added in OPD", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            loadingBar.dismiss();
+                            //loadingBar.dismiss();
+                            progressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(Reception_add_opdActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -257,18 +263,19 @@ public class Reception_add_opdActivity extends AppCompatActivity {
     private void uploadImage()
     {
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd MMM");
         saveCurrentDate = currentDate.format(calendar.getTime());
 
 
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
         saveCurrentTime = currentTime.format(calendar.getTime());
-        patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Update Profile");
-        progressDialog.setMessage("Please wait, while we are updating your account information");
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
+        patientRandomKey = saveCurrentTime + "-"+saveCurrentDate;
+//        final ProgressDialog progressDialog = new ProgressDialog(this);
+//        progressDialog.setTitle("Update Profile");
+//        progressDialog.setMessage("Please wait, while we are updating your account information");
+//        progressDialog.setCanceledOnTouchOutside(false);
+//        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
 
         if (imageUri != null)
         {
@@ -322,7 +329,8 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                                 patientMap. put("image", myUrl);
                                 ref.child(patientRandomKey).updateChildren(patientMap);
 
-                                progressDialog.dismiss();
+                                //progressDialog.dismiss();
+                                progressBar.setVisibility(View.INVISIBLE);
 
                                 startActivity(new Intent(Reception_add_opdActivity.this, ReceptionActivity.class));
                                 Toast.makeText(Reception_add_opdActivity.this, "Profile added successfully.", Toast.LENGTH_SHORT).show();
@@ -330,7 +338,8 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                             }
                             else
                             {
-                                progressDialog.dismiss();
+                                progressBar.setVisibility(View.INVISIBLE);
+                                //progressDialog.dismiss();
                                 Toast.makeText(Reception_add_opdActivity.this, "Error.", Toast.LENGTH_SHORT).show();
                             }
                         }
