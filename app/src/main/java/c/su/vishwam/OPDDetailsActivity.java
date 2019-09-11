@@ -1,8 +1,12 @@
 package c.su.vishwam;
 
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -10,17 +14,29 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.CompletionService;
 
 import c.su.vishwam.Model.Patients;
 import c.su.vishwam.Prevalent.Prevalent;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class OPDDetailsActivity extends AppCompatActivity {
 
     private TextView Name, Email, Phone, Age, Gender, RelationStatus, BloodGroup, Allergy, Weight, BP, Pulse, Complaints, Visit, ReferredBy, MedicalHistory;
     private String Id = "";
+    private CircleImageView profileImageView;
+    private Uri imageUri;
+    private String myUrl = "";
+    private StorageTask uploadTask;
+    private StorageReference storageProfilePrictureRef;
 
+    private ProgressBar progressBar;
+    private String checker = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +57,19 @@ public class OPDDetailsActivity extends AppCompatActivity {
         Visit = findViewById(R.id.visit_detail);
         ReferredBy = findViewById(R.id.referredBy_detail);
         MedicalHistory = findViewById(R.id.medicalhistory_detail);
+        profileImageView = (CircleImageView) findViewById(R.id.patient_detail_image);
 
         Id = getIntent().getStringExtra("id");
         getPatientDetails(Id);
+
+        storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("patient image");
+        patientImageDisplay(profileImageView);
+        progressBar = findViewById(R.id.progress_bar);
+        //progressBar.setVisibility(View.VISIBLE);
     }
+
+
+
     private void getPatientDetails(String id) {
         DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
 
@@ -56,6 +81,7 @@ public class OPDDetailsActivity extends AppCompatActivity {
                     Patients patients = dataSnapshot.getValue(Patients.class);
 
                     Name.setText(patients.getName());
+                    Email.setText(patients.getEmail());
                     Phone.setText(patients.getPhone());
                     RelationStatus.setText(patients.getRelation());
                     BloodGroup.setText(patients.getBloodgroup());
@@ -78,4 +104,34 @@ public class OPDDetailsActivity extends AppCompatActivity {
             }
         });
     }
+    private void patientImageDisplay(final CircleImageView profileImageView) {
+        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Id);
+
+        UsersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                if (dataSnapshot.exists())
+                {
+                    if (dataSnapshot.child("image").exists())
+                    {
+                        //progressBar.setVisibility(View.INVISIBLE);
+                        String image = String.valueOf(dataSnapshot.child("image").getValue());
+
+                        Picasso.get().load(image).into(profileImageView);
+
+                    }
+
+                }
+            }
+
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+    }
+
 }

@@ -1,7 +1,7 @@
 package c.su.vishwam.Model;
 
 public class Patients {
-    private String name, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergy,courseinhospital,bed,ward, complaints, gender,relation,weight,visit, referredby;
+    private String name,email, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergy,courseinhospital,bed,ward, complaints, gender,relation,weight,visit, referredby;
 
     public Patients(){
 
@@ -9,7 +9,7 @@ public class Patients {
 
     public Patients(String name, String problem, String others, String time, String date, String id, String sex, String age,String phone,String image,
                     String pulse,String bp,String bloodgroup,String anemia,String medicalhistory,String allergy,String courseinhospital,
-                    String bed,String ward, String complaints, String gender, String relation, String weight,String visit, String referredby) {
+                    String bed,String ward, String complaints, String gender, String relation, String weight,String visit, String referredby, String email) {
         this.name = name;
         this.problem = problem;
         this.others = others;
@@ -35,6 +35,7 @@ public class Patients {
         this.weight = weight;
         this.visit = visit;
         this.referredby = referredby;
+        this.email = email;
 
     }
 
@@ -237,5 +238,13 @@ public class Patients {
 
     public void setReferredby(String referredby) {
         this.referredby = referredby;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

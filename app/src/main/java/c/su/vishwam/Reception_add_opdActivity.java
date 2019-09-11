@@ -145,8 +145,8 @@ public class Reception_add_opdActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Error, Try Again.", Toast.LENGTH_SHORT).show();
 
-            startActivity(new Intent(Reception_add_opdActivity.this, SettingsActivity.class));
-            finish();
+//            startActivity(new Intent(Reception_add_opdActivity.this, SettingsActivity.class));
+//            finish();
         }
     }
 
@@ -263,6 +263,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
 
     private void uploadImage()
     {
+        ValidatePatientData();
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("dd MMM");
         saveCurrentDate = currentDate.format(calendar.getTime());
@@ -308,27 +309,27 @@ public class Reception_add_opdActivity extends AppCompatActivity {
 
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
 
-                                HashMap<String, Object> patientMap = new HashMap<>();
-                                patientMap.put("id", patientRandomKey);
-                                patientMap.put("name", PatientName);
-                                patientMap.put("email", PatientEmail);
-                                patientMap.put("phone", PatientPhone);
-                                patientMap.put("age",PatientDob);
-                                patientMap.put("gender",PatientGender);
-                                patientMap.put("date",saveCurrentDate);
-                                patientMap.put("time",saveCurrentTime);
-                                patientMap.put("relation",PatientRelation);
-                                patientMap.put("bloodgroup",PatientBloodGroup);
-                                patientMap.put("allergy",PatientAllergy);
-                                patientMap.put("weight",PatientWt);
-                                patientMap.put("bp",PatientBp);
-                                patientMap.put("pulse",PatientPulse);
-                                patientMap.put("complaints",PatientComplaints);
-                                patientMap.put("medicalhistory",PatientMedicalHistory);
-                                patientMap.put("visit",PatientVisit);
-                                patientMap.put("referredby",PatientReferredBy);
-                                patientMap. put("image", myUrl);
-                                ref.child(patientRandomKey).updateChildren(patientMap);
+                                HashMap<String, Object> patientMap1 = new HashMap<>();
+                                patientMap1.put("id", patientRandomKey);
+                                patientMap1.put("name", PatientName);
+                                patientMap1.put("email", PatientEmail);
+                                patientMap1.put("phone", PatientPhone);
+                                patientMap1.put("age",PatientDob);
+                                patientMap1.put("gender",PatientGender);
+                                patientMap1.put("date",saveCurrentDate);
+                                patientMap1.put("time",saveCurrentTime);
+                                patientMap1.put("relation",PatientRelation);
+                                patientMap1.put("bloodgroup",PatientBloodGroup);
+                                patientMap1.put("allergy",PatientAllergy);
+                                patientMap1.put("weight",PatientWt);
+                                patientMap1.put("bp",PatientBp);
+                                patientMap1.put("pulse",PatientPulse);
+                                patientMap1.put("complaints",PatientComplaints);
+                                patientMap1.put("medicalhistory",PatientMedicalHistory);
+                                patientMap1.put("visit",PatientVisit);
+                                patientMap1.put("referredby",PatientReferredBy);
+                                patientMap1. put("image", myUrl);
+                                ref.child(patientRandomKey).updateChildren(patientMap1);
 
                                 //progressDialog.dismiss();
                                 progressBar.setVisibility(View.INVISIBLE);
