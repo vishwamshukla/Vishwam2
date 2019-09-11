@@ -225,6 +225,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
         patientMap.put("gender",PatientGender);
         patientMap.put("date",saveCurrentDate);
         patientMap.put("time",saveCurrentTime);
+        patientMap.put("age",PatientDob);
         patientMap.put("relation",PatientRelation);
         patientMap.put("bloodgroup",PatientBloodGroup);
         patientMap.put("allergy",PatientAllergy);
@@ -312,7 +313,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                                 patientMap.put("name", PatientName);
                                 patientMap.put("email", PatientEmail);
                                 patientMap.put("phone", PatientPhone);
-                                patientMap.put("dob",PatientDob);
+                                patientMap.put("age",PatientDob);
                                 patientMap.put("gender",PatientGender);
                                 patientMap.put("date",saveCurrentDate);
                                 patientMap.put("time",saveCurrentTime);

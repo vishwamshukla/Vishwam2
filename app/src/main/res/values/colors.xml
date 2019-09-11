@@ -10,4 +10,8 @@
     <color name="colorPurple">#A130FF</color>
     <color name="colorPurpleT">#64a130ff</color>
     <color name="colorWhite">#ffffff</color>
+
+    <color name="colorPrimary1">#49BEFF</color>
+    <color name="colorPrimaryDark1">#65DCE5</color>
+    <color name="SolidCircle">#AAFFFFFF</color>
 </resources>

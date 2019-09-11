@@ -11,13 +11,13 @@
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="122dp"
-        android:layout_marginVertical="220dp"
         android:contentDescription=""
+        android:layout_marginVertical="30dp"
         android:outlineSpotShadowColor="#0000"
         android:src="@drawable/ic_launcher"
+        android:layout_above="@id/we_care"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -30,7 +30,6 @@
         android:layout_centerVertical="true"
         android:textSize="27sp"
         android:layout_marginLeft="47dp"
-        android:layout_marginTop="300dp"
         android:textColor="@color/colorwhite"
         android:fontFamily="sans-serif-light"/>
 

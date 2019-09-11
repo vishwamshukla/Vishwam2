@@ -60,7 +60,7 @@ public class IpdDetailsActivity extends AppCompatActivity {
                     BloodGroup.setText("Blood Group: "+patients.getBloodgroup());
                     anemia.setText("Anaemia: "+patients.getAnemia());
                     MedicalHistory.setText("Medical History: "+patients.getMedicalhistory());
-                    Allergies.setText("Allergies: "+patients.getAllergies());
+                    //Allergies.setText("Allergies: "+patients.getAllergies());
                     courseinHospital.setText("Course in hospital: "+patients.getCourseinhospital());
 
 

@@ -29,7 +29,7 @@ public class ReceptionActivity extends AppCompatActivity {
         Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ReceptionActivity.this, ReceptionProfileActivity.class));
+                startActivity(new Intent(ReceptionActivity.this, OPDDetailsActivity.class));
             }
         });
     }

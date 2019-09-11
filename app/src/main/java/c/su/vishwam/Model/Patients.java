@@ -1,15 +1,15 @@
 package c.su.vishwam.Model;
 
 public class Patients {
-    private String name, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergies,courseinhospital,bed,ward, complaints, gender;
+    private String name, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergy,courseinhospital,bed,ward, complaints, gender,relation,weight,visit, referredby;
 
     public Patients(){
 
     }
 
     public Patients(String name, String problem, String others, String time, String date, String id, String sex, String age,String phone,String image,
-                    String pulse,String bp,String bloodgroup,String anemia,String medicalhistory,String allergies,String courseinhospital,
-                    String bed,String ward, String complaints, String gender) {
+                    String pulse,String bp,String bloodgroup,String anemia,String medicalhistory,String allergy,String courseinhospital,
+                    String bed,String ward, String complaints, String gender, String relation, String weight,String visit, String referredby) {
         this.name = name;
         this.problem = problem;
         this.others = others;
@@ -25,12 +25,16 @@ public class Patients {
         this.bloodgroup = bloodgroup;
         this.anemia = anemia;
         this.medicalhistory = medicalhistory;
-        this.allergies = allergies;
+        this.allergy = allergy;
         this.courseinhospital = courseinhospital;
         this.bed = bed;
         this.ward = ward;
         this.complaints = complaints;
         this.gender = gender;
+        this.relation= relation;
+        this.weight = weight;
+        this.visit = visit;
+        this.referredby = referredby;
 
     }
 
@@ -70,12 +74,12 @@ public class Patients {
         this.medicalhistory = medicalhistory;
     }
 
-    public String getAllergies() {
-        return allergies;
+    public String getAllergy() {
+        return allergy;
     }
 
-    public void setAllergies(String allergies) {
-        this.allergies = allergies;
+    public void setAllergy(String allergy) {
+        this.allergy = allergy;
     }
 
     public String getCourseinhospital() {
@@ -201,5 +205,37 @@ public class Patients {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getRelation() {
+        return relation;
+    }
+
+    public void setRelation(String relation) {
+        this.relation = relation;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getVisit() {
+        return visit;
+    }
+
+    public void setVisit(String visit) {
+        this.visit = visit;
+    }
+
+    public String getReferredby() {
+        return referredby;
+    }
+
+    public void setReferredby(String referredby) {
+        this.referredby = referredby;
     }
 }
