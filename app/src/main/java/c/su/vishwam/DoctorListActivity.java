@@ -41,6 +41,7 @@ public class DoctorListActivity extends AppCompatActivity {
     ArrayList keys = new ArrayList<String>();
     ArrayList emails = new ArrayList<String>();
     private String patientRandomKey;
+    private DatabaseReference PatientRef;
 
     private DatabaseReference DoctorRef,doctorRef1;
 
@@ -49,10 +50,10 @@ public class DoctorListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_list);
 
-        doctorRef1 = FirebaseDatabase.getInstance().getReference().child("Admins").child("8669059504").child("handoverRequest");
+        //doctorRef1 = FirebaseDatabase.getInstance().getReference().child("Admins").child("8669059504").child("handoverRequest");
+        PatientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
 
-
-        DoctorRef = FirebaseDatabase.getInstance().getReference().child("Username");
+        DoctorRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors");
 
         list_view = (ListView) findViewById(R.id.list_view);
         arrayAdapter = new ArrayAdapter<String>(DoctorListActivity.this, android.R.layout.simple_list_item_1,list_of_groups);
@@ -66,25 +67,24 @@ public class DoctorListActivity extends AppCompatActivity {
                 final String cureentGroupName = adapterView.getItemAtPosition(position).toString();
 
                 Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd");
+                SimpleDateFormat currentDate = new SimpleDateFormat("dd MMM");
                 saveCurrentDate = currentDate.format(calendar.getTime());
 
 
-                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm a");
+                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
                 saveCurrentTime = currentTime.format(calendar.getTime());
-
-                patientRandomKey = saveCurrentDate + "-"+saveCurrentTime;
+                patientRandomKey = saveCurrentTime + "-"+saveCurrentDate;
 
                 HashMap<String, Object> doctorMap = new HashMap<>();
-                doctorMap.put("to", cureentGroupName);
+                doctorMap.put("doctor", cureentGroupName);
 
-                doctorRef1.child(patientRandomKey).updateChildren(doctorMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                PatientRef.child(patientRandomKey).updateChildren(doctorMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(DoctorListActivity.this, "Details shared with "+cureentGroupName, Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(DoctorListActivity.this, IpdActivity.class);
+                            Intent intent = new Intent(DoctorListActivity.this, ReceptionActivity.class);
                             //startActivity(intent);
                         }
                         else {
@@ -103,6 +103,8 @@ public class DoctorListActivity extends AppCompatActivity {
         DoctorRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
 
                 Set<String> set = new HashSet<>();
                 Iterator iterator = dataSnapshot.getChildren().iterator();

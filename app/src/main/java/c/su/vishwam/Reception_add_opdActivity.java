@@ -243,13 +243,13 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
 
-//                            Intent intent = new Intent(Reception_add_opdActivity.this, AdminCategoryActivity.class);
-//                            startActivity(intent);
-                            finish();
+                            Intent intent = new Intent(Reception_add_opdActivity.this, DoctorListActivity.class);
+                            startActivity(intent);
+                            //finish();
 
                             //loadingBar.dismiss();
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(Reception_add_opdActivity.this, "Patient added in OPD", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(Reception_add_opdActivity.this, "Patient added in OPD", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             //loadingBar.dismiss();
@@ -334,9 +334,9 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                                 //progressDialog.dismiss();
                                 progressBar.setVisibility(View.INVISIBLE);
 
-                                startActivity(new Intent(Reception_add_opdActivity.this, ReceptionActivity.class));
-                                Toast.makeText(Reception_add_opdActivity.this, "Profile added successfully.", Toast.LENGTH_SHORT).show();
-                                finish();
+                                startActivity(new Intent(Reception_add_opdActivity.this, DoctorListActivity.class));
+                                //Toast.makeText(Reception_add_opdActivity.this, "Profile added successfully.", Toast.LENGTH_SHORT).show();
+                                //finish();
                             }
                             else
                             {
