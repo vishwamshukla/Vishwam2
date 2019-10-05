@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +53,7 @@ public class HomeActivity extends AppCompatActivity
     private String patientRandomKey;
     RecyclerView.LayoutManager layoutManager;
     private ProgressDialog loadingBar;
+    private Button completeAppoinButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
