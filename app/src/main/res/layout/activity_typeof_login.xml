@@ -77,7 +77,9 @@
                         android:layout_height="80dp">
                     </ImageView>
 
+
                     <TextView
+                        android:id="@+id/doctor_type_text"
                         android:layout_marginTop="12dp"
                         android:textColor="#6f6f6f"
                         android:textSize="18sp"
@@ -112,6 +114,7 @@
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/receptionist_type_text"
                         android:layout_marginTop="12dp"
                         android:textColor="#6f6f6f"
                         android:textSize="18sp"
@@ -147,6 +150,7 @@
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/nurse_type_text"
                         android:layout_marginTop="12dp"
                         android:textColor="#6f6f6f"
                         android:textSize="18sp"
@@ -182,6 +186,7 @@
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/pharmacist_type_text"
                         android:layout_marginTop="12dp"
                         android:textColor="#6f6f6f"
                         android:textSize="18sp"
@@ -217,6 +222,7 @@
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/emergency_type_text"
                         android:layout_marginTop="12dp"
                         android:textColor="#6f6f6f"
                         android:textSize="18sp"
@@ -252,6 +258,7 @@
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/admin_type_text"
                         android:layout_marginTop="12dp"
                         android:textColor="#6f6f6f"
                         android:textSize="18sp"
