@@ -47,6 +47,8 @@ public class OPDDetailsActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private String checker = "";
+
+    private Button ipdRequest, connectPharmacy, completeAppointment, deletePatientData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +70,6 @@ public class OPDDetailsActivity extends AppCompatActivity {
         ReferredBy = findViewById(R.id.referredBy_detail);
         MedicalHistory = findViewById(R.id.medicalhistory_detail);
         profileImageView = (CircleImageView) findViewById(R.id.patient_detail_image);
-        complete = (Button) findViewById(R.id.complete_button);
 
         Id = getIntent().getStringExtra("id");
         getPatientDetails(Id);
@@ -78,12 +79,82 @@ public class OPDDetailsActivity extends AppCompatActivity {
         patientImageDisplay(profileImageView);
         progressBar = findViewById(R.id.progress_bar);
         //progressBar.setVisibility(View.VISIBLE);
-        complete.setOnClickListener(new View.OnClickListener() {
+
+        ipdRequest = findViewById(R.id.ipd_request_button);
+        connectPharmacy = findViewById(R.id.pharmacy_control);
+        completeAppointment = findViewById(R.id.completeAppointment_control);
+        deletePatientData = findViewById(R.id.delete_control);
+
+
+        deletePatientData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CompleteAppointment();
+                deleteData();
             }
         });
+        completeAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String saveCurrentTime, saveCurrentDate;
+
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat currentDate = new SimpleDateFormat("dd MMM");
+                saveCurrentDate = currentDate.format(calendar.getTime());
+
+
+                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
+                saveCurrentTime = currentTime.format(calendar.getTime());
+
+                patientRandomKey = saveCurrentTime + "-"+saveCurrentDate;
+
+
+                final DatabaseReference IpdListRef = FirebaseDatabase.getInstance().getReference().child("Patient History");
+
+                final HashMap<String, Object> ipdList = new HashMap<>();
+                ipdList.put("id",patientRandomKey);
+                ipdList.put("name",Name.getText().toString());
+                ipdList.put("email", Email.getText().toString());
+                ipdList.put("phone", Phone.getText().toString());
+                ipdList.put("age",Age.getText().toString());
+                ipdList.put("gender",Gender.getText().toString());
+//                ipdList.put("date",saveCurrentDate);
+//                ipdList.put("time",saveCurrentTime);
+                ipdList.put("bloodgroup",BloodGroup.getText().toString());
+                ipdList.put("allergy",Allergy.getText().toString());
+                ipdList.put("weight",Weight.getText().toString());
+                ipdList.put("bp",BP.getText().toString());
+                ipdList.put("relation",RelationStatus.getText().toString());
+                ipdList.put("pulse",Pulse.getText().toString());
+                ipdList.put("complaints",Complaints.getText().toString());
+                ipdList.put("medicalhistory",MedicalHistory.getText().toString());
+                ipdList.put("visit",Visit.getText().toString());
+                ipdList.put("referredby",ReferredBy.getText().toString());
+
+
+                IpdListRef
+                        .child(Id)
+                        .updateChildren(ipdList)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Intent intent = new Intent(OPDDetailsActivity.this, HomeActivity.class);
+                                    Toast.makeText(OPDDetailsActivity.this, "Appointment completed", Toast.LENGTH_SHORT).show();
+                                    startActivity(intent);
+                                    deleteData();
+                                }
+                            }
+                        });
+            }
+        });
+    }
+
+    private void deleteData() {
+        progressBar.setVisibility(View.VISIBLE);
+        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+        productsRef.child(Id).removeValue();
+        progressBar.setVisibility(View.INVISIBLE);
+        startActivity(new Intent(OPDDetailsActivity.this, HomeActivity.class));
     }
 
     private void CompleteAppointment() {
@@ -140,10 +211,6 @@ public class OPDDetailsActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
-        productsRef.child(Id).removeValue();
-        startActivity(new Intent(OPDDetailsActivity.this, HomeActivity.class));
     }
 
 

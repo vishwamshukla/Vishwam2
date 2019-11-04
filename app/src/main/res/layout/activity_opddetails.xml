@@ -462,13 +462,47 @@
                         android:layout_marginTop="15dp"
                         android:background="#E5E5E5"></View>
                     <Button
-                        android:id="@+id/complete_button"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/ipd_request_button"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Complete Appointment"
+                        android:text="Ipd Request"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/bt_uisquare"
                         android:textAllCaps="false"
                         android:textColor="@color/colorWhite"/>
+                    <Button
+                        android:id="@+id/pharmacy_control"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ipd_request_control"
+                        android:background="@drawable/bt_uisquare"
+                        android:text="Connect to Pharmacy"
+                        android:layout_marginTop="20dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite"
+                        ></Button>
+                    <Button
+                        android:id="@+id/completeAppointment_control"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/pharmacy_control"
+                        android:background="@drawable/bt_uisquare"
+                        android:text="Complete Appointment"
+                        android:layout_marginTop="20dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite"
+                        ></Button>
+                    <Button
+                        android:id="@+id/delete_control"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/completeAppointment_control"
+                        android:background="@drawable/bt_uisquare"
+                        android:text="Delete Patient"
+                        android:layout_marginTop="20dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite"
+                        ></Button>
                 </LinearLayout>
             </LinearLayout>
 

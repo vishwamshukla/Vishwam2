@@ -341,8 +341,8 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.main_find_patients_option) {
             startActivity(new Intent(HomeActivity.this,SearchActivity.class));
         }
-        else if (id == R.id.main_find_ipd_patients_option){
-            startActivity(new Intent(HomeActivity.this,SearchIpdActivity.class));
+        else if (id == R.id.history){
+            startActivity(new Intent(HomeActivity.this,HistoryActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

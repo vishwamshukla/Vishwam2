@@ -8,9 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -57,6 +60,20 @@ public class Reception_add_opdActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reception_add_opd);
+
+//        final Spinner genderSpinner = findViewById(R.id.p_gender1);
+//        String genderText = genderSpinner.getSelectedItem().toString();
+//        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Reception_add_opdActivity.this,
+//                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.names));
+//        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        genderSpinner.setAdapter(myAdapter);
+//        genderSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                genderSpinner.setSelection(position);
+//                String genderText = genderSpinner.getSelectedItem().toString();
+//            }
+//        });
 
         PatientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
         progressBar = findViewById(R.id.progress_bar);
@@ -173,7 +190,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
             Toast.makeText(this, "Please Enter the name", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(PatientComplaints)){
-            Toast.makeText(this, "PLease write the problem", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please write the problem", Toast.LENGTH_SHORT).show();
         }
         else {
             StorePatientInformation();

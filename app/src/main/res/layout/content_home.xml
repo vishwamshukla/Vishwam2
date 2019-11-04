@@ -9,7 +9,6 @@
     tools:showIn="@layout/app_bar_home">
 
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_menu"
         android:layout_width="match_parent"

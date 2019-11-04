@@ -51,7 +51,7 @@ import c.su.vishwam.ViewHolder.ProductViewHolder;
      protected void onStart() {
          super.onStart();
 
-         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)").child(Prevalent.currentOnlineUser.getPhone());
+         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");//.child(Prevalent.currentOnlineUser.getPhone());
 
          FirebaseRecyclerOptions<Patients> options =
                  new FirebaseRecyclerOptions.Builder<Patients>()
@@ -62,18 +62,18 @@ import c.su.vishwam.ViewHolder.ProductViewHolder;
                  new FirebaseRecyclerAdapter<Patients, ProductViewHolder>(options) {
                      @Override
                      protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Patients model) {
-                         holder.patientName.setText("Name : " + model.getName());
-                         holder.patientProblem.setText("Issue : " + model.getProblem());
-                         holder.patientTime.setText("Time : "+model.getTime());
-                         holder.patientDate.setText("Date : "+model.getDate());
-                         holder.patientOthers.setText("Details : "+model.getOthers());
-                         holder.patientSex.setText("Sex : "+model.getSex());
-                         holder.patientPhone.setText("Phone : "+model.getPhone());
+                         holder.patientName.setText(model.getName()+" ["+model.getAge()+", "+model.getGender()+"]");
+                         //holder.patientProblem.setText("Issue : " + model.getProblem());
+//                         holder.patientTime.setText("Time : "+model.getTime());
+//                         holder.patientDate.setText("Date : "+model.getDate());
+                         holder.patientOthers.setText(model.getComplaints());
+                         //holder.patientSex.setText("Sex : "+model.getSex());
+                         holder.patientPhone.setText(model.getId());
 
                          holder.itemView.setOnClickListener(new View.OnClickListener() {
                              @Override
                              public void onClick(View v) {
-                                 Intent intent = new Intent(SearchActivity.this, PatientDetailsActivity.class);
+                                 Intent intent = new Intent(SearchActivity.this, OPDDetailsActivity.class);
                                  intent.putExtra("id",model.getId());
                                  startActivity(intent);
                              }

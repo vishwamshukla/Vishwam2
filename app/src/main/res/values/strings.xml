@@ -99,4 +99,12 @@
     </string>
     <string name="title_activity_terms_and_condition">Terms and Conditions</string>
     <string name="default_web_client_id">562675837506-rqamg75m1snjsb4nbsqi5hmfblt5mdkj.apps.googleusercontent.com</string>
+
+
+    <string-array name="names">
+        <item>M</item>
+        <item>F</item>
+        <item>T</item>
+    </string-array>
+
 </resources>
