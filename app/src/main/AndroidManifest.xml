@@ -13,7 +13,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".IpdRequestDetailActivity"></activity>
+        <activity android:name=".ReceptionIpdRequestActivity" />
+        <activity android:name=".HistoryActivity" />
         <activity android:name=".login2" />
         <activity android:name=".OPDDetailsActivity" />
         <activity android:name=".EmergencyRegisterActivity" />
