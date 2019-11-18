@@ -21,9 +21,9 @@
             android:icon="@drawable/ic_note_add_black_24dp"
             android:title="Leave a Note" />
         <item
-            android:id="@+id/nav_search"
+            android:id="@+id/nav_chat"
             android:icon="@drawable/ic_search_black_24dp"
-            android:title="Search Patient" />
+            android:title="Chats" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout"

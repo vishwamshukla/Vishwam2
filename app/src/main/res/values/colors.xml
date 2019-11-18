@@ -14,4 +14,5 @@
     <color name="colorPrimary1">#49BEFF</color>
     <color name="colorPrimaryDark1">#65DCE5</color>
     <color name="SolidCircle">#AAFFFFFF</color>
+    <color name="colorProfile">#3B4041</color>
 </resources>

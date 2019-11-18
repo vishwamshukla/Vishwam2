@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+//import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -50,32 +50,32 @@ public class AdminLeaveActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseRecyclerOptions<Users> options =
-                new FirebaseRecyclerOptions.Builder<Users>()
-                        .setQuery(patientRef,Users.class)
-                        .build();
-
-        FirebaseRecyclerAdapter<Users, LeaveNoteActivity.LeaveViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Users, LeaveNoteActivity.LeaveViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull LeaveNoteActivity.LeaveViewHolder holder, int position, @NonNull Users model) {
-                        holder.name.setText("Name: "+model.getName());
-                        holder.phone.setText("Phone: "+model.getPhone());
-                        holder.sex.setText("Sex: "+model.getSex());
-                        holder.reason.setText("Reason: "+model.getLeaveReason());
-                        holder.from.setText("From: "+model.getLeaveFrom());
-                        holder.to.setText("To: "+model.getLeaveTo());
-                    }
-
-                    @NonNull
-                    @Override
-                    public LeaveNoteActivity.LeaveViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_leave_layout,parent,false);
-                        return new LeaveNoteActivity.LeaveViewHolder(view);
-                    }
-                };
-        ipdList.setAdapter(adapter);
-        adapter.startListening();
+//        FirebaseRecyclerOptions<Users> options =
+//                new FirebaseRecyclerOptions.Builder<Users>()
+//                        .setQuery(patientRef,Users.class)
+//                        .build();
+//
+//        FirebaseRecyclerAdapter<Users, LeaveNoteActivity.LeaveViewHolder> adapter =
+//                new FirebaseRecyclerAdapter<Users, LeaveNoteActivity.LeaveViewHolder>(options) {
+//                    @Override
+//                    protected void onBindViewHolder(@NonNull LeaveNoteActivity.LeaveViewHolder holder, int position, @NonNull Users model) {
+//                        holder.name.setText("Name: "+model.getName());
+//                        holder.phone.setText("Phone: "+model.getPhone());
+//                        holder.sex.setText("Sex: "+model.getSex());
+//                        holder.reason.setText("Reason: "+model.getLeaveReason());
+//                        holder.from.setText("From: "+model.getLeaveFrom());
+//                        holder.to.setText("To: "+model.getLeaveTo());
+//                    }
+//
+//                    @NonNull
+//                    @Override
+//                    public LeaveNoteActivity.LeaveViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+//                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_leave_layout,parent,false);
+//                        return new LeaveNoteActivity.LeaveViewHolder(view);
+//                    }
+//                };
+//        ipdList.setAdapter(adapter);
+//        adapter.startListening();
     }
 
     public static class IpdViewHolder extends RecyclerView.ViewHolder{

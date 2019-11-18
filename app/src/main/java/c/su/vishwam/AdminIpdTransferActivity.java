@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+//import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -49,35 +49,35 @@ public class AdminIpdTransferActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<IpdPatients> options =
-                new FirebaseRecyclerOptions.Builder<IpdPatients>()
-                        .setQuery(patientRef,IpdPatients.class)
-                        .build();
-        FirebaseRecyclerAdapter<IpdPatients, HomeActivity.IpdTransferViewHolder> adapter =
-                new FirebaseRecyclerAdapter<IpdPatients, HomeActivity.IpdTransferViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull HomeActivity.IpdTransferViewHolder holder, int position, @NonNull IpdPatients model) {
-                        holder.name.setText("Name: "+model.getName());
-                        holder.phone.setText("Phone: "+model.getPhone());
-                        holder.sex.setText("Sex: "+model.getSex());
-                        holder.problem.setText("Issue: "+model.getProblem());
-                        holder.others.setText("Details: "+model.getOthers());
-                        holder.time.setText("Time: "+model.getTime());
-                        holder.date.setText("Date: "+model.getDate());
-                        holder.age.setText("Age: "+model.getAge());
-
-
-                    }
-
-                    @NonNull
-                    @Override
-                    public HomeActivity.IpdTransferViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.transfer_request_admin,parent,false);
-                        return new HomeActivity.IpdTransferViewHolder(view);
-                    }
-                };
-        ipdList.setAdapter(adapter);
-        adapter.startListening();
+//        FirebaseRecyclerOptions<IpdPatients> options =
+//                new FirebaseRecyclerOptions.Builder<IpdPatients>()
+//                        .setQuery(patientRef,IpdPatients.class)
+//                        .build();
+//        FirebaseRecyclerAdapter<IpdPatients, HomeActivity.IpdTransferViewHolder> adapter =
+//                new FirebaseRecyclerAdapter<IpdPatients, HomeActivity.IpdTransferViewHolder>(options) {
+//                    @Override
+//                    protected void onBindViewHolder(@NonNull HomeActivity.IpdTransferViewHolder holder, int position, @NonNull IpdPatients model) {
+//                        holder.name.setText("Name: "+model.getName());
+//                        holder.phone.setText("Phone: "+model.getPhone());
+//                        holder.sex.setText("Sex: "+model.getSex());
+//                        holder.problem.setText("Issue: "+model.getProblem());
+//                        holder.others.setText("Details: "+model.getOthers());
+//                        holder.time.setText("Time: "+model.getTime());
+//                        holder.date.setText("Date: "+model.getDate());
+//                        holder.age.setText("Age: "+model.getAge());
+//
+//
+//                    }
+//
+//                    @NonNull
+//                    @Override
+//                    public HomeActivity.IpdTransferViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+//                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.transfer_request_admin,parent,false);
+//                        return new HomeActivity.IpdTransferViewHolder(view);
+//                    }
+//                };
+//        ipdList.setAdapter(adapter);
+//        adapter.startListening();
     }
     public static class IpdViewHolder extends RecyclerView.ViewHolder{
 

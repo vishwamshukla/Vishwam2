@@ -367,8 +367,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_leave_note) {
             startActivity(new Intent(HomeActivity.this,LeaveNoteActivity.class));
 
-        } else if (id == R.id.nav_search) {
-            Intent intent = new Intent(HomeActivity.this,SearchActivity.class);
+        } else if (id == R.id.nav_chat) {
+            Intent intent = new Intent(HomeActivity.this,DoctorChatActivity.class);
             startActivity(intent);
         }else if (id == R.id.nav_logout) {
             Paper.book().destroy();
