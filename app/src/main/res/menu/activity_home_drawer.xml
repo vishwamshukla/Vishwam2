@@ -5,10 +5,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_opd"
-            android:icon="@drawable/ic_local_hospital_black_24dp"
-            android:title="Cross Consultation" />
-        <item
             android:id="@+id/nav_ipd"
             android:icon="@drawable/ic_hotel_black_24dp"
             android:title="IPD" />

@@ -71,7 +71,7 @@
 
                     <ImageView
                         android:id="@+id/view_prescription_pharmacy"
-                        android:src="@drawable/opd1"
+                        android:src="@drawable/view_prescription"
                         android:layout_width="80dp"
                         android:layout_height="80dp">
                     </ImageView>

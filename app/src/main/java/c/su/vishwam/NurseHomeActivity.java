@@ -8,23 +8,23 @@ import android.widget.ImageView;
 
 public class NurseHomeActivity extends AppCompatActivity {
 
-    ImageView AddOpd, Profile;
+    ImageView ViewPatient, Profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reception);
 
-        AddOpd = (ImageView) findViewById(R.id.reception_add_opd);
+        ViewPatient = (ImageView) findViewById(R.id.reception_add_opd);
 
         Profile = (ImageView) findViewById(R.id.reception_profile);
 
-//        AddOpd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(ReceptionActivity.this, Reception_add_opdActivity.class));
-//            }
-//        });
+        ViewPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent (NurseHomeActivity.this , NurseViewPatientActivity.class));
+            }
+        });
         Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

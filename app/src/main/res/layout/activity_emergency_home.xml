@@ -71,7 +71,7 @@
 
                     <ImageView
                         android:id="@+id/emergency_add_new"
-                        android:src="@drawable/opd1"
+                        android:src="@drawable/add_emergency"
                         android:layout_width="80dp"
                         android:layout_height="80dp">
                     </ImageView>
@@ -106,7 +106,7 @@
 
                     <ImageView
                         android:id="@+id/emergency_view"
-                        android:src="@drawable/ipd1"
+                        android:src="@drawable/view_emergency"
                         android:layout_width="80dp"
                         android:layout_height="80dp">
                     </ImageView>

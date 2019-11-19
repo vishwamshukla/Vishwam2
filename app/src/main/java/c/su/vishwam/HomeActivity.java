@@ -354,9 +354,10 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_opd) {
-            startActivity(new Intent(HomeActivity.this,OpdActivity.class));
-        } else if (id == R.id.nav_ipd) {
+//        if (id == R.id.nav_opd) {
+//            startActivity(new Intent(HomeActivity.this,OpdActivity.class));
+//        }
+        if (id == R.id.nav_ipd) {
             Intent intent = new Intent(HomeActivity.this,IpdActivity.class);
             startActivity(intent);
 
