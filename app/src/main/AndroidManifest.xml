@@ -13,7 +13,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EmergencyViewActivity"></activity>
+        <activity android:name=".DoctorPrescriptionActivity"></activity>
+        <activity android:name=".PharamcyViewPresActivity" />
+        <activity android:name=".EmergencyViewActivity" />
         <activity android:name=".EmergencyAddNewActivity" />
         <activity
             android:name=".DoctorChatPersonalActivity"

@@ -70,7 +70,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/reception_add_opd"
+                        android:id="@+id/view_prescription_pharmacy"
                         android:src="@drawable/opd1"
                         android:layout_width="80dp"
                         android:layout_height="80dp">
