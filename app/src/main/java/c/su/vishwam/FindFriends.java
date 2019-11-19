@@ -1,17 +1,18 @@
 package c.su.vishwam;
 
 public class FindFriends {
-    public String image, type, phone,name;
+    public String image, type, phone,name,id;
 
     public FindFriends(){
 
     }
 
-    public FindFriends(String image, String type, String phone, String name) {
+    public FindFriends(String image, String type, String phone, String name, String id) {
         this.image = image;
         this.type = type;
         this.phone = phone;
         this.name = name;
+        this.id = id;
     }
 
     public String getImage() {
@@ -44,5 +45,13 @@ public class FindFriends {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

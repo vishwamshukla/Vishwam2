@@ -91,14 +91,15 @@ public class DoctorChatActivity extends AppCompatActivity {
 
                         //holder.patientSex.setText("Se
 
-//                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                Intent intent = new Intent(HistoryActivity.this, OPDDetailsActivity.class);
-//                                intent.putExtra("id",model.getId());
-//                                startActivity(intent);
-//                            }
-//                        });
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(DoctorChatActivity.this, DoctorChatPersonalActivity.class);
+                                intent.putExtra("id",model.getId());
+                                intent.putExtra("name", model.getName());
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     @NonNull
