@@ -13,7 +13,7 @@ public class NurseHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reception);
+        setContentView(R.layout.activity_nurse_home);
 
         ViewPatient = (ImageView) findViewById(R.id.reception_add_opd);
 
