@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import c.su.vishwam.Model.Patients;
 import c.su.vishwam.ViewHolder.ProductViewHolder;
 
-public class NurseViewPatientActivity extends AppCompatActivity {
+public class ReceptionLeaveForm extends AppCompatActivity {
 
     private Button searchBtn;
     private EditText inputText;
@@ -30,12 +30,12 @@ public class NurseViewPatientActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nurse_view_patient);
+        setContentView(R.layout.activity_reception_leave_form);
 
         inputText = (EditText) findViewById(R.id.search_patient_name);
         searchBtn = (Button) findViewById(R.id.search);
         searchList = findViewById(R.id.search_list);
-        searchList.setLayoutManager(new LinearLayoutManager(NurseViewPatientActivity.this));
+        searchList.setLayoutManager(new LinearLayoutManager(ReceptionLeaveForm.this));
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +50,7 @@ public class NurseViewPatientActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Patients(IPD)");//.child(Prevalent.currentOnlineUser.getPhone());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Leave notes");//.child(Prevalent.currentOnlineUser.getPhone());
 
         FirebaseRecyclerOptions<Patients> options =
                 new FirebaseRecyclerOptions.Builder<Patients>()
@@ -61,18 +61,18 @@ public class NurseViewPatientActivity extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<Patients, ProductViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Patients model) {
-                        holder.patientName.setText(model.getName()+" ["+model.getAge()+", "+model.getGender()+", "+model.getWardbed()+"]");
+                        holder.patientName.setText(model.getName()+" ["+model.getFrom()+", "+model.getTo()+"]");
                         //holder.patientProblem.setText("Issue : " + model.getProblem());
 //                         holder.patientTime.setText(model.getTime());
 //                         holder.patientDate.setText(model.getDate());
-                        holder.patientOthers.setText(model.getComplaints());
+                        holder.patientOthers.setText(model.getReason());
                         //holder.patientSex.setText("Sex : "+model.getSex());
                         holder.patientPhone.setText(model.getId());
 
 //                        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //                            @Override
 //                            public void onClick(View v) {
-//                                Intent intent = new Intent(NurseViewPatientActivity.this, OPDDetailsActivity.class);
+//                                Intent intent = new Intent(ReceptionLeaveForm.this, OPDDetailsActivity.class);
 //                                intent.putExtra("id",model.getId());
 //                                startActivity(intent);
 //                            }
@@ -91,4 +91,3 @@ public class NurseViewPatientActivity extends AppCompatActivity {
         adapter.startListening();
     }
 }
-

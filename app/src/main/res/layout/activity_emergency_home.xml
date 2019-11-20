@@ -29,7 +29,7 @@
             <TextView
                 android:textSize="24sp"
                 android:textColor="#52BAFF"
-                android:text="6 items"
+                android:text="3 items"
                 android:layout_below="@id/txtdashboard"
                 android:layout_marginTop="6dp"
                 android:layout_width="wrap_content"

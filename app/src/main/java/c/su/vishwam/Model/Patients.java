@@ -1,7 +1,7 @@
 package c.su.vishwam.Model;
 
 public class Patients {
-    private String name,email,details, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergy,courseinhospital,bed,ward, complaints, gender,relation,weight,visit, referredby, prescription;
+    private String name, wardbed,email,details, problem, others,time,date,id,sex,age,phone,image,pulse,bp,bloodgroup,anemia,medicalhistory,allergy,courseinhospital,bed,ward, complaints, gender,relation,weight,visit, referredby, prescription, from, to, reason;
 
     public Patients(){
 
@@ -9,7 +9,7 @@ public class Patients {
 
     public Patients(String name, String problem, String others, String time, String date, String id, String sex, String age,String phone,String image,
                     String pulse,String bp,String bloodgroup,String anemia,String medicalhistory,String allergy,String courseinhospital,
-                    String bed,String ward, String complaints, String gender, String relation, String weight,String visit, String referredby, String email, String details, String prescription) {
+                    String bed,String ward, String complaints,String wardbed, String gender, String relation, String weight,String visit, String referredby, String email, String details, String prescription, String from, String to, String reason) {
         this.name = name;
         this.problem = problem;
         this.others = others;
@@ -38,6 +38,10 @@ public class Patients {
         this.email = email;
         this.details = details;
         this.prescription = prescription;
+        this.wardbed = wardbed;
+        this.from=from;
+        this.to=to;
+        this.reason=reason;
 
     }
 
@@ -264,5 +268,39 @@ public class Patients {
 
     public void setPrescription(String prescription) {
         this.prescription = prescription;
+    }
+
+    public String getWardbed() {
+        return wardbed;
+
+
+    }
+
+    public void setWardbed(String wardbed) {
+        this.wardbed = wardbed;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

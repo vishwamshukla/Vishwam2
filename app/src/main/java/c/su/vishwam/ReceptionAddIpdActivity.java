@@ -8,12 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -33,16 +30,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-import c.su.vishwam.Prevalent.Prevalent;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Reception_add_opdActivity extends AppCompatActivity {
+public class ReceptionAddIpdActivity extends AppCompatActivity {
 
-
-    private String PatientName, PatientComplaints, PatientAllergy, saveCurrentDate, saveCurrentTime,PatientDob,PatientGender,PatientPhone, PatientEmail, PatientRelation, PatientBloodGroup, PatientWt, PatientBp, PatientPulse, PatientMedicalHistory, PatientVisit, PatientReferredBy;
+    private String PatientName, PatientComplaints, PatientAllergy, saveCurrentDate, saveCurrentTime,PatientDob,PatientGender,PatientPhone, PatientEmail, PatientRelation, PatientBloodGroup, PatientWt, PatientBp, PatientPulse, PatientMedicalHistory, PatientVisit, PatientReferredBy, PatientWardBed;
 
     private Button Continue;
-    private EditText name, email, phoneNumber, dob, gender, relationStatus, bloodGroup, allergy, wt, bp, pulse, complaints, medicalHistory, visit, referredBy;
+    private EditText name, email, phoneNumber, dob, gender, relationStatus, bloodGroup, allergy, wt, bp, pulse, complaints, medicalHistory, visit, referredBy, wardBed;
     private String patientRandomKey;
     private DatabaseReference PatientRef;
     private ProgressDialog loadingBar;
@@ -59,7 +54,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reception_add_opd);
+        setContentView(R.layout.activity_reception_add_ipd);
 
 //        final Spinner genderSpinner = findViewById(R.id.p_gender1);
 //        String genderText = genderSpinner.getSelectedItem().toString();
@@ -75,7 +70,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
 //            }
 //        });
 
-        PatientRef = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+        PatientRef = FirebaseDatabase.getInstance().getReference().child("Patients(IPD)");
         progressBar = findViewById(R.id.progress_bar);
 
         storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("patient image");
@@ -83,6 +78,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
         profileImageView = (CircleImageView) findViewById(R.id.p_image1);
 
         Continue = (Button) findViewById(R.id.p_button_continue);
+        wardBed = findViewById(R.id.p_ward_bed1);
         name = (EditText) findViewById(R.id.p_name1);
         email = (EditText) findViewById(R.id.p_email1);
         phoneNumber = (EditText) findViewById(R.id.p_phoneNumber1);
@@ -128,7 +124,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
 
                 CropImage.activity(imageUri)
                         .setAspectRatio(1, 1)
-                        .start(Reception_add_opdActivity.this);
+                        .start(ReceptionAddIpdActivity.this);
             }
         });
 
@@ -184,6 +180,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
         PatientMedicalHistory = String.valueOf(medicalHistory.getText());
         PatientVisit = String.valueOf(visit.getText());
         PatientReferredBy = String.valueOf(referredBy.getText());
+        PatientWardBed = String.valueOf(wardBed.getText());
 
 
         if (TextUtils.isEmpty(PatientName)){
@@ -253,6 +250,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
         patientMap.put("medicalhistory",PatientMedicalHistory);
         patientMap.put("visit",PatientVisit);
         patientMap.put("referredby",PatientReferredBy);
+        patientMap.put("wardbed", PatientWardBed);
 
         PatientRef.child(patientRandomKey).updateChildren(patientMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -260,7 +258,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
 
-                            Intent intent = new Intent(Reception_add_opdActivity.this, ReceptionActivity.class);
+                            Intent intent = new Intent(ReceptionAddIpdActivity.this, ReceptionActivity.class);
                             startActivity(intent);
                             //finish();
 
@@ -271,7 +269,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                         else {
                             //loadingBar.dismiss();
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(Reception_add_opdActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ReceptionAddIpdActivity.this, "Error"+task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -324,7 +322,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                                 Uri downloadUrl = task.getResult();
                                 myUrl = downloadUrl.toString();
 
-                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Patients(OPD)");
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Patients(IPD)");
 
                                 HashMap<String, Object> patientMap1 = new HashMap<>();
                                 patientMap1.put("id", patientRandomKey);
@@ -346,12 +344,13 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                                 patientMap1.put("visit",PatientVisit);
                                 patientMap1.put("referredby",PatientReferredBy);
                                 patientMap1. put("image", myUrl);
+                                patientMap1.put("wardbed", PatientWardBed);
                                 ref.child(patientRandomKey).updateChildren(patientMap1);
 
                                 //progressDialog.dismiss();
                                 progressBar.setVisibility(View.INVISIBLE);
 
-                                startActivity(new Intent(Reception_add_opdActivity.this, ReceptionActivity.class));
+                                startActivity(new Intent(ReceptionAddIpdActivity.this, ReceptionActivity.class));
                                 //Toast.makeText(Reception_add_opdActivity.this, "Profile added successfully.", Toast.LENGTH_SHORT).show();
                                 //finish();
                             }
@@ -359,7 +358,7 @@ public class Reception_add_opdActivity extends AppCompatActivity {
                             {
                                 progressBar.setVisibility(View.INVISIBLE);
                                 //progressDialog.dismiss();
-                                Toast.makeText(Reception_add_opdActivity.this, "Error.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ReceptionAddIpdActivity.this, "Error.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

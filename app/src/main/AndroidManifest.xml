@@ -13,7 +13,12 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NurseViewPatientActivity"></activity>
+        <activity android:name=".ReceptionLeaveForm"></activity>
+        <activity android:name=".DoctorLeaveFormActivity" />
+        <activity android:name=".DoctorIpdDetailActivity" />
+        <activity android:name=".DoctorIpdActivity" />
+        <activity android:name=".ReceptionAddIpdActivity" />
+        <activity android:name=".NurseViewPatientActivity" />
         <activity android:name=".DoctorPrescriptionActivity" />
         <activity android:name=".PharamcyViewPresActivity" />
         <activity android:name=".EmergencyViewActivity" />

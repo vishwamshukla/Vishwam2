@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +29,14 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -54,6 +61,9 @@ public class HomeActivity extends AppCompatActivity
     RecyclerView.LayoutManager layoutManager;
     private ProgressDialog loadingBar;
     private Button completeAppoinButton;
+    private FirebaseAuth mAuth;
+    private DatabaseReference UsersRef;
+    String currentUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,8 +114,8 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
-        TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
-        CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
+        final TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
+        final CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
 //        userNameTextView.setText(Prevalent.currentOnlineUser.getName());
 //        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
@@ -114,6 +124,38 @@ public class HomeActivity extends AppCompatActivity
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        StorageReference storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Doctor Profiles");
+        mAuth = FirebaseAuth.getInstance();
+        currentUserID = mAuth.getCurrentUser().getUid();
+        UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors").child(currentUserID);
+
+        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors").child(currentUserID);
+
+        UsersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                if (dataSnapshot.exists())
+                {
+                    if (dataSnapshot.child("image").exists())
+                    {
+                        String image = String.valueOf(dataSnapshot.child("image").getValue());
+                        String name = String.valueOf(dataSnapshot.child("name").getValue());
+
+                        Picasso.get().load(image).into(profileImageView);
+                        userNameTextView.setText(name);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 
@@ -358,7 +400,7 @@ public class HomeActivity extends AppCompatActivity
 //            startActivity(new Intent(HomeActivity.this,OpdActivity.class));
 //        }
         if (id == R.id.nav_ipd) {
-            Intent intent = new Intent(HomeActivity.this,IpdActivity.class);
+            Intent intent = new Intent(HomeActivity.this,DoctorIpdActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_emergency) {
@@ -366,7 +408,7 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_leave_note) {
-            startActivity(new Intent(HomeActivity.this,LeaveNoteActivity.class));
+            startActivity(new Intent(HomeActivity.this,DoctorLeaveFormActivity.class));
 
         } else if (id == R.id.nav_chat) {
             Intent intent = new Intent(HomeActivity.this,DoctorChatActivity.class);
@@ -379,7 +421,7 @@ public class HomeActivity extends AppCompatActivity
             finish();
         }
         else if (id == R.id.nav_settings){
-            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(HomeActivity.this, DoctorProfileActivity.class);
             startActivity(intent);
         }
         else if (id == R.id.nav_contact){
@@ -416,5 +458,33 @@ public class HomeActivity extends AppCompatActivity
             to = itemView.findViewById(R.id.patient_doctor_to);
 
         }
+    }
+
+    private void userInfoDisplay(final CircleImageView profileImageView, final EditText NameText) {
+        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Docotors").child(currentUserID);
+
+        UsersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                if (dataSnapshot.exists())
+                {
+                    if (dataSnapshot.child("image").exists())
+                    {
+                        String image = String.valueOf(dataSnapshot.child("image").getValue());
+                        String name = String.valueOf(dataSnapshot.child("name").getValue());
+
+                        Picasso.get().load(image).into(profileImageView);
+                        NameText.setText(name);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

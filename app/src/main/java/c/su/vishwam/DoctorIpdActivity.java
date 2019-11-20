@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import c.su.vishwam.Model.Patients;
 import c.su.vishwam.ViewHolder.ProductViewHolder;
 
-public class NurseViewPatientActivity extends AppCompatActivity {
+public class DoctorIpdActivity extends AppCompatActivity {
 
     private Button searchBtn;
     private EditText inputText;
@@ -30,12 +30,12 @@ public class NurseViewPatientActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nurse_view_patient);
+        setContentView(R.layout.activity_history);
 
         inputText = (EditText) findViewById(R.id.search_patient_name);
         searchBtn = (Button) findViewById(R.id.search);
         searchList = findViewById(R.id.search_list);
-        searchList.setLayoutManager(new LinearLayoutManager(NurseViewPatientActivity.this));
+        searchList.setLayoutManager(new LinearLayoutManager(DoctorIpdActivity.this));
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,14 +69,14 @@ public class NurseViewPatientActivity extends AppCompatActivity {
                         //holder.patientSex.setText("Sex : "+model.getSex());
                         holder.patientPhone.setText(model.getId());
 
-//                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                Intent intent = new Intent(NurseViewPatientActivity.this, OPDDetailsActivity.class);
-//                                intent.putExtra("id",model.getId());
-//                                startActivity(intent);
-//                            }
-//                        });
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(DoctorIpdActivity.this, DoctorIpdDetailActivity.class);
+                                intent.putExtra("id",model.getId());
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     @NonNull
@@ -91,4 +91,3 @@ public class NurseViewPatientActivity extends AppCompatActivity {
         adapter.startListening();
     }
 }
-

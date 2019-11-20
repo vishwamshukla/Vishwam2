@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class ReceptionActivity extends AppCompatActivity {
 
-    ImageView AddOpd, Profile, IpdRequest;
+    ImageView AddOpd, Profile, IpdRequest, AddIpd, LeaveForm;
     TextView ipdRequest;
 
     @Override
@@ -18,7 +18,22 @@ public class ReceptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reception);
 
+        LeaveForm= findViewById(R.id.reception_leave);
         AddOpd = (ImageView) findViewById(R.id.reception_add_opd);
+        AddIpd = findViewById(R.id.add_ipd);
+        AddIpd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReceptionActivity.this, ReceptionAddIpdActivity.class));
+            }
+        });
+
+        LeaveForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent ( ReceptionActivity.this, ReceptionLeaveForm.class));
+            }
+        });
 
         Profile = (ImageView) findViewById(R.id.reception_profile);
         IpdRequest = findViewById(R.id.receptionist_ipd_request_image);
