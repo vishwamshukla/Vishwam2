@@ -8,23 +8,40 @@ import android.widget.ImageView;
 
 public class EmergencyHomeActivity extends AppCompatActivity {
 
-    private ImageView profile, AddEmergency, ViewEmergency;
+    private ImageView profile, AddEmergency, ViewEmergency, ambulanceTracking, detectOpd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_home);
 
-        profile = findViewById(R.id.reception_profile);
+        //profile = findViewById(R.id.reception_profile);
 
         AddEmergency = findViewById(R.id.emergency_add_new);
         ViewEmergency = findViewById(R.id.emergency_view);
 
-        profile.setOnClickListener(new View.OnClickListener() {
+        ambulanceTracking = findViewById(R.id.ambulance_tracking);
+        detectOpd = findViewById(R.id.cctv);
+
+        ambulanceTracking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EmergencyHomeActivity.this, EmergencyProfileActivity.class));
+                startActivity(new Intent(EmergencyHomeActivity.this, AmbulanceTrackingActivity.class));
             }
         });
+
+        detectOpd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EmergencyHomeActivity.this, DetectOPDActivity.class));
+            }
+        });
+
+//        profile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(EmergencyHomeActivity.this, EmergencyProfileActivity.class));
+//            }
+//        });
 
         AddEmergency.setOnClickListener(new View.OnClickListener() {
             @Override

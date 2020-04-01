@@ -196,16 +196,16 @@ public class EmergencyLoginActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if (currentUser ==  null){
-            SendUserToHomeActivity();
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//
+//        if (currentUser ==  null){
+//            SendUserToHomeActivity();
+//        }
+//    }
 
     private void LoginUser() {
         String email = InputEmail.getText().toString();
