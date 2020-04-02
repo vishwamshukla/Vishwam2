@@ -25,7 +25,7 @@ public class EmergencyHomeActivity extends AppCompatActivity {
         ambulanceTracking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EmergencyHomeActivity.this, AmbulanceTrackingActivity.class));
+                startActivity(new Intent(EmergencyHomeActivity.this, EmergencyAmbulaceListActivity.class));
             }
         });
 
